@@ -1,0 +1,80 @@
+
+<div id="custom-page">
+
+    <div id="single-content" style="text-align: center; text-transform: capitalize;">
+
+
+        <script>
+
+            $.get("http://104.238.96.209/~project/newsletter/wp-content/plugins/bodukplugin/get_name.php?name=" + localStorage.getItem('useruid'), function ( data ) {
+               // localStorage.setItem('user_display_name', data);
+              //  $('#userinfo').html(localStorage.getItem('user_display_name'));
+            });
+
+
+        </script>
+
+
+        <div id="userinfo"></div>
+
+        <script>
+
+            function logUserOut() {
+
+                localStorage.removeItem('current_user_id');
+                localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
+                window.location.replace("index.html");
+            }
+
+
+
+            $("#logout").on('click', function () {
+                //  e.preventDefault();
+                logUserOut();
+            });
+        </script>
+
+
+        <button type="button" class="btn btn-block btn-danger user-out" id="logout">Log out</button>
+        <!--<strong><%= user.login %></strong>
+        <br><br>
+        <!--<strong>Role</strong> : <%= user.role %>-->
+        <!--   <strong><%= user.role %></strong>
+           <br><br>
+           <div id="UserName"></div>
+           <strong><%= user.name %></strong>
+           <!--get_the_author_meta( 'first_name' )-->
+        <!-- <div class="userholder" >John</div>
+         <strong><%= user.email %></strong>
+
+         <strong>Capabilities</strong> :
+         <!--<ul>
+             <% _.each( user.capabilities, function( capability ){ %>
+                 <li><%= capability %></li>
+             <% } ); %>
+         </ul>
+
+        <!-- <h1>hh API</h1>
+
+         <a href="#" id="get-another-quote-button"></a>
+         <div id="user-data"></div>
+         <input type="button" onclick="takephoto()" value="Take Photo Image Base64"/>
+
+         <input type="button" onclick="takephotoURL()" value="Take Photo URL"/>
+         <input type="button" onclick="choosePhoto()" value="Album"/>
+         <input type="button" onclick="choosePhotoAlbum()" value="Lib"/>
+
+         <img src="" id="myImage" height="200px" width="200px"/>
+
+         <img src="" id="myImageUrl" height="200px" width="200px">
+         <img src="" id="album" height="200px" width="200px">
+         <img src="" id="lib" height="200px" width="200px">
+         <p id="text"></p>
+         <p id="text2"></p>
+        <a href="#" onclick="getImage();">Upload a Photo</a>-->
+
+    </div>
+
+    <!-- <a href="#logout" id="logout">Logout</a>-->
+
+</div>

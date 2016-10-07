@@ -1,0 +1,244 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*Admin CSS*/
+
+
+.user-profile{}
+
+.user-profile .profile-header {
+  position: relative;
+  width: 100%;
+}
+.user-profile .profile-header img {
+  width: 100%;
+}
+.user-profile .profile-header .cover {
+  height: 320px;
+  max-height: 320px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.user-profile .profile-header .thumb {
+  border: 3px solid #fff;
+  border-radius: 3px;
+  bottom: -25px;
+  box-shadow: 0 0 7px -2px #000;
+  height: 180px;
+  left: 20px;
+  overflow: hidden;
+  position: absolute;
+  width: 180px;
+}
+
+.user-profile .profile-header .author-name {
+  bottom: 21px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  left: 225px;
+  position: absolute;
+  text-shadow: 0 3px 6px #000;
+}
+
+
+.user-profile .profile-navs{}
+
+.user-profile .profile-navs .navs {
+  border-bottom: 1px solid #f2f2f2;
+  border-left: 1px solid #f2f2f2;
+  border-right: 1px solid #f2f2f2;
+  display: block;
+  margin-bottom: 15px;
+  padding-left: 250px;
+}
+.user-profile .profile-navs .navs li {
+  border-right: 1px solid #f2f2f2;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 15px 23px;
+}
+
+.user-profile .profile-navs .navs li.active {
+  background: #f2f2f2 none repeat scroll 0 0;
+}
+
+
+.user-profile .nav-box {
+  display: inline-block;
+  margin-left: 20px;
+  padding: 10px;
+  vertical-align: top;
+  width: 600px;
+}
+.user-profile .profile-sidebar {
+  display: inline-block;
+  padding: 10px;
+  width: 230px;
+}
+
+.user-profile .profile-sidebar .section {
+  background: #f2f2f2 none repeat scroll 0 0;
+  display: block;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.user-profile .profile-sidebar .section-title {
+  background: #ddd none repeat scroll 0 0;
+  font-size: 14px;
+  padding: 7px 10px;
+}
+
+.user-profile .profile-sidebar .section-content {
+
+}
+
+.user-profile .profile-sidebar .meta {
+  background: #f2f2f2 none repeat scroll 0 0;
+  display: block;
+  font-size: 13px;
+  padding: 10px;
+}
+
+
+
+.user-profile .author-follow {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 13px;
+  box-shadow: 0 0 3px -1px #999;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  padding: 7px 15px;
+}
+
+.user-profile .author-follow-count {
+  font-size: 12px;
+  padding: 0 10px;
+}
+
+.user-profile .profile-sidebar .author-social {
+  padding: 20px 0;
+}
+
+.user-profile .profile-sidebar .author-social .social {
+  border: 1px solid #ddd;
+  display: inline-block;
+  font-size: 20px;
+  height: 25px;
+  margin: 3px;
+  padding-top: 3px;
+  text-align: center;
+  width: 28px;
+}
+
+
+
+
+.user-profile .follower-mgs {
+  font-size: 12px;
+  padding: 0 10px;
+}
+
+.user-profile .follower-list {
+
+}
+
+
+.user-profile .follower-list .follower {
+  display: inline-block;
+  height: 32px;
+  margin: 2px;
+  overflow: hidden;
+  width: 32px;
+}
+
+.user-profile .name {
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+
+.user-profile .author-post-list{}
+.user-profile .author-post-list .author-post {
+  border-bottom: 1px solid #f2f2f2;
+  display: block;
+  margin: 0;
+  padding: 15px 0;
+}
+
+
+.user-profile .author-post-list .post-title {
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 8px 0;
+  text-decoration: none;
+}
+
+.user-profile .author-post-list .post-content {
+  font-size: 14px;
+  line-height: normal;
+}
+
+
+.user-profile .author-post-list .post-content .read-more {
+  display: block;
+  font-size: 14px;
+  line-height: normal;
+  padding: 6px 0;
+  text-decoration: none;
+}
+
+.user-profile .comment-list{}
+
+
+.user-profile .comment-list .comment {
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 13px;
+  margin: 0;
+  padding: 15px 0;
+}
+.user-profile .comment-list .comment .comment_author {
+  font-size: 13px;
+  padding: 5px 0;
+}
+.user-profile .comment-list .comment .comment_author .name {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0;
+  text-decoration: none;
+}
+.user-profile .comment-list .comment .comment_author a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+
+.user-profile .comment-list .comment .comment_content {
+  display: block;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+.user-profile .author-about {
+line-height: normal;
+font-size: 13px;
+}
+
+
+ 
+
+
+
+
+
+
+
+

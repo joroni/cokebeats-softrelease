@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes, width=device-width">
+
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+    <script>
+
+        /******** Check Local Storage If Existing User Logged **********/
+//        var MyID = localStorage.getItem('useruid');
+        //      console.log(MyID);
+
+
+        $(function () {
+            var userlogin = localStorage.getItem('userlogin');
+
+            if (userlogin != 'blank') {
+                // window.location.replace("main.html");
+                console.log('userlogin')
+            }
+            else {
+                window.location.replace("main.html");
+            }
+        })
+
+            //checkUserDetails();
+
+
+            jQuery(document).ready(function ( $ ) {
+
+                var root_url = "http://104.238.96.209/~project/newsletter/wp-json/wp/v2/";
+                var users_display = document.getElementById('users');
+                var post_display = document.getElementById('users-posts');
+                var MyID = localStorage.getItem('useruid');
+
+                $.ajax({
+                    "url": root_url + 'users' + '/'+ MyID,
+                    "method": "GET"
+                }).success(function ( users ) {
+                    if ('object' == typeof users) {
+                        var markup;
+                        $.each(users, function ( i, user ) {
+                            markup = '<div class="user" id="user-' + user.id + '"><img src="' + user.avatar_urls[96] + '" /><a href="#" class="user-link" data-user-id="' + user.id + '">' + user.name + '</a></div>';
+                            $(users_display).append(markup);
+                            // var userID = user.id;
+
+                            console.log(markup);
+
+                        });
+                    }
+                    $('.user-link').on('click', function ( e ) {
+                        e.preventDefault();
+                        id = $(this).attr('data-user-id');
+                        $.ajax({
+                            "url": root_url + 'posts?author=' + id,
+                            "method": "GET"
+                        }).success(function ( posts ) {
+                            $(users_display).hide();
+                            $.each(posts, function ( i, post ) {
+                                markup = '<div class="post" id="post-' + post.id + '"><a href="' + post.link + '" class="post-link" data-post-id="' + post.id + '">' + post.title.rendered + '</a></div>';
+                                $(post_display).append(markup);
+                            });
+                            $(post_display).append('<a href="#" id="close-posts">Close</a>');
+                            $('#close-posts').on('click', function ( e ) {
+                                e.preventDefault();
+                                $(post_display).empty();
+                                $(users_display).show();
+
+
+                            });
+                        })
+
+                    });
+                });
+            });
+
+
+    </script>
+</head>
+<body>
+
+<div id="main">
+    <div id="users"></div>
+    <div id="users-posts"></div>
+</div>
+
+
+</body>
+</html>
