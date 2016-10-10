@@ -323,7 +323,7 @@ footer label {
     color: #fff148 !important;
     line-height: 0.98em;
     padding: 10px;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center !important;
     text-transform: uppercase;
     letter-spacing: -2px;
@@ -335,7 +335,7 @@ footer label {
     /* border-left: 2px solid #d10000; */
     font-family: "Roboto Condensed", helevtica, sans-serif !important;
     font-weight: 500 !important;
-    width: 132px;
+    width: 128px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -593,7 +593,7 @@ div#login-page form div.list-block.center {
 
 .swiper-button-next, .swiper-button-prev {
     position: fixed !important;
-    top: 330px !important;
+    top: 330px;
     width: 27px;
     height: 44px;
     /* margin-top: -22px;*/
@@ -663,8 +663,13 @@ div#login-page form div.list-block.center {
 }
 
 #single .wp-caption img, #single img {
-    /* min-width: 100%;*/
+   min-width: 100% !important;
     height: auto;
+}
+
+
+span.zoom {
+    min-width: 100%;
 }
 
 .get-more {
@@ -967,7 +972,7 @@ button.btn.btn-info.btn-lg {
     position: absolute !important;
     right: 5px !important;
     top: 10px !important;
-    color: #ddd !important;
+    color: #d10000 !important;
     width: 50px !important;
     z-index: 20000;
    /* display: none; */
