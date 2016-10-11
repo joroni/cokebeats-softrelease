@@ -66,6 +66,10 @@ define(['jquery', 'core/theme-app', 'core/theme-tpl-tags', 'core/modules/storage
 	 *					   if needed.
 	 * }
          */
+
+
+
+
         App.on('refresh:end', function ( result ) {
             scrollTop();
             Storage.clear('scroll-pos');
@@ -797,3 +801,25 @@ function check_storage(){
 }
 check_storage();
 
+
+
+add_filter('get_comment_author', 'my_comment_author', 10, 1);
+
+function my_comment_author( $author = '' ) {
+    // Get the comment ID from WP_Query
+
+    $comment = get_comment( $comment_ID );
+
+    if ( empty($comment->comment_author) ) {
+        if (!empty($comment->user_id)){
+            $user=get_userdata($comment->user_id);
+            $author=$user->first_name.' '.substr($user->last_name,0,1).'.'; // this is the actual line you want to change
+        } else {
+            $author = __('Anonymous');
+        }
+    } else {
+        $author = $comment->comment_author;
+    }
+
+    return $author;
+}
