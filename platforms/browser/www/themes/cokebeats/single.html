@@ -38,7 +38,7 @@
    <!-- <div id="single-content">-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <script>
+                <!--<script>
                     $('a.zoomer').on('click', 'a', function ( e ) {
                         if ($(this).attr('target') === '_blank') {
                             var ref = window.open($(this).attr('href'), '_blank', 'location=yes', 'EnableViewPortScale=yes');
@@ -56,7 +56,7 @@
                     });
 
 
-                </script>
+                </script>-->
 
 
                 <style>
@@ -135,16 +135,46 @@
         });
 
 
+        var photoswipe_element = $( '.pswp' )[0];
+        var photoswipe_instance = null;
+        var img_dragging = false;
+
+      /*  $( "#app-layout" ).on( "touchstart", ".single-content img", function() {
+        	img_dragging = false; //Reinit image dragging when starting to touch an image
+        } );
+
+        $( "#app-layout" ).on( "touchmove", ".single-content img", function() {
+        	img_dragging = true; //Activate image dragging when starting to swipe on the image to make post content scroll
+        });*/
+        $( "#app-layout" ).on( "touchend", ".single-content img", function() {
+
+	//Don't open image if currently dragging it:
+	if ( img_dragging ) {
+		return;
+	}
+
+	//Detect if the image belongs to a gallery
+	var is_gallery = $( this ).closest( '.gallery' ).length !== 0;
+
+	if ( is_gallery ) {
+		//Open PhotoSwipe for all images of the gallery:
+		open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
+	} else {
+		//Open PhotoSwipe for the image we just touched:
+		open_with_photoswipe( $( this ) );
+	}
+
+});
 
 
     </script>
 
 
-    <script>
+  <!--  <script>
         $(document).ready(function(){
             $('#ex1').zoom();
             $('#ex2').zoom({ on:'grab' });
             $('#ex3').zoom({ on:'click' });
             $('#ex4').zoom({ on:'toggle' });
         });
-    </script>
+    </script>-->
