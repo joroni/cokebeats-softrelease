@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1af4ce51-9153-4552-98ac-8b6517062460" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/css/custom.css" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/css/custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/head.html" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/single.html" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/single.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/config.xml" afterPath="$PROJECT_DIR$/www/config.xml" />
     </list>
     <ignored path="cokebeats-softrelease.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,31 +36,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="head.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/themes/cokebeats/head.html">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="18" selection-end-column="87" />
+            <state relative-caret-position="15">
+              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/config.xml">
+        <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/layout.html">
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/platforms/browser/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/platforms/browser/www/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -89,16 +96,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="head.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/head.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="91" selection-start-line="40" selection-start-column="91" selection-end-line="40" selection-end-column="91" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="single.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/single.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -119,10 +116,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="functions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
+            <state relative-caret-position="2092">
               <caret line="937" column="0" selection-start-line="937" selection-start-column="0" selection-end-line="937" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -150,13 +147,13 @@
         <option value="$PROJECT_DIR$/www/themes/cokebeats/layout.html" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats/single.html" />
         <option value="$PROJECT_DIR$/www/config.js" />
-        <option value="$PROJECT_DIR$/www/config.xml" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats-ios/layout.html" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats-ios/head.html" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats-ios/css/custom.css" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats/js/functions.js" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats-ios/single.html" />
         <option value="$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js" />
+        <option value="$PROJECT_DIR$/www/config.xml" />
       </list>
     </option>
   </component>
@@ -168,7 +165,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="728" />
+    <option name="height" value="725" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -225,7 +222,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
+              <option name="myItemId" value="platforms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -239,33 +236,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
+              <option name="myItemId" value="platforms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-ios" />
+              <option name="myItemId" value="browser" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -279,41 +254,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
+              <option name="myItemId" value="platforms" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
+              <option name="myItemId" value="browser" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -332,11 +281,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/www/themes/cokebeats-ios" />
-      <recent name="$PROJECT_DIR$/www/themes/cokebeats" />
-      <recent name="$PROJECT_DIR$/www/themes/cokebeats-ios/css" />
+      <recent name="$PROJECT_DIR$/platforms/browser/www" />
       <recent name="$PROJECT_DIR$/platforms/browser" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/www" />
+      <recent name="$PROJECT_DIR$/www/themes/cokebeats-ios" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
@@ -433,15 +382,15 @@
       <workItem from="1476294827591" duration="2518000" />
       <workItem from="1476337463829" duration="6711000" />
       <workItem from="1476410575192" duration="3914000" />
-      <workItem from="1476416635197" duration="936000" />
+      <workItem from="1476416635197" duration="1543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48342000" />
+    <option name="totallyTimeSpent" value="48949000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="728" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="725" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -496,14 +445,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/head.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="22" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11250">
@@ -664,13 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/browser/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/cokebeats/camera.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -679,13 +613,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/q-android-feat-photoswipe/js/functions.js" />
-    <entry file="file://$PROJECT_DIR$/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-android/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10002">
@@ -787,14 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/layout.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -863,11 +782,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
+        <state relative-caret-position="2092">
           <caret line="937" column="0" selection-start-line="937" selection-start-column="0" selection-end-line="937" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platforms/browser/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/platforms/browser/www/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
