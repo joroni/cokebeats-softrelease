@@ -8,14 +8,14 @@
 
 <div id="content" class="content single-template">
 
-    <div class="post-title">
+   <!-- <div class="post-title">
 
         <% if ( post.subhead ) { %>
 
             <div class="subhead"><%= post.subhead %></div>
 
         <% } %>
-        
+
         <h1>
             <%= post.title %>
         </h1>
@@ -25,21 +25,48 @@
         </div>
 
     </div>
-
-    <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
+-->
+   <!-- <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
 
         <img class="post-thumbnail" src="<%= post.thumbnail.src %>" onerror="displayDefaultImage(this);" />
-        
+
         <% if (post.thumbnail.caption) { %>
             <div class="post-thumbnail-caption"><%= post.thumbnail.caption %></div>
         <% } %>
 
-    <% } %>	
-            
+    <% } %>
+           -->
+
+
     <div id="single-content" class="single-content">
+        <div class=" swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper">
+                <%= post.content %>
+             </div>
+        </div>
+    </div>
 
-            <%= post.content %>
 
-	</div>
-        
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <!-- Swiper JS -->
+
+    <!--<script src="themes/cokebeats-ios/swiper/dist/js/swiper.js"></script>-->
+
+    <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 30
+            });
+        </script>
+
 </div>
+
+

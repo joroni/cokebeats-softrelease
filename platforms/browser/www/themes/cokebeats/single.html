@@ -1,18 +1,4 @@
-<!--<div class="row">
-    <div class="m-landing-layout">
-        <div class="m-page scene_element scene_element--fadeinup">
 
-                <div class="segment_thumb" style="width: 100%;">
-                    <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
-                    <img src="<%= post.thumbnail.src %>" style="min-width: 100%; max-width:100%;"/>
-                    <% } %>
-
-
-                </div>
-
-        </div>
-    </div>
-</div>-->
 <div class="row">
     <div class="commentbox">
         <!--<span style="color: #d10000;"> <%= TemplateTags.formatDate(post.date,'d/m/Y') %> | </span>-->
@@ -38,83 +24,17 @@
    <!-- <div id="single-content">-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <!--<script>
-                    $('a.zoomer').on('click', 'a', function ( e ) {
-                        if ($(this).attr('target') === '_blank') {
-                            var ref = window.open($(this).attr('href'), '_blank', 'location=yes', 'EnableViewPortScale=yes');
-                            //e.preventDefault();
-                        }
-
-                    });
-
-                    $('.zoomer').on('click', 'a', function ( e ) {
-                        if ($(this).attr('target') === '_blank') {
-                            var ref = window.open($(this).attr('href'), '_blank', 'location=yes', 'EnableViewPortScale=yes');
-                            //e.preventDefault();
-                        }
-
-                    });
 
 
-                </script>-->
 
-
-                <style>
-                    /* styles unrelated to zoom */
-                    * { border:0; margin:0; padding:0; }
-                    p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px/1 sans-serif;}
-
-                    /* these styles are for the demo, but are not required for the plugin */
-                    .zoom {
-                        display:inline-block;
-                        position: relative;
-                    }
-
-                    /* magnifying glass icon */
-                    .zoom:after {
-                        content:'';
-                        display:block;
-                        width:33px;
-                        height:33px;
-                        position:absolute;
-                        top:0;
-                        right:0;
-                        background:url(icon.png);
-                    }
-
-                    .zoom img {
-                        display: block;
-                    }
-
-                    .zoom img::selection { background-color: transparent; }
-
-                    #ex2 img:hover { cursor: url(grab.cur), default; }
-                    #ex2 img:active { cursor: url(grabbed.cur), default; }
-                </style>
         <%= post.content %>
 
-              <!--  <a href="#" onclick="var ref = window.open ('http://104.238.96.209/~project/newsletter/wp-content/uploads/2016/09/augs1-jul-august.png', '_blank', 'location=yes');">
-                    Click to Enlarge
-                </a>-->
 
             </div>
 
-<!--
 
-            <a href="#" onclick="var ref = window.open ('http://104.238.96.209/~project/newsletter/popup.html', '_blank', 'location=yes');">
-                Click to Enlarge
-            </a>
--->
         </div>
-    <!--</div>-->
 
-   <!-- <div class="commentbox2">
-        <span style="color: #d10000;"> <%= TemplateTags.formatDate(post.date,'d/m/Y') %> | </span>
-        <% if( post.nb_comments > 0 ){ %>
-        <% } %>
-        <a class="comments" data-post-id="<%= post.id %>" href="#"><% print(post.nb_comments) %>&nbsp;comment<% post.nb_comments > 1 ? print('s') : '' %></a>
-        | <a class="comments" data-post-id="<%= post.id %>" href="#">Post</a>
-    </div>-->
 
     </div>
 
@@ -135,46 +55,8 @@
         });
 
 
-        var photoswipe_element = $( '.pswp' )[0];
-        var photoswipe_instance = null;
-        var img_dragging = false;
-
-      /*  $( "#app-layout" ).on( "touchstart", ".single-content img", function() {
-        	img_dragging = false; //Reinit image dragging when starting to touch an image
-        } );
-
-        $( "#app-layout" ).on( "touchmove", ".single-content img", function() {
-        	img_dragging = true; //Activate image dragging when starting to swipe on the image to make post content scroll
-        });*/
-        $( "#app-layout" ).on( "touchend", ".single-content img", function() {
-
-	//Don't open image if currently dragging it:
-	if ( img_dragging ) {
-		return;
-	}
-
-	//Detect if the image belongs to a gallery
-	var is_gallery = $( this ).closest( '.gallery' ).length !== 0;
-
-	if ( is_gallery ) {
-		//Open PhotoSwipe for all images of the gallery:
-		open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
-	} else {
-		//Open PhotoSwipe for the image we just touched:
-		open_with_photoswipe( $( this ) );
-	}
-
-});
 
 
     </script>
 
 
-  <!--  <script>
-        $(document).ready(function(){
-            $('#ex1').zoom();
-            $('#ex2').zoom({ on:'grab' });
-            $('#ex3').zoom({ on:'click' });
-            $('#ex4').zoom({ on:'toggle' });
-        });
-    </script>-->

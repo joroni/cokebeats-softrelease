@@ -1,0 +1,187 @@
+/************ PORTRAIT  *************/
+@media only screen and (max-device-width: 480px) {
+    div#wrapper {
+        width: 400px;
+    }
+
+
+    .top-banner {
+        display: block;
+        height: 20px !important;
+        position: fixed;
+        z-index: 1030;
+        background-color: #fff !important;
+        width: 100%;
+    }
+
+    .navbar-fixed-top {
+        left: 0;
+        position: fixed !important;
+        right: 0;
+        top: 18px;
+        z-index: 1030;
+    }
+    .commentbox {
+        background: rgba(255, 255, 255, 1) !important;
+        position: fixed;
+        top: 20px;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+
+        margin-top: -22px;
+    }
+
+}
+
+
+
+@media screen and (max-width: 500px) {
+
+
+
+        .top-banner {
+            display: block;
+            height: 20px !important;
+            position: fixed;
+            z-index: 1030;
+            background-color: #fff !important;
+            width: 100%;
+        }
+
+    .navbar-fixed-top {
+        left: 0;
+        position: fixed !important;
+        right: 0;
+        top: 18px;
+        z-index: 1030;
+    }
+    .commentbox {
+        background: rgba(255, 255, 255, 1) !important;
+        position: fixed;
+        top: 24px;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+
+        margin-top: -22px;
+    }
+
+    div.user {
+        display: block;
+        max-width: 100%;
+        text-align: center;
+        margin: 20% auto;
+    }
+
+    div.user > img {
+        border-radius: 50%;
+        width: 100px;
+        padding: 10px;
+    }
+}
+
+
+
+a.user-link {
+    color: #d10000;
+    font-weight: 500;
+    font-size: 1.5em;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+/************ LANDSCAPE  *************/
+@media only screen and (min-device-width: 480px) {
+    div#wrapper {
+        width: 400px;
+    }
+
+    .top-banner {
+        display: none;
+    }
+
+    .navbar-fixed-top {
+        left: 0;
+        position: fixed !important;
+        right: 0;
+        top: 0;
+        z-index: 1030;
+    }
+    .commentbox {
+        background: rgba(255, 255, 255, 1) !important;
+        position: fixed;
+        top: 15px;
+    }
+    .swiper-button-next, .swiper-button-prev {
+
+        margin-top: -15px;
+    }
+
+    div.user {
+        display: none;
+        max-width: 100%;
+        text-align: center;
+        margin: 5% auto;
+    }
+
+    div.user > img {
+        border-radius: 50%;
+        width: 100px;
+        padding: 10px;
+    }
+
+}
+
+@media screen and (min-width: 500px) {
+
+
+    div.user {
+        display: none;
+        max-width: 100%;
+        text-align: center;
+        margin: 5% auto;
+    }
+
+    div.user > img {
+        border-radius: 50%;
+        width: 100px;
+        padding: 10px;
+    }
+
+    div#wrapper {
+        width: 400px;
+    }
+
+    .top-banner {
+        display: none;
+    }
+
+    .navbar-fixed-top {
+        left: 0;
+        position: fixed !important;
+        right: 0;
+        top: 0;
+        z-index: 1030;
+    }
+    .commentbox {
+        background: rgba(255, 255, 255, 1) !important;
+        position: fixed;
+        top: 12px;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+
+        margin-top: -150px;
+    }
+
+
+}

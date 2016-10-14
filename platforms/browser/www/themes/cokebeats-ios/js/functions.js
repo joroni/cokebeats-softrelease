@@ -22,14 +22,34 @@ define([
     'core/modules/storage',
     'core/theme-tpl-tags',
     'root/config',
+    /*'theme/js/auth/auth-pages',
+    'theme/js/auth/simple-login',
+    'theme/js/auth/premium-posts', 'theme/js/comments',*/
     'theme/js/moment.min',
     'theme/js/velocity.min',
     'theme/photoswipe/photoswipe.min',
     'theme/photoswipe/photoswipe-ui-default.min',
-    'theme/js/jquery.fitvids'
+    'theme/js/jquery.fitvids',
+    'theme/swiper/dist/js/swiper'
+  /* 'theme/swiper/js/idangerous.swiper-2.0.min',
+    'theme/swiper/js/idangerous.swiper.scrollbar-2.0',
+    'theme/swiper/js/simple-app'*/
+
+
 ], function($,App,Storage,TemplateTags,Config,Moment,Velocity,PhotoSwipe,PhotoSwipeUI_Default) {
 
 
+
+/*
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30
+    })
+
+*/
     /***********************************
      * START PHOTOSWIPE
      */
@@ -809,5 +829,7 @@ define([
         $('#single-content').fitVids();
 
     }
-    
+
+
+
 });

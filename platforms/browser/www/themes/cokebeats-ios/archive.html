@@ -4,44 +4,42 @@
  * Handler for image loading error: displayDefaultImage() added in functions.js as a template's parameter
 -->
 
-<div id="content" class="content list-template">
 
-	<% if(posts.length){ %>
+
+<div id="archive">
+
+	<% if(posts.length) { %>
+
+	<div class="media-list scene_element scene_element--fadein">
 
 		<% _.each( posts, function( post ){ %>
 
-			<div class="content-item">
-				<a href="<%= TemplateTags.getPostLink(post.id) %>">
+		<div class="media col-md-6">
+			<a href="<%= TemplateTags.getPostLink(post.id) %>">
+				<% if( post.thumbnail.src && post.thumbnail.src.length ){ %>
+				<div class="media-object-thumb" style="background: url('<%= post.thumbnail.src %>') #ddd;">
 
-                    <% if ( post.subhead ) { %>
+					<div class="media-title-inner"><%= post.title.slice(0,5) %></div>
 
-                        <div class="subhead"><%= post.subhead %></div>
+				</div>
 
-                    <% } %>
+				<% } %>
+			</a>
 
-					<h2><span><%= post.title %></span></h2>
-                        
-                    <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
-
-                        <img class="content-thumbnail" src="<%= post.thumbnail.src %>" onerror="displayDefaultImage(this);" />
-
-                    <% } %>	
-                    
-                        
-				</a>
-			</div>
+		</div>
 
 		<% }); %>
 
-        <% if( TemplateTags.displayGetMoreLink() ){ %>
-			<div class="get-more-button-wrapper">
-                <button type="button" id="get-more-button" class="get-more-button">More (<%= TemplateTags.getMoreLinkNbLeft() %>)</button>
-            
-            </div>
-		<% } %>
-            
-	<% }else{ %>
-		<div class='content-message'>No post found</div>
+	</div>
+
+	<% if( TemplateTags.displayGetMoreLink() ){ %>
+	<button type="button" class="get-more btn btn-default">Get more posts (<%=
+		TemplateTags.getMoreLinkNbLeft() %> left)
+	</button>
 	<% } %>
-        
+
+	<% }else{ %>
+	<p>No post found!</p>
+	<% } %>
+
 </div>

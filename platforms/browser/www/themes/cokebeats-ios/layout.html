@@ -1,6 +1,12 @@
+
+
+
+
 <!--
  * Layout is enclosed in <div id="app-layout"></div>
 -->
+
+
 
 <!--
  * Menu is enclosed in <div id="app-menu"></div>
@@ -10,9 +16,11 @@
 <div id="app-canvas">
 
     <div id="app-header" class="app-header has-ripple-feedback ripple-small">
-        <div id="menu-button" class="menu-button"></div>
-        <div id="refresh-button" class="refresh-off"></div>
-        <h1></h1>
+        <!--<div id="menu-button" class="menu-button"></div>
+        <div id="refresh-button" class="refresh-off"></div>-->
+       <h2>
+          <img src="img/logocps.png" style="height: auto; width: 170px;">
+       </h2>
     </div>
 
     <div id="app-message-bar" class="app-message-bar">message</div>
@@ -30,6 +38,27 @@
 
         <div id="panel-content" class="panel-content"></div>
     </div>
+
+    <footer class="footer" data-role="footer">
+        <div class="col-md-12">
+            <div class="col-md-6" style="float: left; text-align: center;"><a id="homeBtn" href="#component-latest-newsletters"
+                                                                              class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left"><span
+                    class="fa flaticon-house"></span></a>
+                <label>Home</label></div>
+
+
+
+            <div id="userbtn" class="col-md-6" style="float: left; text-align: center;">
+
+
+                <div id="refresh-button" class="refresh-off scene_element scene_element--fadein"></div>
+               <!-- <a href="#" id="refresh-buttonSS" class="scene_element scene_element--fadein" style="display: block;"><span class="flaticon-reload"></span></a>-->
+                <label>Refresh</label>
+
+            </div>
+
+        </div>
+    </footer>
         
     <!-- Root element of PhotoSwipe -->
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
