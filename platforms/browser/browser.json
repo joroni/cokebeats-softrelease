@@ -15,6 +15,9 @@
         },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.ko.cokebeats"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ko.cokebeats"
         }
     },
     "dependent_plugins": {},
@@ -43,11 +46,26 @@
             "clobbers": [
                 "cordova.plugins.screenorientation"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+            "id": "cordova-plugin-statusbar.statusbar",
+            "pluginId": "cordova-plugin-statusbar",
+            "clobbers": [
+                "window.StatusBar"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-statusbar/src/browser/StatusBarProxy.js",
+            "id": "cordova-plugin-statusbar.StatusBarProxy",
+            "pluginId": "cordova-plugin-statusbar",
+            "runs": true
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-inappbrowser": "1.4.1-dev",
-        "cordova-plugin-screen-orientation": "1.4.2"
+        "cordova-plugin-screen-orientation": "1.4.2",
+        "cordova-plugin-statusbar": "2.2.1-dev"
     }
 }

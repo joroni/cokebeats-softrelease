@@ -4,6 +4,7 @@
     <description>Newsletter App</description>
     <author href="http://coca-cola.com" email="support@coca-cola.com">SDC Manila Team</author>
     <content src="index.html"/>
+
     <preference name="phonegap-version" value="3.7.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="permissions" value="none"/>

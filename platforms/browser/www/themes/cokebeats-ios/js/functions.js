@@ -22,15 +22,16 @@ define([
     'core/modules/storage',
     'core/theme-tpl-tags',
     'root/config',
-    /*'theme/js/auth/auth-pages',
-    'theme/js/auth/simple-login',
-    'theme/js/auth/premium-posts', 'theme/js/comments',*/
+
     'theme/js/moment.min',
     'theme/js/velocity.min',
+
     'theme/photoswipe/photoswipe.min',
     'theme/photoswipe/photoswipe-ui-default.min',
     'theme/js/jquery.fitvids',
-    'theme/swiper/dist/js/swiper'
+    'theme/swiper/dist/js/swiper',
+    'theme/js/auth/auth-pages', 'theme/js/auth/simple-login',
+    'theme/js/auth/premium-posts', 'theme/js/comments'
   /* 'theme/swiper/js/idangerous.swiper-2.0.min',
     'theme/swiper/js/idangerous.swiper.scrollbar-2.0',
     'theme/swiper/js/simple-app'*/
@@ -40,7 +41,7 @@ define([
 
 
 
-/*
+
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -49,7 +50,7 @@ define([
         spaceBetween: 30
     })
 
-*/
+
     /***********************************
      * START PHOTOSWIPE
      */
@@ -165,7 +166,7 @@ define([
     try { // Testing if the Cordova plugin is available
         StatusBar.overlaysWebView(false);
         StatusBar.styleDefault();
-        StatusBar.backgroundColorByHexString("#F8F8F8");
+        StatusBar.backgroundColorByHexString("#FFFFFF");
     } catch(e) {
         console.log("StatusBar plugin not available - you're probably in the browser");
     }
@@ -780,6 +781,27 @@ define([
             }
         );
     }
+
+
+
+    $('#homeBtn').on('click', function ( ) {
+        $('#logoutBtn').show();
+        window.location.replace('index.html');
+    });
+
+    function check_storage(){
+
+        if (localStorage['Authentication-coke-beats-Authentication-coke-beats']) {
+            //window.location.replace("main.html");
+            console.log('OK');
+            $('#logoutBtn').show();
+        }else{
+            console.log('err');
+            $('#logoutBtn').hide();
+        }
+
+    }
+    check_storage();
 
 
     

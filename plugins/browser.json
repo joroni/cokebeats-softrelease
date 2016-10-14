@@ -15,6 +15,9 @@
         },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.ko.cokebeats"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ko.cokebeats"
         }
     },
     "dependent_plugins": {}
