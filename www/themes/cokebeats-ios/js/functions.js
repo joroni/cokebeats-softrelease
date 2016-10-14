@@ -497,6 +497,82 @@ define([
 
 	});
 
+
+    /******************** comments ********************/
+
+
+    /**
+     * Open all links inside single content with the inAppBrowser
+     */
+    $('#container').on("click", ".single-content a, .page-content a, .single-template a", function ( e ) {
+        e.preventDefault();
+        openWithInAppBrowser(e.target.href);
+    });
+
+    $('#container').on('click', '.comments', function ( e ) {
+        e.preventDefault();
+
+        $('#waiting').show();
+
+        App.displayPostComments(
+            $(this).attr('data-post-id'),
+            function ( comments, post, item_global ) {
+                //Do something when comments display is ok
+                //We hide the waiting panel in 'screen:showed'
+            },
+            function ( error ) {
+                //Do something when comments display fail (note that an app error is triggered automatically)
+                $('#waiting').hide();
+            }
+        );
+    });
+
+    /**
+     * "Get more" button in post lists
+     */
+    $('#container').on('click', '.get-more', function ( e ) {
+        e.preventDefault();
+
+        var $this = $(this);
+
+        var text_memory = $this.text();
+        $this.attr('disabled', 'disabled').text('Loading...');
+
+        App.getMoreComponentItems(
+            function () {
+                //If something is needed once items are retrieved, do it here.
+                //Note : if the "get more" link is included in the archive.html template (which is recommended),
+                //it will be automatically refreshed.
+                $this.removeAttr('disabled');
+            },
+            function ( error, get_more_link_data ) {
+                $this.removeAttr('disabled').text(text_memory);
+            }
+        );
+    });
+
+
+    /**
+     * Do something before leaving a screen.
+     * Here, if we're leaving a post list, we memorize the current scroll position, to
+     * get back to it when coming back to this list.
+     */
+    App.on('screen:leave', function ( current_screen, queried_screen, view ) {
+        //current_screen.screen_type can be 'list','single','page','comments'
+        if (current_screen.screen_type == 'list') {
+            Storage.set('scroll-pos', current_screen.fragment, $('body').scrollTop());
+        }
+    });
+
+    /**
+     * Do something when a new screen is showed.
+     * Here, if we arrive on a post list, we resore the scroll position
+     */
+
+
+
+    /******************** comments ********************/
+
     // @desc About to leave the current screen
     // @param {object} current_screen - Screen types: list|single|page|comments
     // @param queried_screen
@@ -784,24 +860,6 @@ define([
 
 
 
-    $('#homeBtn').on('click', function ( ) {
-        $('#logoutBtn').show();
-        window.location.replace('index.html');
-    });
-
-    function check_storage(){
-
-        if (localStorage['Authentication-coke-beats-Authentication-coke-beats']) {
-            //window.location.replace("main.html");
-            console.log('OK');
-            $('#logoutBtn').show();
-        }else{
-            console.log('err');
-            $('#logoutBtn').hide();
-        }
-
-    }
-    check_storage();
 
 
     
@@ -855,3 +913,47 @@ define([
 
 
 });
+
+
+
+function showLogout() {
+    $('#homeBtn').on('click', function () {
+        $('#user-info').show();
+    });
+}
+
+
+
+
+$('#logoutBtn').on('click', function (e) {
+    e.preventDefault();
+    localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
+    window.location.replace('index.html');
+    //localStorage.removeItem('user_login');
+    // localStorage.removeItem('user_display_name',data);
+
+    //e.preventDefault();
+    //Auth.logUserOut();
+});
+
+
+
+
+$('#homeBtn').on('click', function ( ) {
+    $('#logoutBtn').show();
+    window.location.replace('index.html');
+});
+
+function check_storage(){
+
+    if (localStorage['Authentication-coke-beats-Authentication-coke-beats']) {
+        //window.location.replace("main.html");
+        console.log('OK');
+        $('#logoutBtn').show();
+    }else{
+        console.log('err');
+        $('#logoutBtn').hide();
+    }
+
+}
+check_storage();

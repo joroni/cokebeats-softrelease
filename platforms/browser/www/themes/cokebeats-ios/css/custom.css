@@ -544,6 +544,20 @@ div#login-page form div.list-block.center {
 }
 
 .commentbox {
+    /* background: #f7f7f8 !important; */
+    position: absolute;
+    top: 10px;
+    float: right;
+    border: 0px solid;
+    right: 0px !important;
+    z-index: 1100;
+    width: auto;
+    padding: 5px !important;
+    /* left: 0; */
+    color: #333 !important;
+}
+/*
+.commentbox {
     background: #f7f7f8 !important;
     position: fixed;
     top: 20px !important;
@@ -555,7 +569,7 @@ div#login-page form div.list-block.center {
     left: 0;
     color: #333 !important;
 }
-
+*/
 .commentbox a {
     color: #333 !important;
 }
@@ -1018,7 +1032,7 @@ button.btn.btn-info.btn-lg {
 #logoutBtn {
     position: absolute !important;
     right: 5px !important;
-    top: 10px !important;
+    top: 25px !important;
     color: #d10000 !important;
     width: 50px !important;
     z-index: 20000;
@@ -1034,7 +1048,14 @@ footer #refresh-button, footer #go-back {
     margin: 0 auto;
     top: -5px;
     color: #d10000;
+
+    z-index: 20000;
 }
+
+div#back-button {
+    z-index: 20000 !important;
+}
+
 
 .single-template .post-title {
     padding: 0px 20px 0px 20px !important;
@@ -1053,3 +1074,20 @@ footer #refresh-button, footer #go-back {
     background-color: #fff;
     -webkit-overflow-scrolling: touch;
 }
+
+
+div#back-button {
+    z-index: 20000;
+}
+
+
+.single-content p {
+    font-family: 'Open Sans', sans-serif !important;
+    line-height: 27px;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-align: left;
+}
+
+
+

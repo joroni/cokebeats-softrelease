@@ -8,22 +8,21 @@
 
 
 
-<div class="row">
-    <div class="commentbox">
-        <!--<span style="color: #d10000;"> <%= TemplateTags.formatDate(post.date,'d/m/Y') %> | </span>-->
-        <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><%
-            print(post.nb_comments) %>&nbsp;</a>
-        <a class="comments" data-post-id="<%= post.id %>" href="#"><i class="fa fa-thumbs-o-up"
-                                                                      style="color:#8e8e8e !important;"></i></a>
-        <% if( post.nb_comments > 0 ){ %>
-        <% } %>
-        <!-- <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><% print(post.nb_comments) %>&nbsp;comment<% post.nb_comments > 1 ? print('s') : '' %></a>-->
-        <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><%
-            print(post.nb_comments) %>&nbsp;</a>
-        <a class="comments" data-post-id="<%= post.id %>" href="#"><i class="fa fa-comment-o" style="color:#8e8e8e !important;"></i></a>
-    </div>
-
 <div id="content" class="content single-template">
+
+        <div class="commentbox">
+            <!--<span style="color: #d10000;"> <%= TemplateTags.formatDate(post.date,'d/m/Y') %> | </span>-->
+            <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><%
+                print(post.nb_comments) %>&nbsp;</a>
+            <a class="comments" data-post-id="<%= post.id %>" href="#"><i class="fa fa-thumbs-o-up"
+                                                                          style="color:#8e8e8e !important;"></i></a>
+            <% if( post.nb_comments > 0 ){ %>
+            <% } %>
+            <!-- <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><% print(post.nb_comments) %>&nbsp;comment<% post.nb_comments > 1 ? print('s') : '' %></a>-->
+            <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><%
+                print(post.nb_comments) %>&nbsp;</a>
+            <a class="comments" data-post-id="<%= post.id %>" href="#"><i class="fa fa-comment-o" style="color:#8e8e8e !important;"></i></a>
+        </div>
 
    <!-- <div class="post-title">
 
@@ -64,6 +63,7 @@
     </div>
 
 
+
         <div class="swiper-pagination"></div>
         <!-- Add Arrows -->
         <div class="swiper-button-next"></div>
@@ -87,4 +87,4 @@
 </div>
 
 
-</div>
+
