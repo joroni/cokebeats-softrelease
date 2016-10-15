@@ -29,15 +29,18 @@
     <!--
      * Content is enclosed in <div id="app-content-wrapper"><div class="app-screen"></div></div>
     -->
-    <%= content %>
+
             
-    <div id="slideup-panel" class="slideup-panel">
+    <div id="slideup-panel" class="slideup-panel-container">
         <div id="panel-header" class="panel-header has-ripple-feedback ripple-small">
             <div id="back-button" class="back-button"></div>
             <h1></h1>
         </div>
 
-        <div id="panel-content" class="panel-content"></div>
+        <div id="panel-content" class="panel-content">
+
+            <%= content %>
+        </div>
     </div>
 
     <footer class="footer" data-role="footer">

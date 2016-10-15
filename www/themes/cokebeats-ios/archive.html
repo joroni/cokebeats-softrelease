@@ -33,9 +33,9 @@
 	</div>
 
 	<% if( TemplateTags.displayGetMoreLink() ){ %>
-	<button type="button" class="get-more btn btn-default">Get more posts (<%=
+	<a href="#" id="get-more-button" type="button" class="get-more btn btn-default">Get more posts (<%=
 		TemplateTags.getMoreLinkNbLeft() %> left)
-	</button>
+	</a>
 	<% } %>
 
 	<% }else{ %>

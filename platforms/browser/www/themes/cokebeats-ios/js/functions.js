@@ -6,7 +6,7 @@
  * If this is not the case: place the path to the library at the end of the define array
  * Paths are relative to the app subfolder of the wp-app-kit plugin folder
  * You don't need to specify the .js extensions
-    
+
  * (AMD) jQuery          available as    $
  * (AMD) Theme App Core  available as    App
  * (AMD) Local Storage   available as    Storage
@@ -32,9 +32,9 @@ define([
     'theme/swiper/dist/js/swiper',
     'theme/js/auth/auth-pages', 'theme/js/auth/simple-login',
     'theme/js/auth/premium-posts', 'theme/js/comments'
-  /* 'theme/swiper/js/idangerous.swiper-2.0.min',
-    'theme/swiper/js/idangerous.swiper.scrollbar-2.0',
-    'theme/swiper/js/simple-app'*/
+    /* 'theme/swiper/js/idangerous.swiper-2.0.min',
+     'theme/swiper/js/idangerous.swiper.scrollbar-2.0',
+     'theme/swiper/js/simple-app'*/
 
 
 ], function($,App,Storage,TemplateTags,Config,Moment,Velocity,PhotoSwipe,PhotoSwipeUI_Default) {
@@ -175,7 +175,7 @@ define([
         console.log("StatusBar plugin not available - you're probably in the browser");
     }
 
-	// Global variables
+    // Global variables
     var isMenuOpen = false; // Stores if the off-canvas menu is currently opened or closed
 
     // Animated iOS spinner
@@ -262,7 +262,7 @@ define([
      */
 
     // @desc Archive to single animation
-	transition_slide_next_screen = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
+    transition_slide_next_screen = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
         $wrapper.append($next); // Add the next screen to the DOM / Mandatory first action (notably to get scrollTop() working)
 
@@ -275,12 +275,12 @@ define([
 
         // Hide the single screen on the right
         $next.css({
-			left: '100%'
-		});
+            left: '100%'
+        });
 
         // 2. Animate to display next screen
 
-		// Slide screens wrapper from right to left
+        // Slide screens wrapper from right to left
         $wrapper.velocity({
             left: '-100%'
         },{
@@ -289,31 +289,31 @@ define([
             complete: function () {
 
                 // remove the screen that has been transitioned out
-				$current.remove();
+                $current.remove();
 
-				// remove CSS added specically for the transition
-				$wrapper.attr( 'style', '' );
+                // remove CSS added specically for the transition
+                $wrapper.attr( 'style', '' );
 
-				$next.css({
-				    left: '',
-				});
+                $next.css({
+                    left: '',
+                });
 
-				$deferred.resolve(); // Transition has ended, we can pursue the normal screen display steps (screen:showed)
+                $deferred.resolve(); // Transition has ended, we can pursue the normal screen display steps (screen:showed)
             }
         });
-	};
+    };
 
     // @desc Single to archive animation
-	transition_slide_previous_screen = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
+    transition_slide_previous_screen = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
         $wrapper.prepend($next); // Add the next screen to the DOM / Mandatory first action (notably to get scrollTop() working)
 
         // 1. Prepare next screen (the destination screen is not visible. We are before the animation)
 
         // Hide the archive screen on the left
-		$next.css( {
-			left: '-100%'
-		} );
+        $next.css( {
+            left: '-100%'
+        } );
 
         // If a scroll position has been memorized in local storage, retrieve it and scroll to it to let user find its former position when he/she left
         if (next_screen.screen_type == "list") {
@@ -327,18 +327,18 @@ define([
 
         // 2. Animate to display next screen
 
-		// Slide screens wrapper from left to right
-		$wrapper.velocity({
+        // Slide screens wrapper from left to right
+        $wrapper.velocity({
             left: '100%'
         },{
             duration: 300,
             easing: 'ease-out',
-			complete: function () {
+            complete: function () {
 
                 // remove the screen that has been transitioned out
                 $current.remove();
 
-				// remove CSS added specically for the transition
+                // remove CSS added specically for the transition
                 $wrapper.attr( 'style', '' );
 
                 $next.css( {
@@ -348,73 +348,73 @@ define([
                 $deferred.resolve(); // Transition has ended, we can pursue the normal screen display steps (screen:showed)
             }
         });
-	};
+    };
 
     // @desc Default animation
     // Also used when the direction is unknown
-	transition_default = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
+    transition_default = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
-		// Simply replace current screen with the new one
+        // Simply replace current screen with the new one
         $current.remove();
-		$wrapper.empty().append( $next );
-		$deferred.resolve();
+        $wrapper.empty().append( $next );
+        $deferred.resolve();
 
-	};
+    };
 
 
 
-	/**
+    /**
      * App Events
      */
 
     // @desc Refresh process begins
-	App.on('refresh:start',function(){
+    App.on('refresh:start',function(){
 
-		// Start refresh icon animation
+        // Start refresh icon animation
         $("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
 
-	});
+    });
 
     // @desc Refresh process ends
     // @param result
-	App.on('refresh:end',function(result){
+    App.on('refresh:end',function(result){
 
         // Navigate to the default screen
         App.navigateToDefaultRoute();
 
         Storage.clear('scroll-pos');    // Clear the previous memorized position in the local storage
 
-		// The refresh icon stops to spin
-		$("#refresh-button").removeClass("refresh-on").addClass("refresh-off");
+        // The refresh icon stops to spin
+        $("#refresh-button").removeClass("refresh-on").addClass("refresh-off");
 
-		// Select the current screen item in off-canvas menu
+        // Select the current screen item in off-canvas menu
         $("#menu-items li").removeClass("menu-active-item");
-		$("#menu-items li:first-child").addClass("menu-active-item");
+        $("#menu-items li:first-child").addClass("menu-active-item");
 
-		/**
+        /**
          * Display if the refresh process is a success or not
          * @todo if an error occurs we should not reset scroll position
          * @todo messages should be centralized to ease translations
          */
-		if ( result.ok ) {
-			showMessage("Content updated successfully");
-		}else{
-		//	showMessage(result.message);
-            showMessage(result);
+        if ( result.ok ) {
+            showMessage("Content updated successfully");
+        }else{
+            showMessage(result.message);
+            // showMessage(result);
 
-		}
+        }
 
     });
 
     // @desc An error occurs
     // @param error
-	App.on('error',function(error){
+    App.on('error',function(error){
 
         // Show message under the nav bar
-// showMessage(error.message);
-        showMessage(error);
+        showMessage(error.message);
 
-	});
+
+    });
 
     // @desc A screen has been displayed
     // @param {object} current_screen - Screen types: list|single|page|comments
@@ -428,10 +428,10 @@ define([
         // Show/Hide back button depending on the displayed screen
         if (TemplateTags.displayBackButton()) {
             $("#back-button").css("display","block");
-			$("#menu-button").css("display","none");
+            $("#menu-button").css("display","none");
         } else {
             $("#back-button").css("display","none");
-			$("#menu-button").css("display","block");
+            $("#menu-button").css("display","block");
         }
 
         /*
@@ -440,9 +440,9 @@ define([
 
         // Close off-canvas menu
         if (isMenuOpen) {
-			$("#app-canvas").css("left","85%");
-			closeMenu();
-		}
+            $("#app-canvas").css("left","85%");
+            closeMenu();
+        }
 
         /*
          * 3. Post list
@@ -459,7 +459,7 @@ define([
             // Scroll position is handled in the preparation of the transition (transition_slide_previous_screen)
         }
 
-		/*
+        /*
          * 4. Single and page
          */
 
@@ -500,9 +500,9 @@ define([
             // We defer video loading to keep transitions smooth
             loadAndFormatVideos();
 
-		}
+        }
 
-	});
+    });
 
 
     /******************** comments ********************/
@@ -513,14 +513,30 @@ define([
      */
 
 
-    $('a.commentLink').on('click', function ( ) {
+    function commentNow(e) {
+
         e.preventDefault();
-        openWithInAppBrowser(e.target.href);
-        console.log('comment?');
-    });
+       // openWithInAppBrowser(e.target.href);
+     //   alert('Hi');
+
+          console.log('comment');
+        $('#waiting').show();
+
+        App.displayPostComments(
+            $(this).attr('data-post-id'),
+            function ( comments, post, item_global ) {
+                //Do something when comments display is ok
+                //We hide the waiting panel in 'screen:showed'
+            },
+            function ( error ) {
+                //Do something when comments display fail (note that an app error is triggered automatically)
+                $('#waiting').hide();
+            }
+        );
 
 
 
+    }
 
 
     //div#app-layout div#app-canvas div#app-content-wrapper div.app-screen div#content.content.single-template div.commentbox a#commentsBtn.comments
@@ -553,7 +569,7 @@ define([
      */
     $('#container').on('click', '.get-more', function ( e ) {
         e.preventDefault();
-console.log('more');
+        console.log('more');
         var $this = $(this);
 
         var text_memory = $this.text();
@@ -598,10 +614,10 @@ console.log('more');
     // @param {object} current_screen - Screen types: list|single|page|comments
     // @param queried_screen
     // @param view
-	/*App.on('screen:leave',function(current_screen,queried_screen,view){
+    /*App.on('screen:leave',function(current_screen,queried_screen,view){
 
-    });
-*/
+     });
+     */
     // @desc Catch when the device goes online
     // relies on https://github.com/apache/cordova-plugin-network-information
     // Possible values:
@@ -614,10 +630,10 @@ console.log('more');
     // * Cell generic connection
     // * No network connection
     App.on('network:online', function(event){
-        
+
         // Get the current network state
         var ns = TemplateTags.getNetworkState(true);
-        
+
         // Display the current network state
         showMessage(ns);
     });
@@ -643,8 +659,8 @@ console.log('more');
         showMessage(ns);
     });
 
-    
-      
+
+
     /*
      * Event bindings
      * All events are bound to #app-layout using event delegation as it is a permanent DOM element
@@ -654,26 +670,30 @@ console.log('more');
      */
 
     // Menu Button events
- $("#app-layout").on("touchstart","#menu-button",menuButtonTapOn);
-	$("#app-layout").on("touchend","#menu-button",menuButtonTapOff);
+    $("#app-layout").on("touchstart","#menu-button",menuButtonTapOn);
+    $("#app-layout").on("touchend","#menu-button",menuButtonTapOff);
 
     // Refresh Button events
     $("#app-layout").on("touchstart","#refresh-button",refreshTapOn);
-	$("#app-layout").on("touchend","#refresh-button",refreshTapOff);
+    $("#app-layout").on("touchend","#refresh-button",refreshTapOff);
 
     // Menu Item events
-	$("#app-layout").on("click","#menu-items li a",menuItemTap);
-	$("#app-layout").on("click","#content .content-item a",contentItemTap);
+    $("#app-layout").on("click","#menu-items li a",menuItemTap);
+    $("#app-layout").on("click","#content .content-item a",contentItemTap);
 
-	// Back button events
+    // Back button events
     $("#app-layout").on("touchstart","#back-button",backButtonTapOn);
     $("#app-layout").on("touchend","#back-button",backButtonTapOff);
 
     // Block clicks on images in posts
     $("#app-layout").on("click touchend","#single-content .content-image-link",function(e){e.preventDefault();});
-    
+
     // Get more button events
     $( '#app-layout' ).on( 'touchend', '#get-more-button', getMoreButtonTapOff);
+
+
+    // Get more button events
+    $( '#app-layout' ).on( 'touchend', '#commentLink', commentNow);
 
 
     /*
@@ -688,8 +708,8 @@ console.log('more');
         $(o).attr('src',TemplateTags.getThemeAssetUrl('img/img-icon.svg'));
     };
 
-    
-    
+
+
     /*
      * Functions
      */
@@ -701,135 +721,135 @@ console.log('more');
     // @desc Open off-canvas menu
     function openMenu() {
 
-		$("#menu-items").css("display","block");
-        
+        $("#menu-items").css("display","block");
+
         $("#app-canvas").velocity({
-			left:"85%",
+            left:"85%",
         }, {
             duration: 300,
             complete: function() {
-				setTimeout(function(){
+                setTimeout(function(){
                     isMenuOpen=true;
                 },150);
-			}
-        });    
+            }
+        });
     }
 
     // @desc Close off-canvas menu
     // @param action (1 means that we close the off-canvas menu after clicking on a menu item)
     // @param menuItem
-/*	function closeMenu(action,menuItem) {
+    /*	function closeMenu(action,menuItem) {
 
-		isMenuOpen = false;
+     isMenuOpen = false;
 
-        $("#app-canvas").velocity({
-			left:"0",
-		},300, function() {
+     $("#app-canvas").velocity({
+     left:"0",
+     },300, function() {
 
-            $("#menu-items").css("display","none");
+     $("#menu-items").css("display","none");
 
-            // We have tapped a menu item, let's open the corresponding screen
-            if (action==1) {
-                App.navigate(menuItem.attr("href"));
-            }
+     // We have tapped a menu item, let's open the corresponding screen
+     if (action==1) {
+     App.navigate(menuItem.attr("href"));
+     }
 
-        });
-	}
-*/
+     });
+     }
+     */
     // @desc Open or close off-canvas menu (based on isMenuOpen variable)
-	function toggleMenu() {  
-		if (isMenuOpen) {
-			closeMenu();
-		} else {
- 			openMenu();
-		}
-	}
+    function toggleMenu() {
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
 
     // @desc Finger presses the menu button
-	function menuButtonTapOn(e) {
+    function menuButtonTapOn(e) {
         e.preventDefault();
         $("#menu-button").removeClass("button-tap-off").addClass("button-tap-on"); // Switch icon state (on)
-	}
+    }
 
     // @desc Finger releases the menu button
-	function menuButtonTapOff(e) {
+    function menuButtonTapOff(e) {
         e.preventDefault();
-		$("#menu-button").removeClass("button-tap-on").addClass("button-tap-off"); // Switch icon state (off)
-		toggleMenu(); // Open or close off-canvas menu
-	}
+        $("#menu-button").removeClass("button-tap-on").addClass("button-tap-off"); // Switch icon state (off)
+        toggleMenu(); // Open or close off-canvas menu
+    }
 
     // @desc Finger taps one of the off-canvas menu item
-	function menuItemTap(e) {	
+    function menuItemTap(e) {
 
         e.preventDefault();
-        
-		if (isMenuOpen) {
 
-			// Select tapped item
+        if (isMenuOpen) {
+
+            // Select tapped item
             $("#menu-items li").removeClass("menu-active-item"); // Unselect all menu items
-			$(this).closest("li").addClass("menu-active-item");
+            $(this).closest("li").addClass("menu-active-item");
 
             // Close menu and navigate to the item's corresponding screen
             /* @todo use navigate here rather than in close menu */
-			closeMenu(1,$(this));
-            
-		}
+            closeMenu(1,$(this));
 
-	}
+        }
+
+    }
 
     // @desc Finger taps one of the post item in a post list
-	function contentItemTap(e) {
+    function contentItemTap(e) {
 
         e.preventDefault();
-        
-		if (!isMenuOpen) {
-			App.navigate($(this).attr("href")); // Display post
-		} else {
-			closeMenu(); // Tapping a post item when the off-canvas menu is opened closes it
-		}
-	}
+
+        if (!isMenuOpen) {
+            App.navigate($(this).attr("href")); // Display post
+        } else {
+            closeMenu(); // Tapping a post item when the off-canvas menu is opened closes it
+        }
+    }
 
     /*
      * 2. Message bar
      */
 
     // @desc Show a message in the message bar during 3 sec
-	function showMessage(msgText) {
-		$("#app-message-bar").html(msgText);
-		$("#app-message-bar").removeClass("message-off").addClass("message-on");
-		setTimeout(hideMessage,3000);
-	}
+    function showMessage(msgText) {
+        $("#app-message-bar").html(msgText);
+        $("#app-message-bar").removeClass("message-off").addClass("message-on");
+        setTimeout(hideMessage,3000);
+    }
 
     // @desc Hide the message bar
-	function hideMessage() {
-		$("#app-message-bar").removeClass("message-on").addClass("message-off");	
-		$("#app-message-bar").html("");
-	}
+    function hideMessage() {
+        $("#app-message-bar").removeClass("message-on").addClass("message-off");
+        $("#app-message-bar").html("");
+    }
 
     /*
      * 3. Refresh button
      */
-        
+
     // @desc Finger taps the refresh button
-	function refreshTapOn(e) {
+    function refreshTapOn(e) {
         e.preventDefault();
         $("#refresh-button").removeClass("button-touch-off").addClass("button-touch-on");
-	}
+    }
 
     // @desc Finger releases the refresh button
-	function refreshTapOff(e) {
+    function refreshTapOff(e) {
         e.preventDefault();
         if (!App.isRefreshing()) { // Check if the app is not already refreshing content
-			$("#refresh-button").removeClass("button-touch-on").addClass("button-touch-off");
-			$("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
-			App.refresh(); // Refresh content
-		}
-	}
+            $("#refresh-button").removeClass("button-touch-on").addClass("button-touch-off");
+            $("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
+            App.refresh(); // Refresh content
+        }
+    }
 
     // @desc Stop spinning when refresh ends
-	function stopRefresh() {
-		$("#refresh-button").removeClass("refresh-on").addClass("refresh-off");	
-	}
+    function stopRefresh() {
+        $("#refresh-button").removeClass("refresh-on").addClass("refresh-off");
+    }
 
     /*
      * 4. Back button
@@ -838,17 +858,17 @@ console.log('more');
     // @desc Finger taps the back button
     function backButtonTapOn(e) {
         e.preventDefault();
-		$("#back-button").removeClass("button-tap-off").addClass("button-tap-on");
+        $("#back-button").removeClass("button-tap-off").addClass("button-tap-on");
         console.log('back pressed');
-	}
+    }
 
     // @desc Finger releases the back button
     function backButtonTapOff(e) {
-		e.preventDefault();
+        e.preventDefault();
         $("#back-button").removeClass("button-tap-on").addClass("button-tap-off");
         App.navigate(TemplateTags.getPreviousScreenLink()); // Navigate to the previous screen using the history stack
         console.log('back released');
-	}
+    }
 
     /*
      * 5. More button
@@ -858,7 +878,7 @@ console.log('more');
     function getMoreButtonTapOff(e) {
 
         e.preventDefault();
-        
+
         // Disable the Get more button and show spinner
         $('#get-more-button').attr('disabled','disabled');
         $("#get-more-button").append(spinner);
@@ -877,7 +897,7 @@ console.log('more');
                 // @todo: fire a specific message
                 $("#get-more-button .spinner").remove();
                 $('#get-more-button').removeAttr('disabled');
-                
+
             }
         );
     }
@@ -886,32 +906,57 @@ console.log('more');
 
 
 
-    
+
+
+    /*  add_filter('get_comment_author', 'my_comment_author', 10, 1);
+
+     function my_comment_author( $author = '' ) {
+     // Get the comment ID from WP_Query
+
+     $comment = get_comment( $comment_ID );
+
+     if ( empty($comment->comment_author) ) {
+     if (!empty($comment->user_id)){
+     $user=get_userdata($comment->user_id);
+     $author=$user->first_name.' '.substr($user->last_name,0,1).'.'; // this is the actual line you want to change
+     } else {
+     $author = __('Anonymous');
+     }
+     } else {
+     $author = $comment->comment_author;
+     }
+
+     return $author;
+     }
+     */
+
+
+
     /*
      * 6. Content
      */
-    
+
     // @desc Prepare content for proper display / Part of the work is done in /php/prepare-content.php
-	function prepareContent() {
-        
+    function prepareContent() {
+
         // Modify embedded tweets code for proper display
         // Note: it is not possible to style embedded tweet in apps as Twitter doesn't identify the referer
-       // $(".single-template blockquote.twitter-tweet p").css( "display", "inline-block" );
+        // $(".single-template blockquote.twitter-tweet p").css( "display", "inline-block" );
 
         // Set content for unavailable content notification
         // Note: unavaible content is notified with [hide_from_apps notify="yes"] shortcode
-        $(".wpak-content-not-available").html('Content unavailable');	
+        $(".wpak-content-not-available").html('Content unavailable');
     }
-    
+
     // @desc Hyperlinks click handler
     // Relies on the InAppBrowser Cordova Core Plugin / https://build.phonegap.com/plugins/233
     // Target _blank calls an in app browser (iOS behavior)
     // Target _system calls the default browser (Android behavior)
     // @param {object} e
     function openInBrowser(e) {
-        
+
         try {
-            cordova.InAppBrowser.open(e.target.href, '_blank', 'location=yes');    
+            cordova.InAppBrowser.open(e.target.href, '_blank', 'location=yes');
         } catch(e) {
             window.open(e.target.href, '_blank', 'location=yes');
         }
@@ -929,7 +974,7 @@ console.log('more');
                 $(this).attr('src', $(this).attr('data-src'));
             }
         });
-        
+
         $('#single-content').fitVids();
 
     }
@@ -979,5 +1024,6 @@ console.log('more');
 
 
 });
+
 
 

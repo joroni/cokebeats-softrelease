@@ -543,20 +543,19 @@ div#login-page form div.list-block.center {
 .post-comments-list {
     max-height: 80;
 }
-
 .commentbox {
-    /* background: #f7f7f8 !important; */
-    position: absolute;
-    top: 10px;
-    padding:0 10px;
-    float: right;
-    border: 0px solid;
-    right: 0px !important;
-    z-index: 1100;
-    width: 100%;
-    /* left: 0; */
+    border: 0 solid;
+    border-radius: 10px;
     color: #333 !important;
+    float: right;
+    padding: 10px;
+    position: absolute;
+    right: 0 !important;
+    top: 0px;
+    width: 100px;
+    z-index: 1100;
 }
+
 /*
 .commentbox {
     background: #f7f7f8 !important;
@@ -695,7 +694,7 @@ div#login-page form div.list-block.center {
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
     cursor: pointer;
-    margin: 5px;
+    margin: 2px !important;
 }
 
 
@@ -704,7 +703,7 @@ div#login-page form div.list-block.center {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    height: 400px !important;
+    height: 480px !important;
 }
 #single .wp-caption img, #single img {
    min-width: 100% !important;
@@ -717,15 +716,18 @@ span.zoom {
 }
 
 .get-more {
-    position: fixed !important;
-    bottom: 48px;
-    display: block !important;
-    background: rgba(209, 0, 0, 0.8) !important;
-    text-shadow: none !important;
-    color: #fff;
-    border: none;
-    font-size: 11px !important;
+    background: rgba(209, 0, 0, 0) none repeat scroll 0 0 !important;
+    border: medium none;
     border-radius: 0;
+    bottom: 48px;
+    color: #d10000;
+    display: block !important;
+    font-size: 11px !important;
+    padding: 10px;
+    position: fixed !important;
+    text-shadow: none !important;
+    text-transform: uppercase;
+    width: 100%;
 }
 
 footer {
@@ -1058,6 +1060,7 @@ footer #refresh-button, footer #go-back {
 
 div#back-button {
     z-index: 200 !important;
+    top:-30px;
 }
 
 
@@ -1126,5 +1129,29 @@ div#back-button {
 
 #commentLink {
     position: absolute;
-    top:30px;
+    top:0px;
+}
+
+
+.swiper-slide {
+    -webkit-flex-shrink: 0;
+    -ms-flex: 0 0 auto;
+    flex-shrink: 0;
+    padding: 0 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+div#slideup-panel {
+    margin-top: 50px !important;
+    position: relative;
+    height: 100%;
+}
+
+
+.comment-form {
+    position: absolute;
+    top: 290px;
 }
