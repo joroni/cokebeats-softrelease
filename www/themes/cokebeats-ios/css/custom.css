@@ -43,7 +43,6 @@
 
 }
 
-
 #user-info {
     position: absolute;
     top: 120px;
@@ -51,14 +50,12 @@
     padding: 19%;
 }
 
-
 #user-info2 {
     position: absolute;
     top: 10px;
     background: transparent;
     padding: 0;
 }
-
 
 #user-info li {
     list-style: none;
@@ -115,7 +112,6 @@ ul.media-list, ol.media-list {
 
 }
 
-
 #app-header {
     position: absolute;
     top: 0px;
@@ -126,7 +122,6 @@ ul.media-list, ol.media-list {
     overflow: hidden;
     z-index: 10;
 }
-
 
 .navbar-brand {
     height: 50px;
@@ -517,7 +512,7 @@ div#login-page form div.list-block.center {
     margin-left: 0px;
     margin-right: 0px;
     position: absolute;
-    top:20px;
+    top: 20px;
     width: 100%;
     overflow-x: hidden !important;
     overflow-y: auto !important;
@@ -543,6 +538,7 @@ div#login-page form div.list-block.center {
 .post-comments-list {
     max-height: 80;
 }
+
 .commentbox {
     border: 0 solid;
     border-radius: 10px;
@@ -570,7 +566,6 @@ div#login-page form div.list-block.center {
     color: #333 !important;
 }
 */
-
 
 .commentbox a {
     color: #333 !important;
@@ -605,9 +600,9 @@ div#login-page form div.list-block.center {
 }
 
 #logout {
-  /*  width: 100% !important;
-    position: fixed;
-    left: 0;*/
+    /*  width: 100% !important;
+      position: fixed;
+      left: 0;*/
     /* bottom: 95px; */
 }
 
@@ -697,7 +692,6 @@ div#login-page form div.list-block.center {
     margin: 2px !important;
 }
 
-
 .swiper-container {
     margin: 0 auto;
     position: relative;
@@ -705,11 +699,11 @@ div#login-page form div.list-block.center {
     z-index: 1;
     height: 480px !important;
 }
+
 #single .wp-caption img, #single img {
-   min-width: 100% !important;
+    min-width: 100% !important;
     height: auto;
 }
-
 
 span.zoom {
     min-width: 100%;
@@ -739,7 +733,7 @@ footer {
     height: 50px;
     padding: 5px 0 !important;
     left: 0;
-    z-index:1000;
+    z-index: 1000;
     /* border: 1px solid; */
 }
 
@@ -759,10 +753,10 @@ footer a, footer a:active, footer a:hover {
     float: left;
 }
 
-
 #menu-button {
     display: none !important;
 }
+
 /*
 #archive {
     background: url("img/coke-bottle.png") !important;
@@ -1000,7 +994,7 @@ div#comment {
     left: 0;
     height: 100% !important;
     width: 100%;
-     padding-bottom: 70px;
+    padding-bottom: 70px;
     background: url(img/coke-bottle.png) no-repeat !important;
     /* height: 100%; */
     background-size: auto 70% !important;
@@ -1008,7 +1002,6 @@ div#comment {
     background-attachment: fixed !important;
     overflow-y: auto !important;
 }
-
 
 #archive {
     /* position: relative !important; */
@@ -1042,7 +1035,7 @@ button.btn.btn-info.btn-lg {
     color: #d10000 !important;
     width: 50px !important;
     z-index: 20000;
-   /* display: none; */
+    /* display: none; */
 }
 
 footer #refresh-button, footer #go-back {
@@ -1060,15 +1053,13 @@ footer #refresh-button, footer #go-back {
 
 div#back-button {
     z-index: 200 !important;
-    top:-30px;
+    top: -30px;
 }
-
 
 .single-template .post-title {
     padding: 0px 20px 0px 20px !important;
     margin-bottom: 15px;
 }
-
 
 .content {
     position: absolute;
@@ -1082,11 +1073,9 @@ div#back-button {
     -webkit-overflow-scrolling: touch;
 }
 
-
 div#back-button {
     z-index: 20000;
 }
-
 
 .single-content p {
     font-family: 'Open Sans', sans-serif !important;
@@ -1095,10 +1084,6 @@ div#back-button {
     font-weight: 500 !important;
     text-align: left;
 }
-
-
-
-
 
 .app-message-bar {
     position: absolute;
@@ -1115,23 +1100,18 @@ div#back-button {
     z-index: 20;
     text-align: center;
     background-color: transparent;
-    color:forestgreen;
+    color: forestgreen;
     font-family: HelveticaNeue-Medium, sans-serif;
 }
-
-
-
 
 .single-content {
     text-align: left;
     padding: 0 !important;
 }
-
 #commentLink {
-    position: absolute;
-    top:0px;
+    position: relative;
+    top: 0;
 }
-
 
 .swiper-slide {
     -webkit-flex-shrink: 0;
@@ -1143,13 +1123,11 @@ div#back-button {
     position: relative;
 }
 
-
 div#slideup-panel {
     margin-top: 50px !important;
     position: relative;
     height: 100%;
 }
-
 
 .comment-form {
     position: absolute;
