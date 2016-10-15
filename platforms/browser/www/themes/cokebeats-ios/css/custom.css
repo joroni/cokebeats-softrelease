@@ -74,10 +74,14 @@
     box-shadow: 4px 8px 1px rgba(8, 8, 8, 0.1);
 
 }
-
 ul.media-list, ol.media-list {
     padding: 0;
-    margin: 0 20px 12px 20px;
+    margin: 0px 0px 12px 0px;
+}
+
+ul.media-list li, ol.media-list li {
+    padding: 20px 0;
+
 }
 
 .single, #post-comments-list {
@@ -538,7 +542,6 @@ div#login-page form div.list-block.center {
 .post-comments-list {
     max-height: 80;
 }
-
 .commentbox {
     border: 0 solid;
     border-radius: 10px;
@@ -546,9 +549,10 @@ div#login-page form div.list-block.center {
     float: right;
     padding: 10px;
     position: absolute;
+    background: rgba(255,255,255,0) !important;
     right: 0 !important;
     top: 0px;
-    width: 100px;
+    width: 100%;
     z-index: 1100;
 }
 
@@ -1100,7 +1104,8 @@ div#back-button {
     z-index: 20;
     text-align: center;
     background-color: transparent;
-    color: forestgreen;
+    /* color: forestgreen; */
+    color: #fff !important;
     font-family: HelveticaNeue-Medium, sans-serif;
 }
 

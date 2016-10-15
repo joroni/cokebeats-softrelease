@@ -57,16 +57,16 @@ define([
 
     var photoswipe_element = $( '.pswp' )[0];
     var photoswipe_instance = null;
-    var img_dragging = false;
+    var img_dragging = true;
 
 
-    $( "#app-layout" ).on( "touchmove", ".single-content img", function() {
+    $( "#app-layout" ).on( "touchmove", ".single-content", function() {
         img_dragging = true;
-        console.log('touched');
+        console.log('move');
     });
 
 
-    $( "#app-layout" ).on( "touchstart", ".single-content img", function() {
+    $( "#app-layout" ).on( "touchstart", ".single-content", function() {
         img_dragging = false;
         console.log('dragging');
     } );
@@ -110,7 +110,7 @@ define([
     }
 
     $( "#app-layout" ).on( "touchend", ".single-content img", function() {
-
+        console.log('end');
         //Don't open image if currently dragging it:
         if ( img_dragging ) {
             return;
@@ -397,7 +397,7 @@ define([
          * @todo messages should be centralized to ease translations
          */
         if ( result.ok ) {
-            showMessage("Content updated successfully");
+            showMessage('<div style="background: forestgreen; color: #fff;">Content updated successfully</div>');
         }else{
             showMessage(result.message);
             // showMessage(result);
@@ -412,6 +412,7 @@ define([
 
         // Show message under the nav bar
         showMessage(error.message);
+
 
 
     });
@@ -523,10 +524,12 @@ define([
         $('#waiting').show();
 
         App.displayPostComments(
+
             $(this).attr('data-post-id'),
             function ( comments, post, item_global ) {
                 //Do something when comments display is ok
                 //We hide the waiting panel in 'screen:showed'
+                $('#waiting').hide();
             },
             function ( error ) {
                 //Do something when comments display fail (note that an app error is triggered automatically)
@@ -569,14 +572,16 @@ define([
      */
     $('#container').on('click', '.get-more', function ( e ) {
         e.preventDefault();
+
         console.log('more');
         var $this = $(this);
 
         var text_memory = $this.text();
         $this.attr('disabled', 'disabled').text('Loading...');
-
+        $('#waiting').show();
         App.getMoreComponentItems(
             function () {
+                //$('#waiting').hide();
                 //If something is needed once items are retrieved, do it here.
                 //Note : if the "get more" link is included in the archive.html template (which is recommended),
                 //it will be automatically refreshed.
@@ -990,8 +995,18 @@ define([
 
     $('#logoutBtn').on('click', function (e) {
         e.preventDefault();
-        localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
-        window.location.replace('index.html');
+
+        var r = confirm("Are you sure you want to Logout?");
+        if (r == true) {
+           // x = "You pressed OK!";
+            localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
+            window.location.replace('index.html');
+        } else {
+           // x = "You pressed Cancel!";
+            return false;
+        }
+
+
         //localStorage.removeItem('user_login');
         // localStorage.removeItem('user_display_name',data);
 
