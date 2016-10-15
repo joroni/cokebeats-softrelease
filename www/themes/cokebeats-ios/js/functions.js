@@ -397,9 +397,9 @@ define([
          * @todo messages should be centralized to ease translations
          */
         if ( result.ok ) {
-            showMessage('<div style="background: forestgreen; color: #fff;">Content updated successfully</div>');
+            showMessage('<div class="messageinfo" style="background: rgb(02,255,51); color: #333;">Content updated successfully</div>');
         }else{
-            showMessage(result.message);
+            showMessage('<div class="messageinfo"  style="background: rgb(255,153,153); color: #333;">'+result.message+'</div>');
             // showMessage(result);
 
         }
@@ -411,9 +411,9 @@ define([
     App.on('error',function(error){
 
         // Show message under the nav bar
-        showMessage(error.message);
+       /* showMessage(error.message);*/
 
-
+        showMessage('<div class="messageinfo"  style="background: rgb(255,153,153); color: #333;">'+error.message+'</div>');
 
     });
 
@@ -640,7 +640,9 @@ define([
         var ns = TemplateTags.getNetworkState(true);
 
         // Display the current network state
-        showMessage(ns);
+        /*showMessage(ns);*/
+        showMessage('<div class="messageinfo" style="background: rgb(02,255,51); color: #333;">'+ns+'</div>');
+
     });
 
     // @desc Catch when the device goes offline
@@ -661,7 +663,9 @@ define([
         var ns = TemplateTags.getNetworkState(true);
 
         // Display the current network state
-        showMessage(ns);
+       /* showMessage(ns);*/
+        showMessage('<div class="messageinfo" style="background: rgb(255,153,153); color: #333;">'+ns+'</div>');
+        error
     });
 
 
@@ -1027,11 +1031,7 @@ define([
     $('#LogOk').on('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
-        localStorage.removeItem('user_login');
-         localStorage.removeItem('user_display_name',data);
-
-
-
+        
         window.location.replace('index.html');
         $('#logoutConfirmation').hide();
 

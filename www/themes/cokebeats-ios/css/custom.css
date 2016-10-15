@@ -544,15 +544,16 @@ div#login-page form div.list-block.center {
 }
 .commentbox {
     border: 0 solid;
-    border-radius: 10px;
+    border-radius: 0;
     color: #333 !important;
     float: right;
-    padding: 10px;
+    padding: 10px 10px 5px 10px;
     position: absolute;
-    background: rgba(255,255,255,0) !important;
+    background: rgba(255,255,255,1) !important;
     right: 0 !important;
     top: 0px;
     width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
     z-index: 1100;
 }
 
@@ -660,9 +661,10 @@ div#login-page form div.list-block.center {
     font-style: normal;
     font-weight: normal;
     line-height: 1;
-    font-size: 1.3em !important;
+    font-size: 1.5em !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin-right:5px;
 }
 
 .form-control {
@@ -1082,7 +1084,7 @@ div#back-button {
 }
 
 .single-content p {
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'HelveticaNeue-Medium', sans-serif !important;
     line-height: 27px;
     font-size: 14px !important;
     font-weight: 500 !important;
@@ -1092,16 +1094,16 @@ div#back-button {
 
 .app-message-bar {
     position: absolute;
-    top: 65px;
+    top: 60px;
     left: 0px;
     right: 0;
     border-radius: 20px !important;
     width: 100%;
     margin-left: 0px;
     margin-right: -10px;
-    height: 24px;
+    height: 20px;
     font-size: 10px !important;
-    line-height: 24px;
+    line-height: 20px;
     text-transform: uppercase;
     text-align: center;
     opacity: 1;
@@ -1114,7 +1116,7 @@ div#back-button {
 }
 .single-content {
     text-align: left;
-    padding: 0 !important;
+    padding: 40px 0 0 0 !important;
 }
 #commentLink {
     position: relative;
@@ -1158,4 +1160,20 @@ a.popupBtn {
 .comment-form {
     position: absolute;
     top: 290px;
+}
+
+
+.messageinfo {
+    margin-left:-20px;
+    margin-right:-20px;
+}
+
+.list-block .item-inner:before, .list-block ul:before,  .list-block ul:after {
+
+     background-color: transparent !important;
+
+}
+
+#SignIn-btn {
+    text-transform: capitalize !important;
 }

@@ -28,6 +28,24 @@
     });
 
 </script>
+
+        <style>
+            .list-block .item-inner::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                right: auto;
+                top: auto;
+                height: 1px;
+                width: 100%;
+                background-color: #c8c7cc;
+                display: block;
+                z-index: 15;
+                -webkit-transform-origin: 50% 100%;
+                transform-origin: 50% 100%;
+            }
+        </style>
         <form>
             <div class="list-block">
                 <ul>
@@ -52,13 +70,13 @@
                     </li>
                 </ul>
             </div>
-            <br />
-            <br />
+
+
             <div class="list-block center">
                 <ul>
                     <li>
 
-                        <button type="submit" class="btn btn-info" id="SignIn-btn">Sign In</button>
+                        <button href="#" class="item-link list-button" id="SignIn-btn">Sign In</button>
                        <!-- <a class="item-link list-button" href="#">Sign In</a></li>-->
                           </ul>
                           <!-- <div class="list-block-label small">You must Sign In to view this content. <br />
@@ -71,7 +89,10 @@
        </div>
    </div>
 
-   <!--
+
+
+
+<!--
    <div id="login-page" class="login-screen modal-in" style="display: block;">
        <div class="view" id="single-content">
            <div class="page">
