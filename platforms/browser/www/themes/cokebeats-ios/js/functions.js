@@ -996,6 +996,8 @@ define([
     $('#logoutBtn').on('click', function (e) {
         e.preventDefault();
 
+        $('#logoutConfirmation').fadeIn(5000);
+        /*
         var r = confirm("Are you sure you want to Logout?");
         if (r == true) {
            // x = "You pressed OK!";
@@ -1005,7 +1007,7 @@ define([
            // x = "You pressed Cancel!";
             return false;
         }
-
+*/
 
         //localStorage.removeItem('user_login');
         // localStorage.removeItem('user_display_name',data);
@@ -1015,6 +1017,20 @@ define([
     });
 
 
+
+    $('#logCancel').on('click', function (e) {
+        e.preventDefault();
+        $('#logoutConfirmation').fadeOut(500);
+        return false;
+    });
+
+    $('#LogOk').on('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
+        window.location.replace('index.html');
+        $('#logoutConfirmation').hide();
+
+    });
 
 
     $('#homeBtn').on('click', function ( ) {

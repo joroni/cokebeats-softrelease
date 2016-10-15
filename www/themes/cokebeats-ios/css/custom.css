@@ -1094,6 +1094,8 @@ div#back-button {
     top: 65px;
     left: 0px;
     width: 100%;
+    margin-left: -10px;
+    margin-right: -10px;
     height: 24px;
     font-size: 14px;
     line-height: 24px;
@@ -1132,6 +1134,24 @@ div#slideup-panel {
     margin-top: 50px !important;
     position: relative;
     height: 100%;
+}
+
+div#logoutConfirmation {
+    position: absolute;
+    top: 40%;
+    height: 100px;
+    width: 100%;
+    background: #efefef;
+    z-index: 9999;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 18px rgba(0,0,0,0.4);
+}
+
+
+a.popupBtn {
+    padding: 10px;
+    margin: 25px !important;
 }
 
 .comment-form {
