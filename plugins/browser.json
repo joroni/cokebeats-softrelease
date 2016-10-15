@@ -18,6 +18,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ko.cokebeats"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ko.cokebeats"
         }
     },
     "dependent_plugins": {}
