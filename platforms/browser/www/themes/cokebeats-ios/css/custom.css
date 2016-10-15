@@ -516,7 +516,8 @@ div#login-page form div.list-block.center {
     overflow-y: auto;
     margin-left: 0px;
     margin-right: 0px;
-
+    position: absolute;
+    top:20px;
     width: 100%;
     overflow-x: hidden !important;
     overflow-y: auto !important;
@@ -547,12 +548,12 @@ div#login-page form div.list-block.center {
     /* background: #f7f7f8 !important; */
     position: absolute;
     top: 10px;
+    padding:0 10px;
     float: right;
     border: 0px solid;
     right: 0px !important;
     z-index: 1100;
-    width: auto;
-    padding: 5px !important;
+    width: 100%;
     /* left: 0; */
     color: #333 !important;
 }
@@ -570,8 +571,11 @@ div#login-page form div.list-block.center {
     color: #333 !important;
 }
 */
+
+
 .commentbox a {
     color: #333 !important;
+    float: right;
 }
 
 .commentbox2 {
@@ -1049,11 +1053,11 @@ footer #refresh-button, footer #go-back {
     top: -5px;
     color: #d10000;
 
-    z-index: 20000;
+    z-index: 200 !important;
 }
 
 div#back-button {
-    z-index: 20000 !important;
+    z-index: 200 !important;
 }
 
 
@@ -1091,3 +1095,36 @@ div#back-button {
 
 
 
+
+
+.app-message-bar {
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    width: 100%;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: left;
+    padding: 0px 10px 0px 10px;
+    opacity: 1;
+    overflow: hidden;
+    z-index: 20;
+    text-align: center;
+    background-color: transparent;
+    color:forestgreen;
+    font-family: HelveticaNeue-Medium, sans-serif;
+}
+
+
+
+
+.single-content {
+    text-align: left;
+    padding: 0 !important;
+}
+
+#commentLink {
+    position: absolute;
+    top:30px;
+}

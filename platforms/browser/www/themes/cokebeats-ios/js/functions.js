@@ -48,7 +48,7 @@ define([
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
         spaceBetween: 30
-    })
+    });
 
 
     /***********************************
@@ -59,13 +59,17 @@ define([
     var photoswipe_instance = null;
     var img_dragging = false;
 
-    $( "#app-layout" ).on( "touchstart", ".single-content img", function() {
-        img_dragging = false;
-    } );
 
     $( "#app-layout" ).on( "touchmove", ".single-content img", function() {
         img_dragging = true;
+        console.log('touched');
     });
+
+
+    $( "#app-layout" ).on( "touchstart", ".single-content img", function() {
+        img_dragging = false;
+        console.log('dragging');
+    } );
 
     /**
      * Opens the given image (or list of images) with PhotoSwipe
@@ -150,12 +154,12 @@ define([
     /*
      * App's parameters
      */
-    
+
     App.setParam( 'go-to-default-route-after-refresh', false ); // Don't automatically show default screen after a refresh
     App.setParam( 'custom-screen-rendering', true ); // Don't use default transitions and displays for screens
 
-    
-    
+
+
     /*
      * Init
      */
@@ -177,32 +181,32 @@ define([
     // Animated iOS spinner
     var spinner = $('<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>');
 
-    
-    
+
+
     /*
      * Filters
      */
-    
+
     // @desc Add template args
     App.filter( 'template-args', function( template_args, view_type, view_template ) {
-        
+
         // Template parameters for single, page, archive and comments
         if (view_type == 'single' || view_type == 'page' || view_type == 'archive') {
-            
-            
+
+
             // Get Twitter like date format to single, archive and comments templates
             // Relies on MomentJS available as Moment()
             template_args.getCustomDate = function(postDate) {
 
                 var gmtOffSetSec = Config.gmt_offset * 3600; // Get GMT offset as defined in config.js
-                
+
                 var momentNow = Moment(); // Get current date and time
-                
+
                 var momentPostDate = Moment(new Date((postDate-gmtOffSetSec)*1000)); // Get the post date
 
                 // Get the duration between current date and the post date
                 var diffDays = momentNow.diff(momentPostDate, 'days');
-                
+
                 var customPostDate;
 
                 if (diffDays == 0) { // Duration is less than a day (eg. 8 hours ago)
@@ -214,26 +218,26 @@ define([
 
                 return customPostDate;
             }
-            
+
         }
-        
+
         // Return parameters and functions
         return template_args;
-        
+
     } );
 
-    
+
 
     /*
      * Actions
      */
-    
+
     // @desc Detect transition types (aka directions) and launch corresponding animations
     App.action( 'screen-transition', function( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
         // Get the direction keyword from current screen and  previous screen
         var direction = App.getTransitionDirection( current_screen, next_screen );
-        
+
         switch ( direction ) {
             case 'next-screen': // Archive to single
                 transition_slide_next_screen( $wrapper, $current, $next, current_screen, next_screen, $deferred );
@@ -251,12 +255,12 @@ define([
 
     });
 
-    
-    
+
+
     /*
      * Transition animations
      */
-    
+
     // @desc Archive to single animation
 	transition_slide_next_screen = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
@@ -268,14 +272,14 @@ define([
         }
 
         // 1. Prepare next screen (the destination screen is not visible. We are before the animation)
-        
+
         // Hide the single screen on the right
         $next.css({
 			left: '100%'
 		});
 
         // 2. Animate to display next screen
-        
+
 		// Slide screens wrapper from right to left
         $wrapper.velocity({
             left: '-100%'
@@ -283,7 +287,7 @@ define([
             duration: 300,
             easing: 'ease-out',
             complete: function () {
-                
+
                 // remove the screen that has been transitioned out
 				$current.remove();
 
@@ -293,17 +297,17 @@ define([
 				$next.css({
 				    left: '',
 				});
-                
+
 				$deferred.resolve(); // Transition has ended, we can pursue the normal screen display steps (screen:showed)
             }
         });
-	}
+	};
 
     // @desc Single to archive animation
 	transition_slide_previous_screen = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
         $wrapper.prepend($next); // Add the next screen to the DOM / Mandatory first action (notably to get scrollTop() working)
-        
+
         // 1. Prepare next screen (the destination screen is not visible. We are before the animation)
 
         // Hide the archive screen on the left
@@ -340,25 +344,25 @@ define([
                 $next.css( {
                     left: '',
                 } );
-                
+
                 $deferred.resolve(); // Transition has ended, we can pursue the normal screen display steps (screen:showed)
             }
         });
-	}
+	};
 
     // @desc Default animation
     // Also used when the direction is unknown
 	transition_default = function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
-		
+
 		// Simply replace current screen with the new one
         $current.remove();
 		$wrapper.empty().append( $next );
 		$deferred.resolve();
-        
+
 	};
 
-    
-    
+
+
 	/**
      * App Events
      */
@@ -368,9 +372,9 @@ define([
 
 		// Start refresh icon animation
         $("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
-        
+
 	});
-     
+
     // @desc Refresh process ends
     // @param result
 	App.on('refresh:end',function(result){
@@ -379,14 +383,14 @@ define([
         App.navigateToDefaultRoute();
 
         Storage.clear('scroll-pos');    // Clear the previous memorized position in the local storage
-        
+
 		// The refresh icon stops to spin
 		$("#refresh-button").removeClass("refresh-on").addClass("refresh-off");
-		
+
 		// Select the current screen item in off-canvas menu
         $("#menu-items li").removeClass("menu-active-item");
 		$("#menu-items li:first-child").addClass("menu-active-item");
-		
+
 		/**
          * Display if the refresh process is a success or not
          * @todo if an error occurs we should not reset scroll position
@@ -395,7 +399,9 @@ define([
 		if ( result.ok ) {
 			showMessage("Content updated successfully");
 		}else{
-			showMessage(result.message);
+		//	showMessage(result.message);
+            showMessage(result);
+
 		}
 
     });
@@ -403,10 +409,11 @@ define([
     // @desc An error occurs
     // @param error
 	App.on('error',function(error){
-        
+
         // Show message under the nav bar
-        showMessage(error.message);
-        
+// showMessage(error.message);
+        showMessage(error);
+
 	});
 
     // @desc A screen has been displayed
@@ -417,7 +424,7 @@ define([
         /*
          * 1. Back button
          */
-        
+
         // Show/Hide back button depending on the displayed screen
         if (TemplateTags.displayBackButton()) {
             $("#back-button").css("display","block");
@@ -430,17 +437,17 @@ define([
         /*
          * 2. Off canvas menu
          */
-        
+
         // Close off-canvas menu
         if (isMenuOpen) {
-			$("#app-canvas").css("left","85%"); 
+			$("#app-canvas").css("left","85%");
 			closeMenu();
 		}
 
         /*
          * 3. Post list
          */
-        
+
         if(current_screen.screen_type == "list") {
 
             // Change nav bar title (display the component label)
@@ -448,20 +455,20 @@ define([
             if ( $('#app-header > h1').html() != current_screen.label ) {
                 $('#app-header > h1').html(current_screen.label);
             }
-            
+
             // Scroll position is handled in the preparation of the transition (transition_slide_previous_screen)
         }
 
 		/*
          * 4. Single and page
          */
-        
+
 
         // Get and store data necessary for the sharing
         // @TODO: separate sharing code from title code
-        
+
         if (current_screen.screen_type=="single") {
-            
+
             // Change nav bar title
             // Todo: create a generic function
             if ( $('#app-header > h1').html() != 'Article' ) {
@@ -471,7 +478,7 @@ define([
         }
 
         if (current_screen.screen_type=="page") {
-            
+
             // Change nav bar title
             // Todo: create a generic function
             if ( $('#app-header > h1').html() != '' ) {
@@ -479,16 +486,16 @@ define([
             }
 
         }
-                        
+
         if (current_screen.screen_type=="single" || current_screen.screen_type=="page") {
 
             // Redirect all content hyperlinks clicks
             // @todo: put it into prepareContent()
             $("#app-layout").on("click", ".single-content a", openInBrowser);
-            
+
             // Make any necessary modification to post/page content
             prepareContent();
-            
+
             // Display videos and make them responsive
             // We defer video loading to keep transitions smooth
             loadAndFormatVideos();
@@ -504,14 +511,28 @@ define([
     /**
      * Open all links inside single content with the inAppBrowser
      */
-    $('#container').on("click", ".single-content a, .page-content a, .single-template a", function ( e ) {
+
+
+    $('a.commentLink').on('click', function ( ) {
+        e.preventDefault();
+        openWithInAppBrowser(e.target.href);
+        console.log('comment?');
+    });
+
+
+
+
+
+    //div#app-layout div#app-canvas div#app-content-wrapper div.app-screen div#content.content.single-template div.commentbox a#commentsBtn.comments
+
+    $('#container').on("click", "a.comments, .single-content a, .page-content a, .single-template a", function ( e ) {
         e.preventDefault();
         openWithInAppBrowser(e.target.href);
     });
 
     $('#container').on('click', '.comments', function ( e ) {
         e.preventDefault();
-
+        console.log('comment');
         $('#waiting').show();
 
         App.displayPostComments(
@@ -532,7 +553,7 @@ define([
      */
     $('#container').on('click', '.get-more', function ( e ) {
         e.preventDefault();
-
+console.log('more');
         var $this = $(this);
 
         var text_memory = $this.text();
@@ -577,10 +598,10 @@ define([
     // @param {object} current_screen - Screen types: list|single|page|comments
     // @param queried_screen
     // @param view
-	App.on('screen:leave',function(current_screen,queried_screen,view){
+	/*App.on('screen:leave',function(current_screen,queried_screen,view){
 
     });
-
+*/
     // @desc Catch when the device goes online
     // relies on https://github.com/apache/cordova-plugin-network-information
     // Possible values:
@@ -633,7 +654,7 @@ define([
      */
 
     // Menu Button events
-    $("#app-layout").on("touchstart","#menu-button",menuButtonTapOn);
+ $("#app-layout").on("touchstart","#menu-button",menuButtonTapOn);
 	$("#app-layout").on("touchend","#menu-button",menuButtonTapOff);
 
     // Refresh Button events
@@ -653,7 +674,8 @@ define([
     
     // Get more button events
     $( '#app-layout' ).on( 'touchend', '#get-more-button', getMoreButtonTapOff);
-    
+
+
     /*
      * @desc Display default image if an error occured when loading an image element (eg. offline)
      * 1. Binding onerror event doesn't seem to work properly in functions.js
@@ -664,7 +686,7 @@ define([
      */
     window.displayDefaultImage = function(o) {
         $(o).attr('src',TemplateTags.getThemeAssetUrl('img/img-icon.svg'));
-    }
+    };
 
     
     
@@ -696,7 +718,7 @@ define([
     // @desc Close off-canvas menu
     // @param action (1 means that we close the off-canvas menu after clicking on a menu item)
     // @param menuItem
-	function closeMenu(action,menuItem) {
+/*	function closeMenu(action,menuItem) {
 
 		isMenuOpen = false;
 
@@ -713,7 +735,7 @@ define([
 
         });
 	}
-
+*/
     // @desc Open or close off-canvas menu (based on isMenuOpen variable)
 	function toggleMenu() {  
 		if (isMenuOpen) {
@@ -748,7 +770,7 @@ define([
 			$(this).closest("li").addClass("menu-active-item");
 
             // Close menu and navigate to the item's corresponding screen
-            // @todo use navigate here rather than in close menu
+            /* @todo use navigate here rather than in close menu */
 			closeMenu(1,$(this));
             
 		}
@@ -817,6 +839,7 @@ define([
     function backButtonTapOn(e) {
         e.preventDefault();
 		$("#back-button").removeClass("button-tap-off").addClass("button-tap-on");
+        console.log('back pressed');
 	}
 
     // @desc Finger releases the back button
@@ -824,6 +847,7 @@ define([
 		e.preventDefault();
         $("#back-button").removeClass("button-tap-on").addClass("button-tap-off");
         App.navigate(TemplateTags.getPreviousScreenLink()); // Navigate to the previous screen using the history stack
+        console.log('back released');
 	}
 
     /*
@@ -872,7 +896,7 @@ define([
         
         // Modify embedded tweets code for proper display
         // Note: it is not possible to style embedded tweet in apps as Twitter doesn't identify the referer
-        $(".single-template blockquote.twitter-tweet p").css( "display", "inline-block" );
+       // $(".single-template blockquote.twitter-tweet p").css( "display", "inline-block" );
 
         // Set content for unavailable content notification
         // Note: unavaible content is notified with [hide_from_apps notify="yes"] shortcode
@@ -910,50 +934,50 @@ define([
 
     }
 
-
-
-});
-
-
-
-function showLogout() {
-    $('#homeBtn').on('click', function () {
-        $('#user-info').show();
-    });
-}
-
-
-
-
-$('#logoutBtn').on('click', function (e) {
-    e.preventDefault();
-    localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
-    window.location.replace('index.html');
-    //localStorage.removeItem('user_login');
-    // localStorage.removeItem('user_display_name',data);
-
-    //e.preventDefault();
-    //Auth.logUserOut();
-});
-
-
-
-
-$('#homeBtn').on('click', function ( ) {
-    $('#logoutBtn').show();
-    window.location.replace('index.html');
-});
-
-function check_storage(){
-
-    if (localStorage['Authentication-coke-beats-Authentication-coke-beats']) {
-        //window.location.replace("main.html");
-        console.log('OK');
-        $('#logoutBtn').show();
-    }else{
-        console.log('err');
-        $('#logoutBtn').hide();
+    function showLogout() {
+        $('#homeBtn').on('click', function () {
+            $('#user-info').show();
+        });
     }
 
-}
-check_storage();
+
+
+
+    $('#logoutBtn').on('click', function (e) {
+        e.preventDefault();
+        localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
+        window.location.replace('index.html');
+        //localStorage.removeItem('user_login');
+        // localStorage.removeItem('user_display_name',data);
+
+        //e.preventDefault();
+        //Auth.logUserOut();
+    });
+
+
+
+
+    $('#homeBtn').on('click', function ( ) {
+        $('#logoutBtn').show();
+        window.location.replace('index.html');
+    });
+
+    function check_storage(){
+
+        if (localStorage['Authentication-coke-beats-Authentication-coke-beats']) {
+            //window.location.replace("main.html");
+            console.log('OK');
+            $('#logoutBtn').show();
+        }else{
+            console.log('err');
+            $('#logoutBtn').hide();
+        }
+
+    }
+    check_storage();
+
+
+
+});
+
+
