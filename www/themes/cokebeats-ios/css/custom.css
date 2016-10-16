@@ -1174,6 +1174,9 @@ a.popupBtn {
 
 }
 
-#SignIn-btn {
+#SignIn-btn, .labelOnly {
     text-transform: capitalize !important;
+    background:none;
+    border:none;
+    margin:0;
 }
