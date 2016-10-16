@@ -604,29 +604,12 @@ div#login-page form div.list-block.center {
     -webkit-animation-iteration-count: 1 !important;
 }
 
-#logout {
-    /*  width: 100% !important;
-      position: fixed;
-      left: 0;*/
-    /* bottom: 95px; */
-}
-
-.swiper-button-next {
-    position: absolute;
-
-}
-
-.swiper-button-prev {
-    position: absolute;
-
-}
-
 .swiper-button-next, .swiper-button-prev {
-    position: fixed !important;
-    top: 330px;
-    width: 27px;
-    height: 44px;
-    /* margin-top: -22px;*/
+    position: absolute;
+    top: 50%;
+    width: 25px !important;
+    height: 25px !important;
+    margin-top: -22px;
     z-index: 10;
     cursor: pointer;
     -moz-background-size: 27px 44px;
@@ -635,7 +618,6 @@ div#login-page form div.list-block.center {
     background-position: center;
     background-repeat: no-repeat;
 }
-
 .swiper-pagination {
     position: fixed !important;
     width: 100%;
@@ -1127,7 +1109,7 @@ div#back-button {
     -webkit-flex-shrink: 0;
     -ms-flex: 0 0 auto;
     flex-shrink: 0;
-    padding: 0 20px;
+    padding: 0 20px 150px 20px;
     width: 100%;
     height: 100%;
     position: relative;
@@ -1180,3 +1162,4 @@ a.popupBtn {
     border:none;
     margin:0;
 }
+

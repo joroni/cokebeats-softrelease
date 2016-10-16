@@ -22,24 +22,17 @@ define([
     'core/modules/storage',
     'core/theme-tpl-tags',
     'root/config',
-
     'theme/js/moment.min',
     'theme/js/velocity.min',
-
     'theme/photoswipe/photoswipe.min',
     'theme/photoswipe/photoswipe-ui-default.min',
     'theme/js/jquery.fitvids',
     'theme/swiper/dist/js/swiper',
     'theme/js/auth/auth-pages', 'theme/js/auth/simple-login',
     'theme/js/auth/premium-posts', 'theme/js/comments'
-    /* 'theme/swiper/js/idangerous.swiper-2.0.min',
-     'theme/swiper/js/idangerous.swiper.scrollbar-2.0',
-     'theme/swiper/js/simple-app'*/
 
 
-], function($,App,Storage,TemplateTags,Config,Moment,Velocity,PhotoSwipe,PhotoSwipeUI_Default) {
-
-
+], function ( $, App, Storage, TemplateTags, Config, Moment, Velocity, PhotoSwipe, PhotoSwipeUI_Default ) {
 
 
     var swiper = new Swiper('.swiper-container', {
@@ -55,21 +48,27 @@ define([
      * START PHOTOSWIPE
      */
 
-    var photoswipe_element = $( '.pswp' )[0];
+    var photoswipe_element = $('.pswp')[0];
     var photoswipe_instance = null;
-    var img_dragging = true;
+    var img_dragging = false;
 
 
-    $( "#app-layout" ).on( "touchmove", ".single-content", function() {
+    $("#app-layout").on("touchmove", ".single-content img", function () {
         img_dragging = true;
         console.log('move');
     });
 
 
-    $( "#app-layout" ).on( "touchstart", ".single-content", function() {
-        img_dragging = false;
+    $("#app-layout").on("touchstart", ".single-content img", function () {
+        img_dragging = true;
         console.log('dragging');
-    } );
+    });
+
+
+    /*$("#app-layout").on("click", ".single-content img", function () {
+        img_dragging = true;
+        console.log('clicking');
+    });
 
     /**
      * Opens the given image (or list of images) with PhotoSwipe
@@ -82,20 +81,20 @@ define([
 
         //For each image, create the corresponding PhotoSwipe item by retrieving
         //the full size information in data attributes set on server side:
-        $images.each( function() {
-            var $image = $( this );
+        $images.each(function () {
+            var $image = $(this);
 
             //Retrieve image caption if any:
-            var $caption = $( this ).closest('.gallery-item,.wp-caption').find( '.wp-caption-text' );
+            var $caption = $(this).closest('.gallery-item,.wp-caption').find('.wp-caption-text');
 
             //Add PhotoSwipe item corresponding to
             photoswipe_items.push({
-                src: $image.data( 'full-img' ),
-                w: $image.data( 'width' ),
-                h: $image.data( 'height' ),
+                src: $image.data('full-img'),
+                w: $image.data('width'),
+                h: $image.data('height'),
                 title: $caption.length ? $caption.text() : ''
             });
-        } );
+        });
 
         //Lots of PhotoSwipe options can be found here for customization:
         //http://photoswipe.com/documentation/options.html
@@ -105,29 +104,59 @@ define([
         };
 
         //Open the given images with PhotoSwipe:
-        photoswipe_instance = new PhotoSwipe( photoswipe_element, PhotoSwipeUI_Default, photoswipe_items, photoswipe_options);
+        photoswipe_instance = new PhotoSwipe(photoswipe_element, PhotoSwipeUI_Default, photoswipe_items, photoswipe_options);
         photoswipe_instance.init();
     }
 
-    $( "#app-layout" ).on( "touchend", ".single-content img", function() {
-        console.log('end');
+
+    /*************** DUPLICATED touchend function and applied to on onclick instead, to reduce
+     * unnintenional photozoom *******/
+     */
+    $("#app-layout").on("click", ".single-content img", function () {
+        console.log('click');
+        img_dragging = false;
         //Don't open image if currently dragging it:
-        if ( img_dragging ) {
+        if (img_dragging) {
             return;
         }
 
         //Detect if the image belongs to a gallery
-        var is_gallery = $( this ).closest( '.gallery' ).length !== 0;
+        var is_gallery = $(this).closest('.gallery').length !== 0;
 
-        if ( is_gallery ) {
+        if (is_gallery) {
             //Open PhotoSwipe for all images of the gallery:
-            open_with_photoswipe( $( this ).closest( '.gallery-item' ).siblings().andSelf().find( 'img' ), $( this ).closest( '.gallery-item' ).index() );
+            open_with_photoswipe($(this).closest('.gallery-item').siblings().andSelf().find('img'), $(this).closest('.gallery-item').index());
         } else {
             //Open PhotoSwipe for the image we just touched:
-            open_with_photoswipe( $( this ) );
+            open_with_photoswipe($(this));
         }
 
     });
+
+
+
+    $("#app-layout").on("touchend", ".single-content img", function () {
+        console.log('end');
+        img_dragging = true;
+        //Don't open image if currently dragging it:
+        if (img_dragging) {
+            return;
+        }
+
+        //Detect if the image belongs to a gallery
+        var is_gallery = $(this).closest('.gallery').length !== 0;
+
+        if (is_gallery) {
+            //Open PhotoSwipe for all images of the gallery:
+            open_with_photoswipe($(this).closest('.gallery-item').siblings().andSelf().find('img'), $(this).closest('.gallery-item').index());
+        } else {
+            //Open PhotoSwipe for the image we just touched:
+            open_with_photoswipe($(this));
+        }
+
+    });
+
+
 
     /**
      * Prepare gallery images when a post or a page is displayed in the app:
@@ -135,17 +164,17 @@ define([
      *
      * If you want to display all gallery images thumbnails, just comment this 'screen:showed' block.
      */
-    App.on( 'screen:showed', function( current_screen, view ) {
-        if ( current_screen.screen_type === "single" || current_screen.screen_type === "page" ) {
+    App.on('screen:showed', function ( current_screen, view ) {
+        if (current_screen.screen_type === "single" || current_screen.screen_type === "page") {
 
             //First hide all gallery images
-            $( '.gallery .gallery-item' ).hide();
+            $('.gallery .gallery-item').hide();
 
             //Then display only the first image of each gallery:
-            $( '.gallery .gallery-item:first-child' ).show();
+            $('.gallery .gallery-item:first-child').show();
 
         }
-    } );
+    });
 
     /**
      * END PHOTOSWIPE
@@ -155,9 +184,8 @@ define([
      * App's parameters
      */
 
-    App.setParam( 'go-to-default-route-after-refresh', false ); // Don't automatically show default screen after a refresh
-    App.setParam( 'custom-screen-rendering', true ); // Don't use default transitions and displays for screens
-
+    App.setParam('go-to-default-route-after-refresh', false); // Don't automatically show default screen after a refresh
+    App.setParam('custom-screen-rendering', true); // Don't use default transitions and displays for screens
 
 
     /*
@@ -171,7 +199,7 @@ define([
         StatusBar.overlaysWebView(false);
         StatusBar.styleDefault();
         StatusBar.backgroundColorByHexString("#FFFFFF");
-    } catch(e) {
+    } catch (e) {
         console.log("StatusBar plugin not available - you're probably in the browser");
     }
 
@@ -182,13 +210,12 @@ define([
     var spinner = $('<div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div>');
 
 
-
     /*
      * Filters
      */
 
     // @desc Add template args
-    App.filter( 'template-args', function( template_args, view_type, view_template ) {
+    App.filter('template-args', function ( template_args, view_type, view_template ) {
 
         // Template parameters for single, page, archive and comments
         if (view_type == 'single' || view_type == 'page' || view_type == 'archive') {
@@ -196,13 +223,13 @@ define([
 
             // Get Twitter like date format to single, archive and comments templates
             // Relies on MomentJS available as Moment()
-            template_args.getCustomDate = function(postDate) {
+            template_args.getCustomDate = function ( postDate ) {
 
                 var gmtOffSetSec = Config.gmt_offset * 3600; // Get GMT offset as defined in config.js
 
                 var momentNow = Moment(); // Get current date and time
 
-                var momentPostDate = Moment(new Date((postDate-gmtOffSetSec)*1000)); // Get the post date
+                var momentPostDate = Moment(new Date((postDate - gmtOffSetSec) * 1000)); // Get the post date
 
                 // Get the duration between current date and the post date
                 var diffDays = momentNow.diff(momentPostDate, 'days');
@@ -224,8 +251,7 @@ define([
         // Return parameters and functions
         return template_args;
 
-    } );
-
+    });
 
 
     /*
@@ -233,28 +259,27 @@ define([
      */
 
     // @desc Detect transition types (aka directions) and launch corresponding animations
-    App.action( 'screen-transition', function( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
+    App.action('screen-transition', function ( $wrapper, $current, $next, current_screen, next_screen, $deferred ) {
 
         // Get the direction keyword from current screen and  previous screen
-        var direction = App.getTransitionDirection( current_screen, next_screen );
+        var direction = App.getTransitionDirection(current_screen, next_screen);
 
-        switch ( direction ) {
+        switch (direction) {
             case 'next-screen': // Archive to single
-                transition_slide_next_screen( $wrapper, $current, $next, current_screen, next_screen, $deferred );
+                transition_slide_next_screen($wrapper, $current, $next, current_screen, next_screen, $deferred);
                 break;
             case 'previous-screen': // Single to archive
-                transition_slide_previous_screen( $wrapper, $current, $next, current_screen, next_screen, $deferred );
+                transition_slide_previous_screen($wrapper, $current, $next, current_screen, next_screen, $deferred);
                 break;
             case 'default': // Default direction
-                transition_default( $wrapper, $current, $next, current_screen, next_screen, $deferred );
+                transition_default($wrapper, $current, $next, current_screen, next_screen, $deferred);
                 break;
             default: // Unknown direction
-                transition_default( $wrapper, $current, $next, current_screen, next_screen, $deferred );
+                transition_default($wrapper, $current, $next, current_screen, next_screen, $deferred);
                 break;
         }
 
     });
-
 
 
     /*
@@ -268,7 +293,7 @@ define([
 
         // When transitioning from a list, memorize the scroll position in local storage to be able to find it when we return to the list
         if (current_screen.screen_type == "list") {
-            Storage.set( "scroll-pos", current_screen.fragment, $current.scrollTop() ); // Memorize the current scroll position in local storage
+            Storage.set("scroll-pos", current_screen.fragment, $current.scrollTop()); // Memorize the current scroll position in local storage
         }
 
         // 1. Prepare next screen (the destination screen is not visible. We are before the animation)
@@ -283,7 +308,7 @@ define([
         // Slide screens wrapper from right to left
         $wrapper.velocity({
             left: '-100%'
-        },{
+        }, {
             duration: 300,
             easing: 'ease-out',
             complete: function () {
@@ -292,7 +317,7 @@ define([
                 $current.remove();
 
                 // remove CSS added specically for the transition
-                $wrapper.attr( 'style', '' );
+                $wrapper.attr('style', '');
 
                 $next.css({
                     left: '',
@@ -311,13 +336,13 @@ define([
         // 1. Prepare next screen (the destination screen is not visible. We are before the animation)
 
         // Hide the archive screen on the left
-        $next.css( {
+        $next.css({
             left: '-100%'
-        } );
+        });
 
         // If a scroll position has been memorized in local storage, retrieve it and scroll to it to let user find its former position when he/she left
         if (next_screen.screen_type == "list") {
-            var pos = Storage.get( "scroll-pos", next_screen.fragment );
+            var pos = Storage.get("scroll-pos", next_screen.fragment);
             if (pos !== null) {
                 $next.scrollTop(pos);
             } else {
@@ -330,7 +355,7 @@ define([
         // Slide screens wrapper from left to right
         $wrapper.velocity({
             left: '100%'
-        },{
+        }, {
             duration: 300,
             easing: 'ease-out',
             complete: function () {
@@ -339,11 +364,11 @@ define([
                 $current.remove();
 
                 // remove CSS added specically for the transition
-                $wrapper.attr( 'style', '' );
+                $wrapper.attr('style', '');
 
-                $next.css( {
+                $next.css({
                     left: '',
-                } );
+                });
 
                 $deferred.resolve(); // Transition has ended, we can pursue the normal screen display steps (screen:showed)
             }
@@ -356,11 +381,10 @@ define([
 
         // Simply replace current screen with the new one
         $current.remove();
-        $wrapper.empty().append( $next );
+        $wrapper.empty().append($next);
         $deferred.resolve();
 
     };
-
 
 
     /**
@@ -368,7 +392,7 @@ define([
      */
 
     // @desc Refresh process begins
-    App.on('refresh:start',function(){
+    App.on('refresh:start', function () {
 
         // Start refresh icon animation
         $("#refresh-button").removeClass("refresh-off").addClass("refresh-on");
@@ -377,7 +401,7 @@ define([
 
     // @desc Refresh process ends
     // @param result
-    App.on('refresh:end',function(result){
+    App.on('refresh:end', function ( result ) {
 
         // Navigate to the default screen
         App.navigateToDefaultRoute();
@@ -396,10 +420,10 @@ define([
          * @todo if an error occurs we should not reset scroll position
          * @todo messages should be centralized to ease translations
          */
-        if ( result.ok ) {
+        if (result.ok) {
             showMessage('<div class="messageinfo" style="background: rgb(02,255,51); color: #333;">Content updated successfully</div>');
-        }else{
-            showMessage('<div class="messageinfo"  style="background: rgb(255,153,153); color: #333;">'+result.message+'</div>');
+        } else {
+            showMessage('<div class="messageinfo"  style="background: rgb(255,153,153); color: #333;">' + result.message + '</div>');
             // showMessage(result);
 
         }
@@ -408,19 +432,19 @@ define([
 
     // @desc An error occurs
     // @param error
-    App.on('error',function(error){
+    App.on('error', function ( error ) {
 
         // Show message under the nav bar
-       /* showMessage(error.message);*/
+        /* showMessage(error.message);*/
 
-        showMessage('<div class="messageinfo"  style="background: rgb(255,153,153); color: #333;">'+error.message+'</div>');
+        showMessage('<div class="messageinfo"  style="background: rgb(255,153,153); color: #333;">' + error.message + '</div>');
 
     });
 
     // @desc A screen has been displayed
     // @param {object} current_screen - Screen types: list|single|page|comments
     // @param view
-    App.on('screen:showed',function(current_screen,view){
+    App.on('screen:showed', function ( current_screen, view ) {
 
         /*
          * 1. Back button
@@ -428,11 +452,11 @@ define([
 
         // Show/Hide back button depending on the displayed screen
         if (TemplateTags.displayBackButton()) {
-            $("#back-button").css("display","block");
-            $("#menu-button").css("display","none");
+            $("#back-button").css("display", "block");
+            $("#menu-button").css("display", "none");
         } else {
-            $("#back-button").css("display","none");
-            $("#menu-button").css("display","block");
+            $("#back-button").css("display", "none");
+            $("#menu-button").css("display", "block");
         }
 
         /*
@@ -441,7 +465,7 @@ define([
 
         // Close off-canvas menu
         if (isMenuOpen) {
-            $("#app-canvas").css("left","85%");
+            $("#app-canvas").css("left", "85%");
             closeMenu();
         }
 
@@ -449,11 +473,11 @@ define([
          * 3. Post list
          */
 
-        if(current_screen.screen_type == "list") {
+        if (current_screen.screen_type == "list") {
 
             // Change nav bar title (display the component label)
             // Todo: create a generic function
-            if ( $('#app-header > h1').html() != current_screen.label ) {
+            if ($('#app-header > h1').html() != current_screen.label) {
                 $('#app-header > h1').html(current_screen.label);
             }
 
@@ -468,27 +492,27 @@ define([
         // Get and store data necessary for the sharing
         // @TODO: separate sharing code from title code
 
-        if (current_screen.screen_type=="single") {
+        if (current_screen.screen_type == "single") {
 
             // Change nav bar title
             // Todo: create a generic function
-            if ( $('#app-header > h1').html() != 'Article' ) {
+            if ($('#app-header > h1').html() != 'Article') {
                 $('#app-header > h1').html('Article');
             }
 
         }
 
-        if (current_screen.screen_type=="page") {
+        if (current_screen.screen_type == "page") {
 
             // Change nav bar title
             // Todo: create a generic function
-            if ( $('#app-header > h1').html() != '' ) {
+            if ($('#app-header > h1').html() != '') {
                 $('#app-header > h1').html('');
             }
 
         }
 
-        if (current_screen.screen_type=="single" || current_screen.screen_type=="page") {
+        if (current_screen.screen_type == "single" || current_screen.screen_type == "page") {
 
             // Redirect all content hyperlinks clicks
             // @todo: put it into prepareContent()
@@ -514,17 +538,16 @@ define([
      */
 
 
-    function commentNow(e) {
+    function commentNow( e ) {
 
         e.preventDefault();
-       // openWithInAppBrowser(e.target.href);
-     //   alert('Hi');
+        // openWithInAppBrowser(e.target.href);
+        //   alert('Hi');
 
-          console.log('comment');
+        console.log('comment');
         $('#waiting').show();
 
         App.displayPostComments(
-
             $(this).attr('data-post-id'),
             function ( comments, post, item_global ) {
                 //Do something when comments display is ok
@@ -536,7 +559,6 @@ define([
                 $('#waiting').hide();
             }
         );
-
 
 
     }
@@ -612,7 +634,6 @@ define([
      */
 
 
-
     /******************** comments ********************/
 
     // @desc About to leave the current screen
@@ -634,14 +655,14 @@ define([
     // * Cell 4G connection
     // * Cell generic connection
     // * No network connection
-    App.on('network:online', function(event){
+    App.on('network:online', function ( event ) {
 
         // Get the current network state
         var ns = TemplateTags.getNetworkState(true);
 
         // Display the current network state
         /*showMessage(ns);*/
-        showMessage('<div class="messageinfo" style="background: rgb(02,255,51); color: #333;">'+ns+'</div>');
+        showMessage('<div class="messageinfo" style="background: rgb(02,255,51); color: #333;">' + ns + '</div>');
 
     });
 
@@ -657,17 +678,16 @@ define([
     // * Cell 4G connection
     // * Cell generic connection
     // * No network connection
-    App.on( 'network:offline', function(event){
+    App.on('network:offline', function ( event ) {
 
         // Get the current network state
         var ns = TemplateTags.getNetworkState(true);
 
         // Display the current network state
-       /* showMessage(ns);*/
-        showMessage('<div class="messageinfo" style="background: rgb(255,153,153); color: #333;">'+ns+'</div>');
-        error
+        /* showMessage(ns);*/
+        showMessage('<div class="messageinfo" style="background: rgb(255,153,153); color: #333;">' + ns + '</div>');
+        //error
     });
-
 
 
     /*
@@ -679,30 +699,32 @@ define([
      */
 
     // Menu Button events
-    $("#app-layout").on("touchstart","#menu-button",menuButtonTapOn);
-    $("#app-layout").on("touchend","#menu-button",menuButtonTapOff);
+    $("#app-layout").on("touchstart", "#menu-button", menuButtonTapOn);
+    $("#app-layout").on("touchend", "#menu-button", menuButtonTapOff);
 
     // Refresh Button events
-    $("#app-layout").on("touchstart","#refresh-button",refreshTapOn);
-    $("#app-layout").on("touchend","#refresh-button",refreshTapOff);
+    $("#app-layout").on("touchstart", "#refresh-button", refreshTapOn);
+    $("#app-layout").on("touchend", "#refresh-button", refreshTapOff);
 
     // Menu Item events
-    $("#app-layout").on("click","#menu-items li a",menuItemTap);
-    $("#app-layout").on("click","#content .content-item a",contentItemTap);
+    $("#app-layout").on("click", "#menu-items li a", menuItemTap);
+    $("#app-layout").on("click", "#content .content-item a", contentItemTap);
 
     // Back button events
-    $("#app-layout").on("touchstart","#back-button",backButtonTapOn);
-    $("#app-layout").on("touchend","#back-button",backButtonTapOff);
+    $("#app-layout").on("touchstart", "#back-button", backButtonTapOn);
+    $("#app-layout").on("touchend", "#back-button", backButtonTapOff);
 
     // Block clicks on images in posts
-    $("#app-layout").on("click touchend","#single-content .content-image-link",function(e){e.preventDefault();});
+    $("#app-layout").on("click touchend", "#single-content .content-image-link", function ( e ) {
+        e.preventDefault();
+    });
 
     // Get more button events
-    $( '#app-layout' ).on( 'touchend', '#get-more-button', getMoreButtonTapOff);
+    $('#app-layout').on('touchend', '#get-more-button', getMoreButtonTapOff);
 
 
     // Get more button events
-    $( '#app-layout' ).on( 'touchend', '#commentLink', commentNow);
+    $('#app-layout').on('touchend', '#commentLink', commentNow);
 
 
     /*
@@ -713,10 +735,9 @@ define([
      * 4. Content image onerror handlers are set in prepare-content.php
      * 5. Thumbnail event handlers are done in the templates archive.html and single.html
      */
-    window.displayDefaultImage = function(o) {
-        $(o).attr('src',TemplateTags.getThemeAssetUrl('img/img-icon.svg'));
+    window.displayDefaultImage = function ( o ) {
+        $(o).attr('src', TemplateTags.getThemeAssetUrl('img/img-icon.svg'));
     };
-
 
 
     /*
@@ -730,16 +751,16 @@ define([
     // @desc Open off-canvas menu
     function openMenu() {
 
-        $("#menu-items").css("display","block");
+        $("#menu-items").css("display", "block");
 
         $("#app-canvas").velocity({
-            left:"85%",
+            left: "85%"
         }, {
             duration: 300,
-            complete: function() {
-                setTimeout(function(){
-                    isMenuOpen=true;
-                },150);
+            complete: function () {
+                setTimeout(function () {
+                    isMenuOpen = true;
+                }, 150);
             }
         });
     }
@@ -775,20 +796,20 @@ define([
     }
 
     // @desc Finger presses the menu button
-    function menuButtonTapOn(e) {
+    function menuButtonTapOn( e ) {
         e.preventDefault();
         $("#menu-button").removeClass("button-tap-off").addClass("button-tap-on"); // Switch icon state (on)
     }
 
     // @desc Finger releases the menu button
-    function menuButtonTapOff(e) {
+    function menuButtonTapOff( e ) {
         e.preventDefault();
         $("#menu-button").removeClass("button-tap-on").addClass("button-tap-off"); // Switch icon state (off)
         toggleMenu(); // Open or close off-canvas menu
     }
 
     // @desc Finger taps one of the off-canvas menu item
-    function menuItemTap(e) {
+    function menuItemTap( e ) {
 
         e.preventDefault();
 
@@ -800,14 +821,14 @@ define([
 
             // Close menu and navigate to the item's corresponding screen
             /* @todo use navigate here rather than in close menu */
-            closeMenu(1,$(this));
+            closeMenu(1, $(this));
 
         }
 
     }
 
     // @desc Finger taps one of the post item in a post list
-    function contentItemTap(e) {
+    function contentItemTap( e ) {
 
         e.preventDefault();
 
@@ -823,10 +844,10 @@ define([
      */
 
     // @desc Show a message in the message bar during 3 sec
-    function showMessage(msgText) {
+    function showMessage( msgText ) {
         $("#app-message-bar").html(msgText);
         $("#app-message-bar").removeClass("message-off").addClass("message-on");
-        setTimeout(hideMessage,3000);
+        setTimeout(hideMessage, 3000);
     }
 
     // @desc Hide the message bar
@@ -840,13 +861,13 @@ define([
      */
 
     // @desc Finger taps the refresh button
-    function refreshTapOn(e) {
+    function refreshTapOn( e ) {
         e.preventDefault();
         $("#refresh-button").removeClass("button-touch-off").addClass("button-touch-on");
     }
 
     // @desc Finger releases the refresh button
-    function refreshTapOff(e) {
+    function refreshTapOff( e ) {
         e.preventDefault();
         if (!App.isRefreshing()) { // Check if the app is not already refreshing content
             $("#refresh-button").removeClass("button-touch-on").addClass("button-touch-off");
@@ -865,14 +886,14 @@ define([
      */
 
     // @desc Finger taps the back button
-    function backButtonTapOn(e) {
+    function backButtonTapOn( e ) {
         e.preventDefault();
         $("#back-button").removeClass("button-tap-off").addClass("button-tap-on");
         console.log('back pressed');
     }
 
     // @desc Finger releases the back button
-    function backButtonTapOff(e) {
+    function backButtonTapOff( e ) {
         e.preventDefault();
         $("#back-button").removeClass("button-tap-on").addClass("button-tap-off");
         App.navigate(TemplateTags.getPreviousScreenLink()); // Navigate to the previous screen using the history stack
@@ -884,23 +905,23 @@ define([
      */
 
     // @desc Finger releases the get more button
-    function getMoreButtonTapOff(e) {
+    function getMoreButtonTapOff( e ) {
 
         e.preventDefault();
 
         // Disable the Get more button and show spinner
-        $('#get-more-button').attr('disabled','disabled');
+        $('#get-more-button').attr('disabled', 'disabled');
         $("#get-more-button").append(spinner);
 
         // Get the next posts
         App.getMoreComponentItems(
-            function() {
+            function () {
 
                 // On success, hide spinner and activate the Get more button
                 $("#get-more-button .spinner").remove();
                 $('#get-more-button').removeAttr('disabled');
 
-            }, function(error, get_more_link_data) {
+            }, function ( error, get_more_link_data ) {
 
                 // On error, hide spinner and activate the Get more button
                 // @todo: fire a specific message
@@ -910,11 +931,6 @@ define([
             }
         );
     }
-
-
-
-
-
 
 
     /*  add_filter('get_comment_author', 'my_comment_author', 10, 1);
@@ -940,7 +956,6 @@ define([
      */
 
 
-
     /*
      * 6. Content
      */
@@ -962,11 +977,11 @@ define([
     // Target _blank calls an in app browser (iOS behavior)
     // Target _system calls the default browser (Android behavior)
     // @param {object} e
-    function openInBrowser(e) {
+    function openInBrowser( e ) {
 
         try {
             cordova.InAppBrowser.open(e.target.href, '_blank', 'location=yes');
-        } catch(e) {
+        } catch (e) {
             window.open(e.target.href, '_blank', 'location=yes');
         }
 
@@ -978,7 +993,7 @@ define([
     // We use the fitVids library to make videos responsive (https://github.com/davatron5000/FitVids.js)
     function loadAndFormatVideos() {
 
-        $("iframe").each(function(index) {
+        $("iframe").each(function ( index ) {
             if ($(this).attr('data-src')) {
                 $(this).attr('src', $(this).attr('data-src'));
             }
@@ -995,23 +1010,21 @@ define([
     }
 
 
-
-
-    $('#logoutBtn').on('click', function (e) {
+    $('#logoutBtn').on('click', function ( e ) {
         e.preventDefault();
 
         $('#logoutConfirmation').fadeIn(100);
         /*
-        var r = confirm("Are you sure you want to Logout?");
-        if (r == true) {
-           // x = "You pressed OK!";
-            localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
-            window.location.replace('index.html');
-        } else {
-           // x = "You pressed Cancel!";
-            return false;
-        }
-*/
+         var r = confirm("Are you sure you want to Logout?");
+         if (r == true) {
+         // x = "You pressed OK!";
+         localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
+         window.location.replace('index.html');
+         } else {
+         // x = "You pressed Cancel!";
+         return false;
+         }
+         */
 
         //localStorage.removeItem('user_login');
         // localStorage.removeItem('user_display_name',data);
@@ -1021,42 +1034,41 @@ define([
     });
 
 
-
-    $('#LogCancel').on('click', function() {
-      //  e.preventDefault();
+    $('#LogCancel').on('click', function () {
+        //  e.preventDefault();
         $('#logoutConfirmation').hide();
         return false;
     });
 
-    $('#LogOk').on('click', function (e) {
+    $('#LogOk').on('click', function ( e ) {
         e.preventDefault();
         localStorage.removeItem('Authentication-coke-beats-Authentication-coke-beats');
-        
+
         window.location.replace('index.html');
         $('#logoutConfirmation').hide();
 
     });
 
 
-    $('#homeBtn').on('click', function ( ) {
+    $('#homeBtn').on('click', function () {
         $('#logoutBtn').show();
         window.location.replace('index.html');
     });
 
-    function check_storage(){
+    function check_storage() {
 
         if (localStorage['Authentication-coke-beats-Authentication-coke-beats']) {
             //window.location.replace("main.html");
             console.log('OK');
             $('#logoutBtn').show();
-        }else{
+        } else {
             console.log('err');
             $('#logoutBtn').hide();
         }
 
     }
-    check_storage();
 
+    check_storage();
 
 
 });

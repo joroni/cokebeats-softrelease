@@ -23,7 +23,6 @@
 <div id="content" class="content single-template">
 
 
-
    <!-- <div class="post-title">
 
         <% if ( post.subhead ) { %>
@@ -58,7 +57,10 @@
         <div class=" swiper-container swiper-container-horizontal">
             <div class="swiper-wrapper">
                 <%= post.content %>
-             </div>
+
+                <h1><%= post.title %> - <%= post.my_meta %></h1>
+
+            </div>
         </div>
     </div>
 
@@ -85,6 +87,4 @@
         </script>
 
 </div>
-
-
 
