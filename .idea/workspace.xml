@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1af4ce51-9153-4552-98ac-8b6517062460" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/platforms/browser/www/themes/cokebeats-ios/php/sasa.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/php/add-wpak-post-content-format.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/php/handle_my_post_metadata.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/themes/cokebeats-ios/single.html" afterPath="$PROJECT_DIR$/platforms/browser/www/themes/cokebeats-ios/single.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/css/custom.css" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/css/custom.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats-ios/single.html" afterPath="$PROJECT_DIR$/www/themes/cokebeats-ios/single.html" />
     </list>
     <ignored path="cokebeats-softrelease.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,16 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sasa.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/platforms/browser/www/themes/cokebeats-ios/php/sasa.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="add-wpak-post-content-format.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/php/add-wpak-post-content-format.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -53,15 +36,15 @@
       <file leaf-file-name="functions.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-960">
-              <caret line="112" column="38" selection-start-line="112" selection-start-column="38" selection-end-line="112" selection-end-column="38" />
+            <state relative-caret-position="495">
+              <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1476628259000" expanded="true" signature="14834:14874" placeholder="..." />
-                <marker date="1476628259000" expanded="true" signature="14989:15031" placeholder="..." />
-                <marker date="1476628259000" expanded="true" signature="15351:15393" placeholder="..." />
-                <marker date="1476628259000" expanded="true" signature="22387:22427" placeholder="..." />
-                <marker date="1476628259000" expanded="true" signature="23161:23203" placeholder="..." />
+                <marker date="1476629002000" expanded="true" signature="14827:14867" placeholder="..." />
+                <marker date="1476629002000" expanded="true" signature="14982:15024" placeholder="..." />
+                <marker date="1476629002000" expanded="true" signature="15344:15386" placeholder="..." />
+                <marker date="1476629002000" expanded="true" signature="22380:22420" placeholder="..." />
+                <marker date="1476629002000" expanded="true" signature="23154:23196" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -275,24 +258,6 @@
               <option name="myItemId" value="themes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cokebeats-ios" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -401,32 +366,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cokebeats-softrelease" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="platforms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -619,12 +558,12 @@
       <workItem from="1476416635197" duration="1628000" />
       <workItem from="1476428476879" duration="31085000" />
       <workItem from="1476554817478" duration="14594000" />
-      <workItem from="1476580300096" duration="14196000" />
+      <workItem from="1476580300096" duration="14681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108909000" />
+    <option name="totallyTimeSpent" value="109394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="728" extended-state="6" />
@@ -985,15 +924,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/themes/cokebeats-ios/js/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-960">
-          <caret line="112" column="38" selection-start-line="112" selection-start-column="38" selection-end-line="112" selection-end-column="38" />
+        <state relative-caret-position="495">
+          <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1476628259000" expanded="true" signature="14834:14874" placeholder="..." />
-            <marker date="1476628259000" expanded="true" signature="14989:15031" placeholder="..." />
-            <marker date="1476628259000" expanded="true" signature="15351:15393" placeholder="..." />
-            <marker date="1476628259000" expanded="true" signature="22387:22427" placeholder="..." />
-            <marker date="1476628259000" expanded="true" signature="23161:23203" placeholder="..." />
+            <marker date="1476629002000" expanded="true" signature="14827:14867" placeholder="..." />
+            <marker date="1476629002000" expanded="true" signature="14982:15024" placeholder="..." />
+            <marker date="1476629002000" expanded="true" signature="15344:15386" placeholder="..." />
+            <marker date="1476629002000" expanded="true" signature="22380:22420" placeholder="..." />
+            <marker date="1476629002000" expanded="true" signature="23154:23196" placeholder="..." />
           </folding>
         </state>
       </provider>

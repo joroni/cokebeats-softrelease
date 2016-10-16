@@ -110,8 +110,8 @@ define([
 
 
     /*************** DUPLICATED touchend function and applied to on onclick instead, to reduce
-     * unnintenional photozoom *******/
-     */
+     * unnintenional photozoom **/
+     
     $("#app-layout").on("click", ".single-content img", function () {
         console.log('click');
         img_dragging = false;
