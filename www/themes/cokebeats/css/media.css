@@ -1,19 +1,8 @@
-/************ PORTRAIT  *************/
-@media only screen and (max-device-width: 320px) {
-    div#wrapper {
-        width: 400px;
-    }
 
-    .media-object-thumb {
-        width: 125px;
-        height: 125px;
-    }
-}
 @media only screen and (max-device-width: 480px) {
     div#wrapper {
         width: 400px;
     }
-
 
     .media-title-inner {
         color: #fff148 !important;
@@ -37,7 +26,7 @@
 
     .swiper-container {
 
-          height: 480px;
+        height: 480px;
     }
 
     #single, #post-comments-list {
@@ -49,8 +38,6 @@
         top: 290px;
         width: 100%;
     }
-
-
 
     .media-title-inner {
         color: #fff148 !important;
@@ -98,6 +85,7 @@
         top: 18px;
         z-index: 1030;
     }
+
     .commentbox {
         background: rgba(255, 255, 255, 1) !important;
         position: fixed;
@@ -113,10 +101,7 @@
 
 /************ iPhone 6 *********/
 
-
-
 @media screen and (max-width: 500px) {
-
 
     .swiper-container {
 
@@ -128,13 +113,14 @@
         top: 28%;
         width: 100%;
     }
+
     #single, #post-comments-list {
-        height: 340px;
+        height: 240px;
     }
 
     .comment-form {
         position: absolute;
-        top: 380px;
+        top: 290px;
         width: 100%;
     }
 
@@ -143,14 +129,14 @@
         top: 40%;
     }
 
-        .top-banner {
-            display: block;
-            height: 20px !important;
-            position: fixed;
-            z-index: 1030;
-            background-color: #fff !important;
-            width: 100%;
-        }
+    .top-banner {
+        display: block;
+        height: 20px !important;
+        position: fixed;
+        z-index: 1030;
+        background-color: #fff !important;
+        width: 100%;
+    }
 
     .navbar-fixed-top {
         left: 0;
@@ -159,6 +145,7 @@
         top: 18px;
         z-index: 1030;
     }
+
     .commentbox {
         background: rgba(255, 255, 255, 1) !important;
         position: fixed;
@@ -170,6 +157,107 @@
         height: 125px;
     }
 
+    .swiper-button-next, .swiper-button-prev {
+
+        margin-top: -22px;
+    }
+
+    div.user {
+        display: block;
+        max-width: 100%;
+        text-align: center;
+        margin: 20% auto;
+    }
+
+    div.user > img {
+        border-radius: 50%;
+        width: 100px;
+        padding: 10px;
+    }
+
+    div#app-canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    a.user-link {
+        color: #d10000;
+        font-weight: 500;
+        font-size: 1.5em;
+        text-align: center;
+        width: 100%;
+    }
+
+}
+
+/***** iPhone 6 Portrait *******/
+@media screen and (max-width: 375px) {
+
+    .swiper-container {
+
+        height: 480px;
+    }
+
+    .media-title-inner {
+        font-size: 30px;
+        top: 28%;
+        width: 100%;
+    }
+
+    #single, #post-comments-list {
+        height: 350px;
+    }
+
+    .comment-form {
+        position: absolute;
+        top: 380px;
+        width: 100%;
+    }
+
+    .swiper-container {
+
+        height: 480px;
+    }
+
+    .media-title-inner {
+        font-size: 30px;
+        top: 28%;
+        width: 100%;
+    }
+
+
+    .swiper-button-next, .swiper-button-prev {
+
+        top: 40%;
+    }
+
+    .top-banner {
+        display: block;
+        height: 20px !important;
+        position: fixed;
+        z-index: 1030;
+        background-color: #fff !important;
+        width: 100%;
+    }
+
+    .navbar-fixed-top {
+        left: 0;
+        position: fixed !important;
+        right: 0;
+        top: 18px;
+        z-index: 1030;
+    }
+
+    .commentbox {
+        background: rgba(255, 255, 255, 1) !important;
+        position: fixed;
+        top: 24px;
+    }
+
+    .media-object-thumb {
+        width: 125px;
+        height: 125px;
+    }
 
     .swiper-button-next, .swiper-button-prev {
 
@@ -190,32 +278,36 @@
     }
 }
 
-div#app-canvas {
-    width: 100%;
-    height: 100%;
+
+/************ PORTRAIT  *************/
+@media only screen and (max-device-width: 320px) {
+    div#wrapper {
+        width: 400px;
+    }
+
+    .media-object-thumb {
+        width: 125px;
+        height: 125px;
+    }
+
+    #single, #post-comments-list {
+        height: 250px;
+    }
+
+    .comment-form {
+        position: absolute;
+        top: 290px;
+        width: 100%;
+    }
+
 }
-
-a.user-link {
-    color: #d10000;
-    font-weight: 500;
-    font-size: 1.5em;
-    text-align: center;
-    width: 100%;
-}
-
-
-
-
-
-
-
-
 
 /************ LANDSCAPE  *************/
 @media only screen and (min-device-width: 480px) {
     div#wrapper {
         width: 400px;
     }
+
     div#app-canvas {
         width: 100%;
         height: 100%;
@@ -224,10 +316,12 @@ a.user-link {
     .media-title-inner {
         font-size: 40px;
     }
-.media-object-thumb {
-    width: 230px;
-    height: 230px;
-}
+
+    .media-object-thumb {
+        width: 230px;
+        height: 230px;
+    }
+
     .top-banner {
         display: none;
     }
@@ -239,11 +333,13 @@ a.user-link {
         top: 0;
         z-index: 1030;
     }
+
     .commentbox {
         background: rgba(255, 255, 255, 1) !important;
         position: fixed;
         top: 15px;
     }
+
     .swiper-button-next, .swiper-button-prev {
 
         margin-top: -15px;
@@ -275,7 +371,6 @@ a.user-link {
 }
 
 @media screen and (min-width: 500px) {
-
 
     div.user {
         display: none;
@@ -310,6 +405,7 @@ a.user-link {
         top: 0;
         z-index: 1030;
     }
+
     .commentbox {
         background: rgba(255, 255, 255, 1) !important;
         position: fixed;
@@ -320,7 +416,6 @@ a.user-link {
 
         margin-top: -150px;
     }
-
 
     .media-title-inner {
         color: #fff148 !important;
@@ -373,9 +468,10 @@ a.user-link {
     }
 
     .media-object-thumb {
-        width:250px;
-        height:250px;
+        width: 250px;
+        height: 250px;
     }
+
     * {
         zoom: 101%;
     }
@@ -394,9 +490,6 @@ a.user-link {
         top: 630px;
         width: 100%;
     }
-
-
-
 
     .media-title-inner {
         color: #fff148 !important;
@@ -419,11 +512,7 @@ a.user-link {
     }
 }
 
-
-
-
 /************ LANDSCAPE *********/
-
 
 @media only screen and (min-device-width: 1024px) {
 
@@ -436,8 +525,6 @@ a.user-link {
         top: 420px;
         width: 100%;
     }
-
-
 
     .media-title-inner {
         color: #fff148 !important;
