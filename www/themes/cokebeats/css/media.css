@@ -1,4 +1,14 @@
 /************ PORTRAIT  *************/
+@media only screen and (max-device-width: 320px) {
+    div#wrapper {
+        width: 400px;
+    }
+
+    .media-object-thumb {
+        width: 125px;
+        height: 125px;
+    }
+}
 @media only screen and (max-device-width: 480px) {
     div#wrapper {
         width: 400px;
@@ -156,8 +166,8 @@
     }
 
     .media-object-thumb {
-        width: 155px;
-        height: 155px;
+        width: 125px;
+        height: 125px;
     }
 
 
