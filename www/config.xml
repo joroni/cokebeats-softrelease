@@ -1,16 +1,28 @@
 <widget xmlns:gap="http://phonegap.com/ns/1.0" xmlns="http://www.w3.org/ns/widgets" id="com.ko.cokebeats"
-        version="1.0.25">
+        version="1.0.28">
+
     <name>Coke Beats</name>
     <description>Newsletter App</description>
-    <author href="http://coca-cola.com" email="support@coca-cola.com">SDC Manila Team</author>
+    <author href="http://coca-cola.com" email="cosay@coca-cola.com">SDC Manila Team</author>
     <content src="index.html"/>
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="android-minSdkVersion" value="14"/>
 
+    <preference name="SplashScreen" value="screen"/>
+    <preference name="splashScreenDelay" value="8000" />
+
+    <!-- all platforms -->
+
+    <preference name="fullscreen" value="true" />
+
+
+    <content src="index.html"/>
     <preference name="phonegap-version" value="3.7.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="permissions" value="none"/>
     <preference name="orientation" value="default"/>
     <preference name="target-device" value="universal"/>
-    <preference name="fullscreen" value="true"/>
+
     <preference name="webviewbounce" value="true"/>
     <preference name="prerendered-icon" value="true"/>
     <preference name="stay-in-webview" value="false"/>
@@ -21,7 +33,7 @@
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <preference name="StatusBarStyle" value="darkcontent" />
     <preference name="show-splash-screen-spinner" value="true"/>
-    <preference name="auto-hide-splash-screen" value="true"/>
+    <preference name="auto-hide-splash-screen" value="false"/>
     <preference name="disable-cursor" value="false"/>
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="splashscreen" value="splash" />
@@ -66,7 +78,7 @@
     <gap:splash src="www/res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:qualifier="port-xhdpi"/>
     <gap:splash src="www/res/screen/blackberry/screen-225.png" gap:platform="blackberry"/>
     <gap:splash src="www/res/screen/ios/screen-iphone-portrait.png" gap:platform="ios" width="320" height="480"/>
-    <gap:splash src="www/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="960"/>
+    <gap:splash src="www/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="9 60"/>
     <gap:splash src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136"/>
     <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
     <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>

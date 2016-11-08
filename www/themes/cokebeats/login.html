@@ -1,0 +1,351 @@
+<body>
+<div id="app-layout">
+
+    <div id="logoutConfirmation" style="display: none;">
+        <h5>Are you sure you want to logout?</h5>
+        <a id="LogCancel" class="popupBtn" href="#">Cancel</a>
+        <a id="LogOk" class="popupBtn" href="#">Yes</a>
+    </div>
+
+
+    <!--
+     * Layout is enclosed in <div id="app-layout"></div>
+    -->
+
+
+    <!--
+     * Menu is enclosed in <div id="app-menu"></div>
+    -->
+    <!--<div id="app-menu"></div>-->
+
+    <div id="app-canvas">
+
+        <div id="app-header" class="app-header has-ripple-feedback ripple-small">
+            <a href="#" id="logoutBtn" class="navbar-brand m-aside scene_element scene_element--fadein"
+               style="display: none;"><i class="fa small fa-power-off" id="logout"></i></a>
+            <!--<div id="menu-button" class="menu-button"></div>
+            <div id="refresh-button" class="refresh-off"></div>-->
+            <h2>
+                <img src="img/logocps.png" style="height: auto; width: 170px;">
+            </h2>
+        </div>
+
+        <div id="app-message-bar" class="app-message-bar message-off"></div>
+
+        <!--
+         * Content is enclosed in <div id="app-content-wrapper"><div class="app-screen"></div></div>
+        -->
+
+
+        <div id="slideup-panel" class="slideup-panel-container">
+            <div id="panel-header" class="panel-header has-ripple-feedback ripple-small">
+                <div id="back-button" class="back-button" style="display: none;"></div>
+                <h1></h1>
+            </div>
+
+            <div id="panel-content" class="panel-content">
+
+                <div id="app-content-wrapper">
+                    <div class="app-screen">
+                        <div id="login-page">
+
+                            <div id="single-content">
+                                <br><br>
+
+
+                                <!-- <form>
+                                     <div class="form-group">
+
+                                         <input type="text" class="form-control" id="user-login" placeholder="KO ID">
+                                     </div>
+                                     <div class="form-group">
+
+                                         <input type="password" class="form-control" id="user-pass" placeholder="Password">
+                                     </div>
+                                     <button type="submit" class="btn btn-info btn-lg">Log in</button>
+                                 </form>-->
+                                <script>
+
+                                    $(document).ready(function () {
+                                        $('#user-pass1').change(function () {
+                                            $('#user-pass').val($('#user-pass1').val());
+                                        });
+
+                                        $('#user-pass1').change(function () {
+                                            $('#userpass').val($('#user-pass1').val());
+                                        });
+                                    });
+
+                                </script>
+
+                                <style>
+                                    .list-block .item-inner::after {
+                                        content: '';
+                                        position: absolute;
+                                        left: 0;
+                                        bottom: 0;
+                                        right: auto;
+                                        top: auto;
+                                        height: 1px;
+                                        width: 100%;
+                                        background-color: #c8c7cc;
+                                        display: block;
+                                        z-index: 15;
+                                        -webkit-transform-origin: 50% 100%;
+                                        transform-origin: 50% 100%;
+                                    }
+                                </style>
+                                <form lpformnum="1">
+                                    <div class="list-block">
+                                        <ul>
+                                            <li class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">Username</div>
+                                                    <div class="item-input">
+                                                        <input type="text" placeholder="KO ID" id="user-login"
+                                                               name="username"
+                                                               style="padding: 10px; background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"
+                                                               autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item-content">
+                                                <div class="item-inner">
+                                                    <div class="item-title label">Password</div>
+                                                    <div class="item-input">
+                                                        <!-- <input type="hidden"  id="user-pass1"  value="ko@1234" >
+                                                         <input type="password"  id="user-pass" value="ko@1234"  disabled  name="password" style=""padding: 10px !important; background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                                                    -->
+                                                        <input type="password" id="user-pass" name="password"
+                                                               style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;);"
+                                                               padding:="" 10px="" !important;="" background-image:=""
+                                                               url(&quot;data:image=""
+                                                               png;base64,ivborw0kggoaaaansuheugaaabaaaaascayaaabso15qaaaaaxnsr0iars4c6qaaalzjrefuobfjykaandq0rgwiqd9iqzgl0bq3ikmxib8acskq=""
+                                                               wairydskud8fir2pkmpsf="" fv3+zgpxfzmzmsbw1tbebbaaqc+b+=""
+                                                               9fb4h9gowikcaqtapydyhybciubqkanfcb+wzabpp37992kbgiuoofbizgrsykil4exjvz2nhaxmfgymlkbplpaffufhawjpayebqc+sea+bdqc5uqiqpjyfgdodqllyh0w6j20rcguggaaereppkmfaesaaaaaelftksuqmcc&quot;);=""
+                                                               background-repeat:="" no-repeat;=""
+                                                               background-attachment:="" scroll;="" background-size:=""
+                                                               16px="" 18px;="" background-position:="" 98%="" 50%;=""
+                                                               cursor:="" auto;"="" autocomplete="off">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                    <div class="list-block center">
+                                        <ul>
+                                            <li>
+
+                                                <button href="#" class="item-link list-button" id="SignIn-btn">Sign In
+                                                </button>
+                                                <!-- <a class="item-link list-button" href="#">Sign In</a></li>-->
+                                            </li>
+                                        </ul>
+                                        <!-- <div class="list-block-label small">You must Sign In to view this content. <br />
+                                             <a onclick="window.open(this.href,'_system','location=no'); return false;" href="http://104.238.96.209/~project/newsletter/wp-login.php?action=register">
+                                                 Sign Up
+                                                 </a>
+                                         </div> -->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <!--
+                           <div id="login-page" class="login-screen modal-in" style="display: block;">
+                               <div class="view" id="single-content">
+                                   <div class="page">
+                                       <div class="page-content login-screen-content">
+                                           <div class="login-screen-title">Framework7</div>
+                                           <form lpformnum="7">
+                                               <div class="list-block">
+                                                   <ul>
+                                                       <li class="item-content">
+                                                           <div class="item-inner">
+                                                               <div class="item-title label">Username</div>
+                                                               <div class="item-input">
+                                                                   <input type="text" placeholder="Your username" id="user-login" name="username" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                                                               </div>
+                                                           </div>
+                                                       </li>
+                                                       <li class="item-content">
+                                                           <div class="item-inner">
+                                                               <div class="item-title label">Password</div>
+                                                               <div class="item-input">
+                                                                   <input type="password" placeholder="Your password" name="password" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                                                               </div>
+                                                           </div>
+                                                       </li>
+                                                   </ul>
+                                               </div>
+                                               <div class="list-block">
+                                                   <ul>
+                                                       <li>
+
+                                                           <button type="submit" class="btn btn-info btn-lg">Sign In</button>
+                                                          <!-- <a class="item-link list-button" href="#">Sign In</a></li>-->
+                        <!--   </ul>
+                           <div class="list-block-label">Some text about login information.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+    </div>
+                        --></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer" data-role="footer">
+            <div class="col-md-12">
+                <div class="col-md-6" style="float: left; text-align: center;"><a id="homeBtn"
+                                                                                  href="#component-latest-newsletters"
+                                                                                  class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left"><span
+                        class="fa flaticon-house"></span></a>
+                    <label>Home</label></div>
+
+
+                <!--    <div id="userbtnInfo" class="col-md-4" style="float: left; text-align: center;">
+
+
+                        <div id="user-info-page" class="scene_element scene_element--fadein"></div>
+                        <!-- <a href="#" id="refresh-buttonSS" class="scene_element scene_element--fadein" style="display: block;"><span class="flaticon-reload"></span></a>-->
+                <!--<a id="userBtn" href="#user-page"
+                   class="ui-btn ui-corner-all ui-btn-inline ui-mini footer-button-left"><span
+                        class="fa flaticon-house"></span></a>
+                <label>User</label>
+
+            </div>-->
+
+                <div id="userbtn" class="col-md-6" style="float: left; text-align: center;">
+
+
+                    <div id="refresh-button" class="scene_element scene_element--fadein refresh-off"></div>
+                    <!-- <a href="#" id="refresh-buttonSS" class="scene_element scene_element--fadein" style="display: block;"><span class="flaticon-reload"></span></a>-->
+                    <label>Refresh</label>
+
+                </div>
+
+            </div>
+        </footer>
+
+
+        <div class="modal-overlay"></div>
+        <div id="waiting" style="display:none"></div>
+        <div class="loader" style="display: none;"></div>
+
+        <!-- Root element of PhotoSwipe -->
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <div class="pswp__bg"></div>
+
+            <div class="pswp__scroll-wrap">
+
+                <div class="pswp__container">
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+
+                <div class="pswp__ui pswp__ui--hidden">
+
+                    <div class="pswp__top-bar">
+
+                        <div class="pswp__counter"></div>
+
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                        <button class="pswp__button pswp__button--share" title="Share"></button>
+                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                                <div class="pswp__preloader__cut">
+                                    <div class="pswp__preloader__donut"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                        <div class="pswp__share-tooltip"></div>
+                    </div>
+
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                    </button>
+
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                    </button>
+
+                    <div class="pswp__caption">
+                        <div class="pswp__caption__center"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div id="app-debug-panel"></div>
+<div id="app-debug-button"></div>
+
+<script aria-hidden="true" type="application/x-lastpass" id="hiddenlpsubmitdiv" style="display: none;"></script>
+<script>try {
+    (function () {
+        for (var lastpass_iter = 0; lastpass_iter < document.forms.length; lastpass_iter++) {
+            var lastpass_f = document.forms[lastpass_iter];
+            if (typeof(lastpass_f.lpsubmitorig2) == "undefined") {
+                lastpass_f.lpsubmitorig2 = lastpass_f.submit;
+                if (typeof(lastpass_f.lpsubmitorig2) == 'object') {
+                    continue;
+                }
+                lastpass_f.submit = function () {
+                    var form = this;
+                    var customEvent = document.createEvent("Event");
+                    customEvent.initEvent("lpCustomEvent", true, true);
+                    var d = document.getElementById("hiddenlpsubmitdiv");
+                    if (d) {
+                        for (var i = 0; i < document.forms.length; i++) {
+                            if (document.forms[i] == form) {
+                                if (typeof(d.innerText) != 'undefined') {
+                                    d.innerText = i.toString();
+                                } else {
+                                    d.textContent = i.toString();
+                                }
+                            }
+                        }
+                        d.dispatchEvent(customEvent);
+                    }
+                    form.lpsubmitorig2();
+                }
+            }
+        }
+    })()
+} catch (e) {
+}</script>
+<div id="__lpform_user-login_numspan"
+     style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; background-color: rgb(128, 128, 128); cursor: default; position: absolute !important; visibility: visible !important; border: 0px !important; font-size: 9px !important; top: 165px !important; left: 604px !important; padding: 1px 2px !important; font-weight: bold !important; color: rgb(255, 255, 255) !important; line-height: 11px !important; max-width: 10px !important; z-index: 11 !important;">
+    9+
+</div>
+<div id="__lpform_user-login"
+     style="max-height: 16px; vertical-align: top; position: absolute; top: 154.01px; left: 596.756px; z-index: 10;">
+    <img id="__lpform_user-login_icon"
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAjZJREFUWAntV7vKIlEMPt5dOy/NID9WIoKKCAsiWIqFFmLra4j2IoKPsL24YKWFD7Ai+ASClY2yNioWgjckfzLrCeN46XSKNXDmJPkyyWdOZnCE+CdfuP3G9RcXvHhRDapFNVUhZYXr1YX1+anmlwUvv3D9xPVu+YEFFRNeqCXKu6tf6i2IALXGMDEbVvlS+EPg/+tAuVwWmUyGR+/tHSgUCiKdThtHgCs/egosFouIRCIiEAjoY9n2+XwikUgIp9PJPq1itVpFLBYTfr9f636o8zs6GAzCeDwGKb1eD1wuF+OYARqNBpzPZzVkuVxCNpu9wuPxOEynU5kCWq0W2Gw2jhkOh1Cr1dgmVmyMRiO+USrNZpNxPD/p5n29XoPb7VZjTCYTTCYTxqRSqVQ4h54AD6HX6xXJZPKmTblcjn35fJ51qWBxkUqlVBM7KEKhkIR41+Zg50VhAofDQSBjPS72+z37tDo7Udntdqopdy1G+qP7CGMC2+1WdLtd8l0JniHb7Xb7hiSet8CjU2Nms5kYDAYcLxVtDunT7nw+Ho8HOp0OYDdgs9lAvV4Hs9nMON4EpVIJ5vO5Oog0M+Fw+ApXFAX6/T4cj0dYrVZQrVavcP0MEJGrALJpammg7mHS53A4nuJ2u/0uridgxYQ3cjqdbnx6B83MM8EOPIMZ4xlgjwHK3VYhj5f4i8UiRKNRzv35S2b4DHwIUAcWBjx5suSCCPyRlgG7WtvQj1P5o4kEfTK//fP8G/4x2UymA12DAAAAAElFTkSuQmCC"
+         height="16" style="opacity: 0.6; vertical-align: top;"></div>
+<div id="__lpform_user-pass_numspan"
+     style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; background-color: rgb(128, 128, 128); cursor: default; position: absolute !important; visibility: visible !important; border: 0px !important; font-size: 9px !important; top: 208px !important; left: 604px !important; padding: 1px 2px !important; font-weight: bold !important; color: rgb(255, 255, 255) !important; line-height: 11px !important; max-width: 10px !important; z-index: 11 !important;">
+    9+
+</div>
+<div id="__lpform_user-pass"
+     style="max-height: 16px; vertical-align: top; position: absolute; top: 197.139px; left: 596.756px; z-index: 10;">
+    <img id="__lpform_user-pass_icon"
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAjZJREFUWAntV7vKIlEMPt5dOy/NID9WIoKKCAsiWIqFFmLra4j2IoKPsL24YKWFD7Ai+ASClY2yNioWgjckfzLrCeN46XSKNXDmJPkyyWdOZnCE+CdfuP3G9RcXvHhRDapFNVUhZYXr1YX1+anmlwUvv3D9xPVu+YEFFRNeqCXKu6tf6i2IALXGMDEbVvlS+EPg/+tAuVwWmUyGR+/tHSgUCiKdThtHgCs/egosFouIRCIiEAjoY9n2+XwikUgIp9PJPq1itVpFLBYTfr9f636o8zs6GAzCeDwGKb1eD1wuF+OYARqNBpzPZzVkuVxCNpu9wuPxOEynU5kCWq0W2Gw2jhkOh1Cr1dgmVmyMRiO+USrNZpNxPD/p5n29XoPb7VZjTCYTTCYTxqRSqVQ4h54AD6HX6xXJZPKmTblcjn35fJ51qWBxkUqlVBM7KEKhkIR41+Zg50VhAofDQSBjPS72+z37tDo7Udntdqopdy1G+qP7CGMC2+1WdLtd8l0JniHb7Xb7hiSet8CjU2Nms5kYDAYcLxVtDunT7nw+Ho8HOp0OYDdgs9lAvV4Hs9nMON4EpVIJ5vO5Oog0M+Fw+ApXFAX6/T4cj0dYrVZQrVavcP0MEJGrALJpammg7mHS53A4nuJ2u/0uridgxYQ3cjqdbnx6B83MM8EOPIMZ4xlgjwHK3VYhj5f4i8UiRKNRzv35S2b4DHwIUAcWBjx5suSCCPyRlgG7WtvQj1P5o4kEfTK//fP8G/4x2UymA12DAAAAAElFTkSuQmCC"
+         height="16" style="opacity: 0.6; vertical-align: top;"></div>
+</body>

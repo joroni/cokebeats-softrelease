@@ -1,0 +1,92 @@
+<!--
+ * Content is enclosed in <div id="app-content-wrapper"><div id="app-screen"></div></div>
+ * Subhead: is added by add-custom-data.php in the theme's php folder / It expects that the post has a subhead custom field
+ * Thumbnail caption: is added by add-custom-data.php in the theme's php folder
+ * Custom post date: getCustomDate() added in functions.js as a template's parameter
+ * Handler for image loading error: displayDefaultImage() added in functions.js as a template's parameter
+-->
+
+<div class="commentbox">
+    <!--<span style="color: #d10000;"> <%= TemplateTags.formatDate(post.date,'d/m/Y') %> | </span>-->
+  <!--[  <a  class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><%
+        print(post.nb_comments) %>&nbsp;</a>-->
+    <a class="comments" data-post-id="#" href="#"><i class="fa fa-thumbs-o-up"
+                                                                  style="color:rgba(0,0,0,0.2) !important; margin-left: 10px;"></i></a>
+   <!-- <% if( post.nb_comments > 0 ){ %>
+    <% } %>-->
+    <!-- <a class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><% print(post.nb_comments) %>&nbsp;comment<% post.nb_comments > 1 ? print('s') : '' %></a>-->
+    <a  class="comments" style="color:#8e8e8e !important;" data-post-id="<%= post.id %>" href="#"><%
+        print(post.nb_comments) %>&nbsp;</a>
+    <a id="commentLink" class="comments" data-post-id="<%= post.id %>" href="#"><i class="fa fa-comment-o" style="color:#8e8e8e !important;"></i></a>
+</div>
+
+<div id="content" class="content single-template">
+
+
+   <!-- <div class="post-title">
+
+        <% if ( post.subhead ) { %>
+
+            <div class="subhead"><%= post.subhead %></div>
+
+        <% } %>
+
+        <h1>
+            <%= post.title %>
+        </h1>
+
+        <div class="post-meta">
+            By <span class="post-author"><%= post.author %></span><span class="post-publish-date"><%= getCustomDate(post.date) %></span>
+        </div>
+
+    </div>
+-->
+   <!-- <% if(  post.thumbnail && post.thumbnail.src && post.thumbnail.src.length ){ %>
+
+        <img class="post-thumbnail" src="<%= post.thumbnail.src %>" onerror="displayDefaultImage(this);" />
+
+        <% if (post.thumbnail.caption) { %>
+            <div class="post-thumbnail-caption"><%= post.thumbnail.caption %></div>
+        <% } %>
+
+    <% } %>
+           -->
+
+
+    <div id="single-content" class="single-content">
+        <div class=" swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper">
+                <%= post.content %>
+
+
+<input type="hidden" value="<%= post.my_meta %>">
+            </div>
+        </div>
+    </div>
+
+
+
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+        <!-- Swiper JS -->
+
+    <!--<script src="themes/cokebeats-ios/swiper/dist/js/swiper.js"></script>-->
+
+    <!-- Initialize Swiper -->
+        <script>
+
+
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 30
+            });
+        </script>
+
+</div>
+
