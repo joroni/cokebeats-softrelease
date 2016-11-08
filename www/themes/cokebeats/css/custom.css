@@ -695,7 +695,7 @@ div#login-page form div.list-block.center {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    height: 480px !important;
+  /*  height: 480px !important;*/
 }
 
 #single .wp-caption img, #single img {
@@ -1139,7 +1139,7 @@ a.popupBtn {
 
 .comment-form {
     position: absolute;
-    top: 290px;
+
 }
 
 

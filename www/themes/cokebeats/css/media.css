@@ -4,6 +4,20 @@
         width: 400px;
     }
 
+    .swiper-container {
+
+          height: 480px;
+    }
+
+    #single, #post-comments-list {
+        height: 250px;
+    }
+
+    .comment-form {
+        position: absolute;
+        top: 290px;
+        width: 100%;
+    }
 
     .media-title-inner {
         font-size: 40px;
@@ -54,12 +68,25 @@
 @media screen and (max-width: 500px) {
 
 
+    .swiper-container {
+
+        height: 480px;
+    }
+
     .media-title-inner {
         font-size: 40px;
         top: 24%;
         width: 100%;
     }
+    #single, #post-comments-list {
+        height: 250px;
+    }
 
+    .comment-form {
+        position: absolute;
+        top: 290px;
+        width: 100%;
+    }
 
     .swiper-button-next, .swiper-button-prev {
 
@@ -185,6 +212,16 @@ a.user-link {
         padding: 10px;
     }
 
+    #single, #post-comments-list {
+        height: 190px;
+    }
+
+    .comment-form {
+        position: absolute;
+        top: 220px;
+        width: 100%;
+    }
+
 }
 
 @media screen and (min-width: 500px) {
@@ -291,5 +328,39 @@ a.user-link {
     }
     * {
         zoom: 101%;
+    }
+
+    .swiper-container {
+
+        height: 800px;
+    }
+
+    #single, #post-comments-list {
+        height: 600px;
+    }
+
+    .comment-form {
+        position: absolute;
+        top: 630px;
+        width: 100%;
+    }
+}
+
+
+
+
+/************ LANDSCAPE *********/
+
+
+@media only screen and (min-device-width: 1024px) {
+
+    #single, #post-comments-list {
+        height: 390px;
+    }
+
+    .comment-form {
+        position: absolute;
+        top: 420px;
+        width: 100%;
     }
 }
