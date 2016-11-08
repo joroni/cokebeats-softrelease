@@ -4,6 +4,27 @@
         width: 400px;
     }
 
+
+    .media-title-inner {
+        color: #fff148 !important;
+        line-height: 0.98em;
+        padding: 10px;
+        text-align: center !important;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        position: relative;
+        text-shadow: 1px 0 3px #000;
+        top: 24%;
+        width: 100%;
+        /* border-left: 2px solid #d10000; */
+        font-family: "Roboto Condensed", helevtica, sans-serif !important;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        font-size: 2.5em;
+        overflow: hidden;
+        /*text-overflow: ellipsis;*/
+    }
+
     .swiper-container {
 
           height: 480px;
@@ -19,11 +40,28 @@
         width: 100%;
     }
 
+
+
     .media-title-inner {
-        font-size: 40px;
+        color: #fff148 !important;
+        line-height: 0.98em;
+        padding: 10px;
+        text-align: center !important;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        position: relative;
+        text-shadow: 1px 0 3px #000;
         top: 24%;
         width: 100%;
+        /* border-left: 2px solid #d10000; */
+        font-family: "Roboto Condensed", helevtica, sans-serif !important;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        font-size: 2.5em;
+        overflow: hidden;
+        /*text-overflow: ellipsis;*/
     }
+
     .media-object-thumb {
         width: 125px;
         height: 125px;
@@ -63,6 +101,8 @@
 
 }
 
+/************ iPhone 6 *********/
+
 
 
 @media screen and (max-width: 500px) {
@@ -75,16 +115,16 @@
 
     .media-title-inner {
         font-size: 40px;
-        top: 24%;
+        top: 28%;
         width: 100%;
     }
     #single, #post-comments-list {
-        height: 250px;
+        height: 340px;
     }
 
     .comment-form {
         position: absolute;
-        top: 290px;
+        top: 380px;
         width: 100%;
     }
 
@@ -116,8 +156,8 @@
     }
 
     .media-object-thumb {
-        width: 125px;
-        height: 125px;
+        width: 155px;
+        height: 155px;
     }
 
 
@@ -344,6 +384,29 @@ a.user-link {
         top: 630px;
         width: 100%;
     }
+
+
+
+
+    .media-title-inner {
+        color: #fff148 !important;
+        line-height: 0.98em;
+        padding: 10px;
+        text-align: center !important;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        position: relative;
+        text-shadow: 1px 0 3px #000;
+        top: 35%;
+        width: 100%;
+        /* border-left: 2px solid #d10000; */
+        font-family: "Roboto Condensed", helevtica, sans-serif !important;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        font-size: 4.5em;
+        overflow: hidden;
+
+    }
 }
 
 
@@ -363,4 +426,27 @@ a.user-link {
         top: 420px;
         width: 100%;
     }
+
+
+
+    .media-title-inner {
+        color: #fff148 !important;
+        line-height: 0.98em;
+        padding: 10px;
+        text-align: center !important;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        position: relative;
+        text-shadow: 1px 0 3px #000;
+        top: 35%;
+        width: 100%;
+        /* border-left: 2px solid #d10000; */
+        font-family: "Roboto Condensed", helevtica, sans-serif !important;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        font-size: 4.5em;
+        overflow: hidden;
+
+    }
+
 }
