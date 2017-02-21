@@ -332,7 +332,25 @@ footer label {
 /*  font-font: "Roboto Condensed", helevtica, sans-serif;
 }*/
 
-
+.media-title-inner {
+    color: #fff148 !important;
+    line-height: 0.98em;
+    padding: 10px;
+    text-align: center !important;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    position: relative;
+    text-shadow: 1px 0 3px #000;
+    top: 24%;
+    width: 100%;
+    /* border-left: 2px solid #d10000; */
+    font-family: "Roboto Condensed", helevtica, sans-serif !important;
+    font-weight: 500 !important;
+    white-space: nowrap;
+    font-size: 2.5em;
+    overflow: hidden;
+    /*text-overflow: ellipsis;*/
+}
 
 .media-title-inner:hover, .media-title-inner:active {
     text-decoration: none;
@@ -677,7 +695,7 @@ div#login-page form div.list-block.center {
     position: relative;
     overflow: hidden;
     z-index: 1;
-  /*  height: 480px !important;*/
+    height: 480px !important;
 }
 
 #single .wp-caption img, #single img {
@@ -1121,7 +1139,7 @@ a.popupBtn {
 
 .comment-form {
     position: absolute;
-
+    top: 290px;
 }
 
 
