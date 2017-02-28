@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1af4ce51-9153-4552-98ac-8b6517062460" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/themes/cokebeats/php/handle_my_post_metadata.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/themes/cokebeats/php/add-wpak-post-content-format.php" afterPath="$PROJECT_DIR$/www/themes/cokebeats/php/add-wpak-post-content-format.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cokebeats-softrelease.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -417,14 +417,15 @@
       <workItem from="1487744528790" duration="510000" />
       <workItem from="1487750285047" duration="348000" />
       <workItem from="1488121887268" duration="561000" />
+      <workItem from="1488246794769" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124975000" />
+    <option name="totallyTimeSpent" value="124979000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="726" extended-state="1" />
+    <frame x="0" y="23" width="1280" height="726" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />

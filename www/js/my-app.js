@@ -73,7 +73,8 @@ noNet(base_url + '/json.php',
 function initApp() {
     myProfile();
     check_storage();
-    postCached();
+    //postCached();
+	getPosts();
 
 
 }
@@ -99,8 +100,8 @@ function check_storage() {
             }
         });
 
-        //getPosts();
-        postCached();
+        getPosts();
+        //postCached();
     } else {
         console.log('logged out');
         //window.location.replace("index.html");mainView.router.load({
@@ -410,7 +411,73 @@ function update_user() {
 
 }
 
-function postCached() {
+
+
+
+
+function getPosts() {
+  	//z	myApp.showIndicator();
+  		var url= base_wp_url+"/?json=get_recent_posts";
+  		$.getJSON(url,function(result){
+			console.log(result);
+			localStorage.setItem('tempPostData', JSON.stringify(result));
+			var postData = localStorage.getItem('tempPostData');
+			var jsonObj = $.parseJSON(postData);
+			console.log(jsonObj);
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
+			$.each(jsonObj.posts, function(i, field){
+  	        	var title=(field.title).slice(0,5);
+                var id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var thumbnail=field.thumbnail;
+			 	
+				$("#output").append('<div class="item col-50">'+
+										'<a class="bloglink"  id="'+id+'" href="#single">'+
+										//'<a class="bloglink open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
+											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
+												'<div class="media-title-inner">'+title+'</div>'+
+											'</div>'+
+										'</a>'+
+									'</div>');
+				
+							
+									 
+  	        });
+		
+	$('a.bloglink').on('click', function() {
+	var myid = $(this).attr('id');
+	
+	//myApp.alert(myid);
+	var myurl = base_url + "/single/post/" + myid;
+	///myApp.alert(myurl);
+	$('#blogcontent').html(myurl);
+	$.each(jsonObj.posts, function(i, field){
+	
+				$.ajax({
+          type: 'POST',
+          url: myurl,
+          data: {function: '3test', datacheck: var_numcheck},
+         dataType: "json",
+          success: function(data) {
+              var json = eval('(' + data + ')');
+              $('#datacheck').html(json['0']);
+         var var_numcheck = parseInt(msg);
+
+});
+     //setTimeout('activitycheck()',1000)},
+
+  error:function(msg) {
+     console.log(msg);
+  }
+	
+			 myApp.hideIndicator();
+      	});
+		
+  	
+}
+/*function postCached() {
     var postData = localStorage.getItem('tempPostData');
     var jsonObj = $.parseJSON(postData);
     console.log(jsonObj);
@@ -423,7 +490,7 @@ function postCached() {
         var modified = field.modified;
         var thumbnail = field.thumbnail;
         $("#output").append('<div class="item col-50">' +
-            '<a class="blog-link" id="' + frompost_id + '"  href="#single">' +
+            '<a class="bloglink" id="' + frompost_id + '"  href="#single">' +
             '<div class="thumb media-object-thumb" style="background: url(' + thumbnail + ') #ddd;">' +
             '<div class="media-title-inner">' + title + '</div>' +
             '</div>' +
@@ -437,85 +504,46 @@ function postCached() {
     myApp.hideIndicator();
 
 
-}
+}*/
 
 
-function getPosts() {
-  		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_recent_posts";
-  		$.getJSON(url,function(result){
-			console.log(result);
-			/*localStorage.setItem('tempPostData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);*/
-			console.log(jsonObj);
-		//	var postData = localStorage.getItem('tempPostData');
-			//var array = JSON.parse(postData);
-			//$.each(jsonObj.posts, function(i, field){
-		$.each(result.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
-			 	
-			$("#output").append('<div class="item col-50">'+
-										'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
-											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
-												'<div class="media-title-inner">'+title+'</div>'+
-											'</div>'+
-										'</a>'+
-									'</div>');
-				
-							
-									 
-  	        });
-			
-			 myApp.hideIndicator();
-      	});
-		
-  	
-}
-
-
-$('a.blog-link').on('click', function() {
-    myApp.showIndicator();
-    var blogPostID = $(this).attr('id');
+/*
+$('a.bloglink').on('click', function() {
+    //myApp.showIndicator();
+	alert($(this).attr('data-url'));
+    var blogPostID = $(this).attr('data-url');
+	// localStorage.setItem('tempPostContentData', JSON.stringify(result));
     console.log(blogPostID);
 
-
-
-
-    var url = base_wp_url + "/?json=get_post&post_id=" + blogPostID;
+//http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel/single/post/1733
+	var url = base_url + "/single/post/" + blogPostID;
     $.getJSON(url, function(result) {
         //console.log(result);
-       // localStorage.setItem('tempPostContentData', JSON.stringify(result));
-        //var postData = localStorage.getItem('tempPostContentData');
-        //var jsonObj = $.parseJSON(postData);
-        //console.log(jsonObj);
+        localStorage.setItem('tempPostContentData', JSON.stringify(result));
+        var postData = localStorage.getItem('tempPostContentData');
+        var jsonObj = $.parseJSON(postData);
+        console.log(result);
 
-        var blogcontent = '';
-        $.each(result, function() {
-			
-			blogcontent += '<p class="content-title" style="font-size:1px;">' + this['title'] + '</h2><div class="post-content">' + this['content'] + '</p>';
-       });
+        var blogcontent = '<div id="blogcontent">';
+      //  $.each(result, function() {
+		   $.each(jsonObj, function() {
 
-       // blogcontent += '</div>';
-	  
+            blogcontent += '<h2>' + this['title'] + '</h2><p>' + this['content'] + '</p>';
+        });
+
+        blogcontent += '</div>';
         document.getElementById("blogcontent").innerHTML = blogcontent;
 
-		$('.content-titles:first').hide();
-		$('.post-contents:first').hide();
-		//var myRegex = result.replace(/^undefined.*\n?/m, '');
-	
+
+
+
     });
-	
+
 
     myApp.hideIndicator();
 });
 
-
+*/
 
 
 function homeLink() {
@@ -527,7 +555,7 @@ function homeLink() {
     });
 
     initApp();
-   // postCached();
+    //postCached();
     getPosts();
 }
 
