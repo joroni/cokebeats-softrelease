@@ -9,9 +9,6 @@ var myApp = new Framework7({
 var $$ = Dom7;
 
 
-$$('.open-login').on('click', function () {
-  myApp.loginScreen();
-});
 // Add main View
 var mainView = myApp.addView('.view-main', {
     // Enable dynamic Navbar
@@ -37,6 +34,9 @@ $$('.view').addClass('theme-red layout-light');
 
 
 
+$$('.open-login, .login-screen').on('click', function () {
+  myApp.loginScreen();
+});
 
 var base_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel";
 var base_wp_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress";
@@ -110,11 +110,11 @@ function check_storage() {
             name: username
           }*/
         /*  });*/
-        $('.login-button, .register-button').show();
-        $('.logout-button').hide();
-        $('.right').hide();
-		$('.notlogged.toolbar').show();
- 		myApp.loginScreen();
+          $('.login-button, .register-button').show();
+          $('.logout-button').hide();
+          $('.right').hide();
+		      $('.notlogged.toolbar').show();
+ 		   myApp.loginScreen();
     }
 
 }
@@ -461,7 +461,7 @@ function getPostssss() {
 
 			$("#output").append('<div class="item col-50">'+
 										//'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-                    '<a class="blog-links" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
+                    '<a class="blog-link" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
 										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
 											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
 												'<div class="media-title-inner">'+title+'</div>'+
@@ -481,69 +481,17 @@ function getPostssss() {
 
 
 			$('a.blog-link').on('click', function(){
-				var blogPostID = $(this).attr('id');
-				console.log(blogPostID);
-					//myApp.alert($(this).attr('id'));
+        //myApp.showIndicator();
 
-					myApp.showIndicator();
-
-					var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
-					$.getJSON(url,function(result){
-						//console.log(result);
-							localStorage.setItem('tempPostContentData', JSON.stringify(result));
-							var postData = localStorage.getItem('tempPostContentData');
-							var jsonObj = $.parseJSON(postData);
-							console.log(jsonObj);
-
-					var table = '';
-			 $.each(result, function() {
-
-		 table += '<p>' + this['title'] + '</p><p>' + this['content'] + '</p>';
-    });
-
-		 table += '';
-    	document.getElementById("blogcontent").innerHTML = table;
+          $('.view').append('<div class="col-25 col-dark">'+
+                'White<br>'+
+                '<span style="width:42px; height:42px" class="preloader preloader-white"></span>'+
+              '</div>'+
+            '</div>')
+      });
 
 
 
-
-
-					//	console.log(result);
-						/*$.each(result.posts, function(i, field){
-							var title=field.title;
-							var id=field.id;
-							var content=field.content;
-							var date=field.date;
-							var thumbnail=field.thumbnail;*/
-
-
-
-							/*$(".view").append('<div class="popup popup-single">'+
-							'<p><a href="#" class="close-popup">Close popup</a></p>'+
-							'<div class="content-block">'+
-							+content+
-							'</div>'+
-							'</div>');
-							*/
-							/*$(".view").append('<div data-page="single" class="page cached">'+
-								  '<div class="page-content" style="background-color: #fff;">'+
-									'<div id="blogcontent" class="content-block">'+
-
-										+content+
-
-									'</div>'+
-								  '</div>'+
-							'</div>');*/
-
-							//$("#blogcontent").append('<div id="'+id+'">'+content+'</div>');
-
-						//	alert(content);
-
-						});
-
-
-						 myApp.hideIndicator();
-					});
 
 
 
@@ -1070,3 +1018,45 @@ function register() {
 	});*/
 
 //});
+
+var openPhotoSwipe = function() {
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+
+    // build items array
+    var items = [
+        {
+            src: 'http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress/wp-content/uploads/2017/02/Feature-Image-1-300x300.png',
+            w: 300,
+            h: 300
+        },
+        {
+          src: 'http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress/wp-content/uploads/2016/09/June-Feature-Photo.jpg',
+            w: 1200,
+            h: 800
+        }
+    ];
+
+    // define options (if needed)
+    var options = {
+             // history & focus options are disabled on CodePen
+        history: false,
+        focus: false,
+
+        showAnimationDuration: 0,
+        hideAnimationDuration: 0
+
+    };
+
+    var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+    gallery.init();
+};
+
+//openPhotoSwipe();
+
+//document.getElementById('btn').onclick = openPhotoSwipe;
+
+
+
+  /**
+   * END PHOTOSWIPE
+   ***********************************/

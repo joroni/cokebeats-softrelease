@@ -14,6 +14,10 @@
 		<link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
 		<link rel="stylesheet" href="css/media.css">
 
+		<!-- PhotoSwipe Core CSS file -->
+		<link rel="stylesheet" href="vendor/photoswipe/photoswipe.css">
+		<link rel="stylesheet" href="vendor/photoswipe/default-skin/default-skin.css">
+
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 		<script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>
 		<script type="text/javascript" src="vendor/jquery.validate.js"></script>
@@ -93,7 +97,7 @@
 			<!-- Navbar inner for Index page-->
 			<div data-page="index" class="navbar-inner">
 				<!-- We have home navbar without left link-->
-                <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+        <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
 				<div class="center sliding">
 					<span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
 				</div>
@@ -269,7 +273,7 @@
 
 			<!-- Guest Page-->
 			<script id="guestTemplate" type="text/template7">
-				<div data-page="guest" class="page cached">
+				<div data-page="guest" class="page no-navbar cached">
 				  <div class="page-content">
 					<div class="list-block">
 				        <ul>
@@ -299,7 +303,7 @@
 
 			</script>
 			<!-- Register Page-->
-			<div data-page="register" class="page cached">
+			<div data-page="register" class="page no-navbar cached">
 				<div class="page-content">
 					<form id="signupForm" method="post" class="form-horizontal" action="">
 						<div class="content-block-title"></div>
@@ -438,7 +442,8 @@
 				<div  id="profileContent" class="content-block centered" style="padding-top:40px;">
 					<!-- SEE taking-photo.html for camera code -->
 					<div id="avatar2" class="profile-image"></div>
-                     <a href="#editprofiles" class="item-link waves-effect waves-light red"> <i class="fa fa-pencil"></i></a>
+                     <a href="#editprofiles" class="item-link waves-effect waves-light red">
+<i class="f7-icons size-50">compose</i></a>
                     </div>
 
 					<div class="list-block">
@@ -497,7 +502,7 @@
 			<div data-page="editprofiles" class="page cached">
 				<div class="page-content">
 					<div class="centered">
-						<div class="item-title">Profile Edit</div>
+						<!--<div class="item-title">Profile Edit</div>-->
 						<div class="list-block">
 							<ul>
 								<li>
@@ -546,15 +551,24 @@
 								</li>
 							</ul>
 						</div>
-						<div style='clear:both;'></div>
-						<div class="content-block">
-							<div class="row">
-								<div class="col-50"> <a href="#"  class="btn_cancel back link photo button button-big button-fill color-green">Cancel</a> </div>
-								<div class="col-50">
-									<a href="#" id="btnUpdate" onclick="update_user();"  class="button button-big button-fill color-red">Save</a>
-								</div>
+
+						<div class="list-block">
+
+
+							<div class="list-block-label">
+								<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+								<a href="#" id="btnUpdate" onclick="update_user();"  class="button button-big red size-70">Save</a>
+							</div>
+	<div style='clear:both;'></div>
+							<div class="list-block-label">
+								<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+								<p><a href="#" class="back link">Cancel/a></p>
 							</div>
 						</div>
+
+
+
+
 					</div>
 				</div>
 			</div>
@@ -564,9 +578,9 @@
              <!-- SEPARATOR -->
 
 
-            <div class="notlogged toolbar tabbar">
+            <div class="toolbar tabbar">
 				<div class="toolbar-inner">
-
+<div class="notlogged"></div>
 
 				</div>
 			</div>
@@ -622,6 +636,10 @@
 		<script type="text/javascript" src="vendor/jquery.validate.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="js/my-app.js"></script>
+		<script type="text/javascript" src="vendor/photoswipe/photoswipe.min.js"></script>
+		<script type="text/javascript" src="vendor/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
 		<script type="text/javascript">
 			$.validator.setDefaults( {
 			    submitHandler: function () {
@@ -689,5 +707,74 @@
 			    })
 			});
 		</script>
+
+
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 	</body>
 </html>

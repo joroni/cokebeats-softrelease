@@ -66,12 +66,14 @@ div[class*="col-"] {
   margin-bottom: 15px;
 }
 
-
+.size-70 {
+  font-size: 30px;
+}
 .row {
   margin-bottom: 5px;
 }
 
-#blogcontent video, #blogcontent img {
+#blogcontent video, #blogcontent img, #gallery img, #gallery video {
 	width: 100% !important;
 	height:auto !important;
 }
@@ -108,7 +110,7 @@ a.more {
 .thumbholder {
 	width:calc((85% -10px * 1)/2) !important;
 	margin:5px;
-	
+
 	}
 /*.loading {
     position: absolute;
