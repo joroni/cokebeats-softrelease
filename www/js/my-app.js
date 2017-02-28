@@ -526,8 +526,8 @@ function homeLink() {
     });
 
     initApp();
-    postCached();
-    //getPosts();
+   // postCached();
+    getPosts();
 }
 
 function edittheProfile() {
