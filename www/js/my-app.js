@@ -445,13 +445,14 @@ function getPosts() {
   		var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
 			console.log(result);
-			localStorage.setItem('tempPostData', JSON.stringify(result));
+			/*localStorage.setItem('tempPostData', JSON.stringify(result));
 			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
+			var jsonObj = $.parseJSON(postData);*/
 			console.log(jsonObj);
 		//	var postData = localStorage.getItem('tempPostData');
 			//var array = JSON.parse(postData);
-			$.each(jsonObj.posts, function(i, field){
+			//$.each(jsonObj.posts, function(i, field){
+		$.each(result.posts, function(i, field){
   	        	var title=(field.title).slice(0,5);
                 var frompost_id=field.id;
 				var content=field.content;
