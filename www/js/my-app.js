@@ -9,8 +9,8 @@ var myApp = new Framework7({
 var $$ = Dom7;
 
 
-$$('.open-login').on('click', function() {
-    myApp.loginScreen();
+$$('.open-login').on('click', function () {
+  myApp.loginScreen();
 });
 // Add main View
 var mainView = myApp.addView('.view-main', {
@@ -51,8 +51,8 @@ function noNet(path, success, error) {
                     success(JSON.parse(xhr.responseText));
                 }
             } else {
-                /*  window.location.replace("nonet.html");*/
-                myApp.alert("You're Offline", alertTitle);
+              /*  window.location.replace("nonet.html");*/
+              myApp.alert("You're Offline", alertTitle);
             }
         }
     };
@@ -70,13 +70,12 @@ noNet(base_url + '/json.php',
 );
 // END connection to server
 
-function initApp() {
-    myProfile();
-    check_storage();
-    //postCached();
-	getPosts();
-
-
+function initApp(){
+	myProfile();
+	check_storage();
+	postCached();
+	
+	
 }
 
 
@@ -89,19 +88,19 @@ function check_storage() {
         //	window.location.replace("main.html");
         $('.login-button, .register-button').hide();
         $('.logout-button').show();
-        $('.left a').show();
-        $('.right').show();
-        $('.notlogged.toolbar').hide();
+		$('.left a').show();
+		$('.right').show();
+		$('.notlogged.toolbar').hide();
         console.log('logged');
-        mainView.router.load({
-            template: Template7.templates.welcomeTemplate,
-            context: {
-                //   name: username
-            }
-        });
-
-        getPosts();
-        //postCached();
+		mainView.router.load({
+                    template: Template7.templates.welcomeTemplate,
+                    context: {
+                     //   name: username
+                    }
+                });
+				
+		//getPosts();
+		postCached();
     } else {
         console.log('logged out');
         //window.location.replace("index.html");mainView.router.load({
@@ -114,8 +113,8 @@ function check_storage() {
         $('.login-button, .register-button').show();
         $('.logout-button').hide();
         $('.right').hide();
-        $('.notlogged.toolbar').show();
-        myApp.loginScreen();
+		$('.notlogged.toolbar').show();
+ 		myApp.loginScreen();
     }
 
 }
@@ -145,7 +144,7 @@ function signin() {
         .done(function(data) {
             if (data == 0) {
                 myApp.hideIndicator();
-                $('.notlogged.toolbar').show();
+				$('.notlogged.toolbar').show();
                 //  if (!username || !password){
                 myApp.alert('Username and Password incorrect', alertTitle);
                 return;
@@ -159,37 +158,37 @@ function signin() {
             } else if (data == 1) {
 
                 myApp.hideIndicator();
-                $('.notlogged.toolbar').hide();
+				$('.notlogged.toolbar').hide();
                 localStorage.setItem("userlogin", user_name_input);
-                // get_Quiz_History();
-                // localStorage.setItem("userQuizRecord", get_Quiz_History);
+               // get_Quiz_History();
+               // localStorage.setItem("userQuizRecord", get_Quiz_History);
                 localStorage.setItem("userData", data);
 
-                // console.log("get_Quiz_History")
-                //  console.log('Response body: ' + data);
+               // console.log("get_Quiz_History")
+              //  console.log('Response body: ' + data);
 
                 // Will pass context with retrieved user name
                 // to welcome page. Redirect to welcome page
 
 
-
-                initApp();
-                mainView.router.load({
+              
+               initApp();
+               mainView.router.load({
                     template: Template7.templates.welcomeTemplate,
                     context: {
-                        //  name: username
+                      //  name: username
                     }
                 });
-
-                //mainView.router.loadPage('#welcome');
-                $$('.left a').hide();
-                $$('.right a').show();
-                $$('.login-screen').removeClass('modal-in');
-                $$('.login-screen').addClass('modal-out');
-                getPosts();
-
+				
+				//mainView.router.loadPage('#welcome');
+				$$('.left a').hide();
+				$$('.right a').show();
+				$$('.login-screen').removeClass('modal-in');
+				$$('.login-screen').addClass('modal-out');
+				getPosts();
+				
                 //	window.location.href = "main.html";
-
+				
 
             }
         });
@@ -276,9 +275,9 @@ $(function() {
 });*/
 
 function myProfile() {
-    var user = localStorage.getItem('userlogin');
+   var user = localStorage.getItem('userlogin');
 
-
+  
     $.getJSON(base_url + '/get_user_details/' + user, function(result) {
 
         $.each(result, function(i, field) {
@@ -288,7 +287,7 @@ function myProfile() {
             $('#firstname').val(field.fname);
             $('#lastname').val(field.lname);
             $('#email').val(field.email);
-            $('#avatar').val(field.avatar);
+           $('#avatar').val(field.avatar);
 
             if ($('#avatar, #avatar2,  .profile-image')
                 .val() == "" || $('#avatar, #avatar2, .profile-image')
@@ -304,16 +303,16 @@ function myProfile() {
             $('#avatar,  #avatar2, .profile-image').css('background-size', 'contain');
             $('#avatar,  #avatar2, .profile-image').css('background-position', 'center center');
 
-
+        
             $('#userfirstname, .profile-firstname').text(field.fname);
             $('#userusername, .profile-id').text(field.username);
             $('#userlastname, .profile-lastname').text(field.lname);
             $('#useremail, .profile-email').text(field.email);
-
+       
             $('#user_name').text(field.username);
             $('#user_username').text(field.username);
             $('#user_password').text(field.password);
-
+          
             $('#user_firstname').text(field.fname);
             $('#user_lastname').text(field.lname);
             $('#user_email').text(field.email);
@@ -326,40 +325,39 @@ function myProfile() {
             console.log(field.fname);
             console.log(field.lname);
             console.log(field.email);
-
+         
 
             localStorage.setItem('user_id', field.id);
+         
 
-
-            localStorage.setItem('myusername', field.username);
-            localStorage.setItem('myfirstname', field.fname);
-            localStorage.setItem('mylastname', field.lname);
-            localStorage.setItem('mypassword', field.password);
-            localStorage.setItem('myemail', field.email);
-
-
-
-            var appusername = localStorage.getItem('myusername');
-            var appfirstname = localStorage.getItem('myfirstname');
-            var applastname = localStorage.getItem('mylastname');
-            var apppassword = localStorage.getItem('mypassword');
-            var appemail = localStorage.getItem('myemail');
-            $('.appusername').text(appusername);
-            $('.appfirstname').text(appfirstname);
-            $('.applastname').text(applastname);
-            $('.apppassword').text(apppassword);
-            $('.appemail').text(appemail);
-
+			localStorage.setItem('myusername', field.username);
+			localStorage.setItem('myfirstname', field.fname);
+			localStorage.setItem('mylastname', field.lname);
+			localStorage.setItem('mypassword', field.password);
+			localStorage.setItem('myemail', field.email);
+			
+			
+			
+			var appusername = localStorage.getItem('myusername');
+			var appfirstname = localStorage.getItem('myfirstname');
+			var applastname =localStorage.getItem('mylastname');
+			var apppassword =localStorage.getItem('mypassword');
+			var appemail =localStorage.getItem('myemail');
+			$('.appusername').text(appusername);
+			$('.appfirstname').text(appfirstname);
+			$('.applastname').text(applastname);
+			$('.apppassword').text(apppassword);
+			$('.appemail').text(appemail);
+			
 
         });
     });
 }
 
 myProfile();
-
 function update_cancel() {
-    // $('#profileContent').show();
-    // $('#editmyProfile').hide();
+  // $('#profileContent').show();
+   // $('#editmyProfile').hide();
 }
 
 function update_user() {
@@ -383,40 +381,65 @@ function update_user() {
         .done(function(data) {
             if (data == 0) {
                 myApp.hideIndicator();
-                myApp.alert('Updates not saved', alertTitle);
+				myApp.alert('Updates not saved', alertTitle);
                 //$('#update_0').show();
 
             } else if (data == 1) {
-
-
+              
+              
 
                 $('#user_name').text(username);
                 $('#user_password').text(password);
                 $('#user_firstname').text(fname);
                 $('#user_lastname').text(lname);
-                $('#user_email').text(user_email);
+            	$('#user_email').text(user_email);
 
                 //  window.location.reload();
-                mainView.router.load({
+				mainView.router.load({
                     template: Template7.templates.welcomeTemplate,
                     context: {
-                        //   name: username
+                     //   name: username
                     }
                 });
-                myApp.hideIndicator();
-                myApp.alert('Updates Successful', alertTitle);
-                initApp();
+				myApp.hideIndicator();
+				myApp.alert('Updates Successful', alertTitle);
+				initApp();
             }
         });
 
 }
 
+function postCached() {
+	var postData = localStorage.getItem('tempPostData');
+			var jsonObj = $.parseJSON(postData);
+			console.log(jsonObj);
+		
+			$.each(jsonObj.posts, function(i, field){
+  	        	var title=(field.title).slice(0,5);
+                var frompost_id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var modified=field.modified;
+				var thumbnail=field.thumbnail;
+				$("#output").append('<div class="item col-50">'+
+										'<a class="blog-link" id="'+frompost_id+'"  href="#single">'+
+											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
+												'<div class="media-title-inner">'+title+'</div>'+
+											'</div>'+
+										'</a>'+
+									'</div>');
+									
+									
+			
+			});
+			
+			 myApp.hideIndicator();
+      	
+		
+}
 
-
-
-
-function getPosts() {
-  	//z	myApp.showIndicator();
+/*function getPosts() {
+  		myApp.showIndicator();
   		var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
 			console.log(result);
@@ -424,18 +447,18 @@ function getPosts() {
 			var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
 			console.log(jsonObj);
-		//	var postData = localStorage.getItem('tempPostData');
-			//var array = JSON.parse(postData);
+		/	var postData = localStorage.getItem('tempPostData');
+			/var array = JSON.parse(postData);
 			$.each(jsonObj.posts, function(i, field){
   	        	var title=(field.title).slice(0,5);
-                var id=field.id;
+                var frompost_id=field.id;
 				var content=field.content;
 				var date=field.date;
 				var thumbnail=field.thumbnail;
 			 	
-				$("#output").append('<div class="item col-50">'+
-										'<a class="bloglink"  id="'+id+'" href="#single">'+
-										//'<a class="bloglink open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
+			$("#output").append('<div class="item col-50">'+
+										'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
 											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
 												'<div class="media-title-inner">'+title+'</div>'+
 											'</div>'+
@@ -445,143 +468,174 @@ function getPosts() {
 							
 									 
   	        });
+			
+			 myApp.hideIndicator();
+      	});
 		
-	$('a.bloglink').on('click', function() {
-	var myid = $(this).attr('id');
-	
-	//myApp.alert(myid);
-	var myurl = base_url + "/single/post/" + myid;
-	///myApp.alert(myurl);
-	$('#blogcontent').html(myurl);
-	$.each(jsonObj.posts, function(i, field){
-	
-				$.ajax({
-          type: 'POST',
-          url: myurl,
-          data: {function: '3test', datacheck: var_numcheck},
-         dataType: "json",
-          success: function(data) {
-              var json = eval('(' + data + ')');
-              $('#datacheck').html(json['0']);
-         var var_numcheck = parseInt(msg);
+  	
+}*/
 
-});
-     //setTimeout('activitycheck()',1000)},
-
-  error:function(msg) {
-     console.log(msg);
-  }
 	
+			$('a.blog-link').on('click', function(){
+				var blogPostID = $(this).attr('id');
+				console.log(blogPostID);
+					//myApp.alert($(this).attr('id'));
+					
+					myApp.showIndicator();
+					
+					var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
+					$.getJSON(url,function(result){
+						//console.log(result);
+							localStorage.setItem('tempPostContentData', JSON.stringify(result));
+							var postData = localStorage.getItem('tempPostContentData');
+							var jsonObj = $.parseJSON(postData);
+							console.log(jsonObj);
+					
+					var table = '';
+			 $.each(result, function() {
+				 
+		 table += '<p>' + this['title'] + '</p><p>' + this['content'] + '</p>';
+    });
+	
+		 table += '';
+    	document.getElementById("blogcontent").innerHTML = table;
+
+					
+					
+					
+					
+					//	console.log(result);
+						/*$.each(result.posts, function(i, field){
+							var title=field.title;
+							var id=field.id;
+							var content=field.content;
+							var date=field.date;
+							var thumbnail=field.thumbnail;*/
+							
+							
+							
+							/*$(".view").append('<div class="popup popup-single">'+
+							'<p><a href="#" class="close-popup">Close popup</a></p>'+
+							'<div class="content-block">'+
+							+content+	
+							'</div>'+
+							'</div>');
+							*/
+							/*$(".view").append('<div data-page="single" class="page cached">'+
+								  '<div class="page-content" style="background-color: #fff;">'+
+									'<div id="blogcontent" class="content-block">'+
+											
+										+content+
+								
+									'</div>'+
+								  '</div>'+
+							'</div>');*/
+							
+							//$("#blogcontent").append('<div id="'+id+'">'+content+'</div>');		
+						
+						//	alert(content);	
+												 
+						});
+					
+						
+						 myApp.hideIndicator();
+					});
+					
+			
+	
+
+				
+/*
+function getPostContent() {
+ 
+  	myApp.showIndicator();
+  		var blogPostID = $(this).attr('id');
+		var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
+		
+			
+  			$.getJSON(url,function(result){
+			//console.log(result);
+			
+			localStorage.setItem('tempPostContentData', JSON.stringify(result));
+			var postData = localStorage.getItem('tempPostContentData');
+			var jsonContentObj = $.parseJSON(postData);
+			//var jsonContentObj = postData;
+			console.log(jsonContentObj);
+			//$("#blogcontent").append('<div>'+jsonContentObj[0].content+'</div>');		
+			var table = '<table><thead><tr><th>Title</th></tr><tr><th>Content</th></tr></thead><tbody>';
+			 $.each(result, function() {
+				 
+		 table += '<tr><td>' + this['title'] + '</td></tr><tr><td>' + this['content'] + '</td></tr>';
+    });
+	
+		 table += '</tbody></table>';
+    	document.getElementById("datalist").innerHTML = table;
+
+
+
+
+
+			//$("#blogcontent").html(jsonContentObj.posts.content);
+			
+  	       /* $.each(jsonContentObj.posts, function(i, field){
+  	        	var title=field.title;
+                var id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var thumbnail=field.thumbnail;
+				console.log(title);
+				
+				
+  	      
+				$("#blogcontent").append('<div>'+postData+'</div>');		
+			
+				//<div class='blogposts' id='"+id+'">'+content+"</div>");				
+									 
+  	        });
+			
 			 myApp.hideIndicator();
       	});
 		
   	
 }
-/*function postCached() {
-    var postData = localStorage.getItem('tempPostData');
-    var jsonObj = $.parseJSON(postData);
-    console.log(jsonObj);
-
-    $.each(jsonObj.posts, function(i, field) {
-        var title = (field.title).slice(0, 5);
-        var frompost_id = field.id;
-        var content = field.content;
-        var date = field.date;
-        var modified = field.modified;
-        var thumbnail = field.thumbnail;
-        $("#output").append('<div class="item col-50">' +
-            '<a class="bloglink" id="' + frompost_id + '"  href="#single">' +
-            '<div class="thumb media-object-thumb" style="background: url(' + thumbnail + ') #ddd;">' +
-            '<div class="media-title-inner">' + title + '</div>' +
-            '</div>' +
-            '</a>' +
-            '</div>');
-
-
-
-    });
-
-    myApp.hideIndicator();
-
-
-}*/
-
-
-/*
-$('a.bloglink').on('click', function() {
-    //myApp.showIndicator();
-	alert($(this).attr('data-url'));
-    var blogPostID = $(this).attr('data-url');
-	// localStorage.setItem('tempPostContentData', JSON.stringify(result));
-    console.log(blogPostID);
-
-//http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel/single/post/1733
-	var url = base_url + "/single/post/" + blogPostID;
-    $.getJSON(url, function(result) {
-        //console.log(result);
-        localStorage.setItem('tempPostContentData', JSON.stringify(result));
-        var postData = localStorage.getItem('tempPostContentData');
-        var jsonObj = $.parseJSON(postData);
-        console.log(result);
-
-        var blogcontent = '<div id="blogcontent">';
-      //  $.each(result, function() {
-		   $.each(jsonObj, function() {
-
-            blogcontent += '<h2>' + this['title'] + '</h2><p>' + this['content'] + '</p>';
-        });
-
-        blogcontent += '</div>';
-        document.getElementById("blogcontent").innerHTML = blogcontent;
-
-
-
-
-    });
-
-
-    myApp.hideIndicator();
-});
-
-*/
-
+  */
+ 
 
 function homeLink() {
-    mainView.router.load({
-        template: Template7.templates.welcomeTemplate,
-        context: {
-            //     name: username
-        }
-    });
-
-    initApp();
-    //postCached();
-    getPosts();
+ mainView.router.load({
+      template: Template7.templates.welcomeTemplate,
+     context: {
+     //     name: username
+      }
+  });
+ 
+ initApp();
+ //postCached();
+ getPosts();
 }
-
 function edittheProfile() {
 
     //alert('profile');
-    //  $('#profileContent').hide();
-    //    $('#editmyProfile').show();
+  //  $('#profileContent').hide();
+//    $('#editmyProfile').show();
 
 }
 
 function showImageLoader() {
-    $('#capturePhoto').show();
-    imageProfile();
+   $('#capturePhoto').show();
+      imageProfile();
 
-    /*  mainView.router.load({
-          template: Template7.templates.capturePhotoTemplate,
-          context: {
-              //  name: username
-          }
-      });
-      imageProfile();*/
+  /*  mainView.router.load({
+        template: Template7.templates.capturePhotoTemplate,
+        context: {
+            //  name: username
+        }
+    });
+    imageProfile();*/
 }
 
-function canceluploadImage() {
-    $('#capturePhoto').hide();
+function canceluploadImage(){
+  $('#capturePhoto').hide();
 }
 
 function imageProfile() {
@@ -601,42 +655,42 @@ function imageProfile() {
 
 
 
-        function showRequest(formData, jqForm, options) {
-            var queryString = $.param(formData);
-            myApp.showIndicator();
-            console.log(formData);
-        }
+    function showRequest(formData, jqForm, options) {
+        var queryString = $.param(formData);
+        myApp.showIndicator();
+        console.log(formData);
+    }
 
-        function showResponse(responseText, statusText, xhr, $form) {
-            myApp.showIndicator();
-            // $('#loader-mini').show();
-            console.log(statusText);
-            console.log(responseText);
-            if (statusText == 'success') {
-                // $('#page_loader_cb').fadeOut(100);
+    function showResponse(responseText, statusText, xhr, $form) {
+        myApp.showIndicator();
+        // $('#loader-mini').show();
+        console.log(statusText);
+        console.log(responseText);
+        if (statusText == 'success') {
+            // $('#page_loader_cb').fadeOut(100);
 
-                $('#upload_input').val('');
+            $('#upload_input').val('');
 
-                //  $('#upload_input').val('');
-                console.log('upload complete');
-                myApp.alert('Upload complete');
-                //   $('#loader-mini').hide();
-                /*$('#smallImage').val('');
-                 $('#largeImage').val('');*/
-                if (responseText == '0') {
-                    console.log('Error or file not supported! required format :png,gif,jpeg sie: less than 3mb');
-                } else {
-                    console.log('Upload success!');
-                    //   navigator.notification.alert('Process complete');
-                    myApp.alert('Process complete');
-                    $('#capturePhoto').hide();
-                    //  window.location.reload();
+            //  $('#upload_input').val('');
+            console.log('upload complete');
+            myApp.alert('Upload complete');
+            //   $('#loader-mini').hide();
+            /*$('#smallImage').val('');
+             $('#largeImage').val('');*/
+            if (responseText == '0') {
+                console.log('Error or file not supported! required format :png,gif,jpeg sie: less than 3mb');
+            } else {
+                console.log('Upload success!');
+                //   navigator.notification.alert('Process complete');
+                myApp.alert('Process complete');
+                $('#capturePhoto').hide();
+              //  window.location.reload();
 
-                }
             }
         }
+    }
 
-    });
+      });
 
 }
 
@@ -683,14 +737,14 @@ function log_out() {
     localStorage.removeItem('userlogin');
     //  window.location.replace("index.html");
     window.localStorage.clear();
-    myApp.loginScreen();
+	myApp.loginScreen();
 
-    // mainView.router.load({
-    //   template: Template7.templates.guestTemplate
-    //  context: {
-    //name: username
-    //}
-    // })
+   // mainView.router.load({
+     //   template: Template7.templates.guestTemplate
+        //  context: {
+        //name: username
+        //}
+   // })
 
 }
 
@@ -796,10 +850,10 @@ function register() {
     var fname = $('#reg_fname').val();
     var lname = $('#reg_lastname').val();
     var email = $('#reg_email').val();
-    /*  var division = $('#division').val();
-      var aunit = $('#aunit').val();
-      var area = $('#reg_area').val();
-      var lang = $('#reg_lang').val();*/
+  /*  var division = $('#division').val();
+    var aunit = $('#aunit').val();
+    var area = $('#reg_area').val();
+    var lang = $('#reg_lang').val();*/
 
 
     if (username == '' || password == '' || fname == '' || lname == '') {
@@ -819,18 +873,18 @@ function register() {
         if (email == '') {
             $('#reg_email_err').show();
         }
-        /*  if (division == '') {
-              $('#reg_division_err').show();
-          }
-          if (aunit == '') {
-              $('#reg_aunit_err').show();
-          }
-          if (area == '') {
-              $('#reg_area_err').show();
-          }
-          if (lang == '') {
-              $('#reg_lang_err').show();
-          }*/
+      /*  if (division == '') {
+            $('#reg_division_err').show();
+        }
+        if (aunit == '') {
+            $('#reg_aunit_err').show();
+        }
+        if (area == '') {
+            $('#reg_area_err').show();
+        }
+        if (lang == '') {
+            $('#reg_lang_err').show();
+        }*/
         console.log('err empty field');
         myApp.hideIndicator();
         myApp.alert('Fields should not be empty.');
@@ -843,10 +897,10 @@ function register() {
                 fname: fname,
                 lname: lname,
                 email: email
-                /*  division: division,
-                  aunit: aunit,
-                  area: area,
-                  lang: lang*/
+              /*  division: division,
+                aunit: aunit,
+                area: area,
+                lang: lang*/
             })
             .done(function(data) {
                 if (data == 0) {
@@ -865,18 +919,18 @@ function register() {
                     if (email == '') {
                         $('#reg_email_err').show();
                     }
-                    /*    if (division == '') {
-                            $('#division_err').show();
-                        }
-                        if (aunit == '') {
-                            $('#aunit_err').show();
-                        }
-                        if (area == '') {
-                            $('#reg_area_err').show();
-                        }
-                        if (lang == '') {
-                            $('#reg_lang_err').show();
-                        }*/
+                /*    if (division == '') {
+                        $('#division_err').show();
+                    }
+                    if (aunit == '') {
+                        $('#aunit_err').show();
+                    }
+                    if (area == '') {
+                        $('#reg_area_err').show();
+                    }
+                    if (lang == '') {
+                        $('#reg_lang_err').show();
+                    }*/
                     myApp.hideIndicator();
                     myApp.alert('Fields should not be empty.');
                     console.log('err empty field');
@@ -887,12 +941,12 @@ function register() {
                     localStorage.setItem("fname", fname);
                     localStorage.setItem("lname", lname);
                     localStorage.setItem("userlogin", username);
-                    /*  localStorage.setItem("division", division);
-                      localStorage.setItem("aunit", aunit);
-                      localStorage.setItem("area", area);
-                      localStorage.setItem("lang", lang);*/
+                  /*  localStorage.setItem("division", division);
+                    localStorage.setItem("aunit", aunit);
+                    localStorage.setItem("area", area);
+                    localStorage.setItem("lang", lang);*/
                     myApp.hideIndicator();
-                    initApp();
+					initApp();
 
 
                 } else {
