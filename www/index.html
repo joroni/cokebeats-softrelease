@@ -93,6 +93,10 @@
 		<!-- Your main view, should have "view-main" class-->
 		<div class="view view-main">
 		<!-- Top Navbar-->
+
+
+		<!--***********************************************NAVIGATION*****************************************************-->
+
 		<div class="navbar">
 			<!-- Navbar inner for Index page-->
 			<div data-page="index" class="navbar-inner">
@@ -150,10 +154,16 @@
 			<!-- Navbar inner for Profile page-->
 			<div data-page="profile" class="navbar-inner cached">
 				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
-				<div class="center sliding">Profile</div>
+						<div class="center sliding">Profile</div>
+				</div>
+
 			</div>
 
-		</div>
+
+
+			<!--***********************************************PAGES*****************************************************-->
+
+
 		<!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
 		<div class="pages navbar-through toolbar-through">
 			<!-- Index Page-->
@@ -222,17 +232,15 @@
 				  <div class="page-content home" style="background-color: #fff;">
 				    <div class="content-block" style="margin-top:5px !important;">
 							<div class="row" id="output">
+								<!-- <p><a href="#" data-popup=".popup-about" class="open-popup">Open About Popup </a></p>-->
+													<!--<p><a href="#" data-popup=".popup-services" class="open-popup">Open Services Popup</a>-->
+													<!--<a href="#" onclick="log_out();" class="logout-button">Logout</a>
+									 -->
+
+									</div>
+								</div>
 
 
-							</div>
-
-
-					</div>
-
-					<!-- <p><a href="#" data-popup=".popup-about" class="open-popup">Open About Popup </a></p>-->
-										<!--<p><a href="#" data-popup=".popup-services" class="open-popup">Open Services Popup</a>-->
-										<!--<a href="#" onclick="log_out();" class="logout-button">Logout</a>
-				     -->
 
 				    </div>
 				  </div>
@@ -255,6 +263,16 @@
 			</div>
 
 
+
+
+			<!-- About Page-->
+			<div id="commentBox" data-page="commentbox" class="page cached">
+				<div class="page-content">
+					<div class="content-blocks">
+						<iframe id="commentBoxFrame" src="" style="min-height:100%; height:480px; width:100%;" />
+					</div>
+				</div>
+			</div>
 
 
 
@@ -576,7 +594,7 @@
 							<div style='clear:both;'></div>
 							<div class="list-block-label">
 								<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
-								<p><a href="#" class="back link">Cancel/a></p>
+								<p><a href="#" class="back link">Cancel</a></p>
 							</div>
 						</div>
 
@@ -587,14 +605,21 @@
 				</div>
 			</div>
 
-            <!-- SEPARATOR -->
-            </div>
+
+
+
+
+
+	<!--***********************************************TAB BAR ELEMENTS*****************************************************-->
+
+        <!-- SEPARATOR -->
+        </div>
              <!-- SEPARATOR -->
 
 
 
 
-      <div class="toolbar tabbar">
+<div class="toolbar tabbar">
 
 				<div class="notlogged toolbar-inner">
 					<!-- FOR SIGN UP ONLY -->
@@ -610,40 +635,48 @@
 						<!--<a href="#" data-popup=".popup-message" class="open-popup tab-link active">
 							<i class="f7-icons size-50">chat</i>
 						</a>--->
-
-
-				</div>
+					</div>
 				<!-- FOR POST COMMENT  -->
 
 
-			</div>
 
 
-			<!--<div class="toolbar tabbar">
-				<div class="toolbar-inner">
-					<a href="#homeLink" class="tab-link active">
-						<i class="f7-icons size-20">home</i>
-					</a>
 
-					<a href="#profile" class="tab-link">
-						<i class="f7-icons size-20">person</i>
-					</a>
+				<!--<div class="toolbar tabbar">
+					<div class="toolbar-inner">
+						<a href="#homeLink" class="tab-link active">
+							<i class="f7-icons size-20">home</i>
+						</a>
 
-				</div>
-				</div>-->
-			<!-- <div class="toolbar tabbar">
-				<div class="toolbar-inner">
-					<a href="#homeLink" data-popup=".popup-about" class="open-popup tab-link active">
-						<i class="f7-icons size-20">home</i>
-					</a>
+						<a href="#profile" class="tab-link">
+							<i class="f7-icons size-20">person</i>
+						</a>
 
-					<a href="#" data-popup=".popup-profile" class="open-popup tab-link">
-						<i class="f7-icons size-20">person</i>
-					</a>
+					</div>
+					</div>-->
+				<!-- <div class="toolbar tabbar">
+					<div class="toolbar-inner">
+						<a href="#homeLink" data-popup=".popup-about" class="open-popup tab-link active">
+							<i class="f7-icons size-20">home</i>
+						</a>
 
-				</div>
-				</div>-->
-			<!-- Bottom Toolbar-->
+						<a href="#" data-popup=".popup-profile" class="open-popup tab-link">
+							<i class="f7-icons size-20">person</i>
+						</a>
+
+					</div>
+					</div>-->
+				<!-- Bottom Toolbar-->
+</div>
+
+
+
+
+	<!--***********************************************SPECIAL ELEMENTS*****************************************************-->
+
+
+
+
 		</div>
 
 
@@ -651,14 +684,15 @@
 
 		<!-- About Popup -->
 
-		<div class="popup popup-message">
-			<p><a href="#" class="close-popup">Close popup</a></p>
-			<div class="content-block">
-				<iframe src="comment.html" style="height:480px; width:100%;" />
-			 </div>
+				<div class="popup popup-message">
+						<p><a href="#" class="close-popup">Close popup</a></p>
+						<div class="content-block">
+							<iframe src="comment.html" style="min-height:100%; height:480px; width:100%;" />
+						 </div>
 
 				</div>
-	</div>
+
+
 
 
 
@@ -675,6 +709,12 @@
 
 			          </div>
 			      </div> -->
+
+
+							</div>
+
+							</div>
+
 		<script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>
 		<!-- Path to Framework7 Library JS-->
 		<script type="text/javascript" src="js/framework7/framework7.min.js"></script>

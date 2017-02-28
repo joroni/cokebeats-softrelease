@@ -38,6 +38,17 @@ myApp.onPageInit('single', function (page) {
       $('.comments.toolbar-inner').show();
 })
 
+
+myApp.onPageInit('commentbox', function (page) {
+  // "page" variable contains all required information about loaded and initialized page
+    $('.navbar a.link.back').show();
+      $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
+})
+
+
+
+
+
 /* @TODO FizzQuizzAWS credentials */
 // Setup your FizzQuizzAWS applicationId and API key
 var applicationId = 'xxx';
