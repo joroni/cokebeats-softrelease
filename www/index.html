@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>Coke Beats</title>
+		<!-- Path to your custom app styles-->
+		<link rel="stylesheet" href="css/my-app.css">
+		<!-- Path to Framework7 Library CSS-->
+		<link rel="stylesheet" href="css/framework7/framework7.min.css">
+		<link rel="stylesheet" href="fonts/font_awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
+		<link rel="stylesheet" href="css/media.css">
+
+		<!-- PhotoSwipe Core CSS file -->
+		<link rel="stylesheet" href="vendor/photoswipe/photoswipe.css">
+		<link rel="stylesheet" href="vendor/photoswipe/default-skin/default-skin.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>
+		<script type="text/javascript" src="vendor/jquery.validate.js"></script>
+		<script type="text/javascript" src="vendor/jquery.form.js"></script>
+		<link rel="stylesheet" href="css/framework7-icons.css">
+		<script type="text/javascript" charset="utf-8" src="components/loader.js"></script>
+	</head>
+	<body>
+		<!-- Status bar overlay for fullscreen mode-->
+		<div class="statusbar-overlay"></div>
+		<!-- Panels overlay-->
+		<div class="panel-overlay"></div>
+		<!-- Left panel with reveal effect-->
+		<div class="panel panel-left panel-cover layout-light">
+			<!--<div class="content-block-title">Left Panel</div>-->
+			<!--<a href="#" class="close-panel">Close</a>-->
+			<div class="profile-card">
+				<!--<img id="avatar" src="img/5388738458_ea9fd2a7d7_q.jpg" class="avatar profile-image">
+				<div id="avatar" onClick="onCapturePhoto();" class="avatar profile-image"></div>-->
+                <div id="avatar" class="avatar profile-image"></div>
+				<div><span class="profile-name appfirstname"></span> <span class="profile-name applastname"></span></div>
+				<div class="appusername">@davegraham</div>
+				<div class="profile-desc appemail">Freelance designer, software engineer and cyclist</div>
+				<br />
+				<a href="#" onclick="log_out()" class="close-panel">Logout</a>
+			</div>
+			<div class="list-block no-margin">
+				<ul>
+					<li>
+						<a href="#" onclick="homeLink();" class="item-link close-panel">
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-f7"></i></div>
+								<div class="item-inner">
+									<div class="item-title">Home</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="#profile" class="item-link close-panel">
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-f7"></i></div>
+								<div class="item-inner">
+									<div class="item-title">Profile</div>
+								</div>
+							</div>
+						</a>
+					</li>
+					<!--<li>
+						<a href="#videos" class="item-link close-panel">
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-f7"></i></div>
+								<div class="item-inner">
+									<div class="item-title">Messages</div>
+								</div>
+							</div>
+						</a>
+						</li>-->
+				</ul>
+			</div>
+		</div>
+		<!-- Right panel with cover effect-->
+		<div class="panel panel-right panel-cover">
+			<div class="content-block">
+				<p>Right pannel can have custom content.<br />
+					Another line<br />
+					Yet another line<br />
+				</p>
+			</div>
+		</div>
+		<!-- Views-->
+		<div class="views">
+		<!-- Your main view, should have "view-main" class-->
+		<div class="view view-main">
+		<!-- Top Navbar-->
+		<div class="navbar">
+			<!-- Navbar inner for Index page-->
+			<div data-page="index" class="navbar-inner">
+				<!-- We have home navbar without left link-->
+        <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding">
+					<span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
+				</div>
+				<div class="right">
+					<!-- Right link contains only icon - additional "icon-only" class-->
+					<a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+				</div>
+			</div>
+
+            <!-- Navbar inner for Welcome page-->
+			<div data-page="welcome" class="navbar-inner cached">
+				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding">Welcome</div>
+				<div class="right">
+					<!-- Right link contains only icon - additional "icon-only" class-->
+					<a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+				</div>
+			</div>
+
+             <!-- Navbar inner for Content page-->
+			<div data-page="single" class="navbar-inner cached">
+				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding"></div>
+			</div>
+			<!-- Navbar inner for Login page-->
+			<!--<div data-page="form" class="navbar-inner cached">
+				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding">Login</div>
+			</div>-->
+			<!-- Navbar inner for Register page-->
+			<div data-page="register" class="navbar-inner cached">
+				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding">Register</div>
+			</div>
+			<!-- Navbar inner for About page
+				<div data-page="about" class="navbar-inner cached">
+					<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+					<div class="center sliding">About</div>
+
+				</div>-->
+
+            <!-- Navbar inner for Edit Profile page-->
+			<div data-page="editprofiles" class="navbar-inner cached">
+				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding">Edit Profile</div>
+			</div>
+
+
+
+			<!-- Navbar inner for Profile page-->
+			<div data-page="profile" class="navbar-inner cached">
+				<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+				<div class="center sliding">Profile</div>
+			</div>
+
+		</div>
+		<!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+		<div class="pages navbar-through toolbar-through">
+			<!-- Index Page-->
+			<div data-page="index" class="page">
+				<!-- Scrollable page content-->
+				<div class="page-content">
+					<!--	<div class="content-block-title">Example Application</div>
+						<div class="content-block">
+							<div class="content-block-inner">
+								<p>Very simple HTML5 mobile web app.</p>
+								<p>With the help of Framework7.<br />
+									Framework7 has bunch of pre built generic UI elements
+								</p>
+							</div>
+						</div>
+						<div class="content-block-title">Menu</div>-->
+					<div class="list-block">
+						<ul>
+							<li class="login-button">
+								<a href="#" class="open-login item-link" >
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title">Login</div>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#register" class="item-link register-button">
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title">Register</div>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#" onclick="log_out()" class="item-link logout-button">
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title">Logout</div>
+										</div>
+									</div>
+								</a>
+							</li>
+
+
+							<!--<li>
+								<a href="#about" class="item-link">
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title">About</div>
+										</div>
+									</div>
+								</a>
+								</li>-->
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+            <!-- Welcome Page-->
+			<script id="welcomeTemplate" type="text/template7">
+				<div data-page="welcome" class="page no-left cached">
+				  <div class="page-content home" style="background-color: #fff;">
+				    <div class="content-block" style="margin-top:5px !important;">
+							<div class="row" id="output">
+
+
+							</div>
+
+
+					</div>
+
+					<!-- <p><a href="#" data-popup=".popup-about" class="open-popup">Open About Popup </a></p>-->
+										<!--<p><a href="#" data-popup=".popup-services" class="open-popup">Open Services Popup</a>-->
+										<!--<a href="#" onclick="log_out();" class="logout-button">Logout</a>
+				     -->
+
+				    </div>
+				  </div>
+
+			</script>
+
+
+
+  		<div data-page="single" class="page cached">
+				  <div class="page-content" style="background-color: #fff;">
+				    <div id="blogcontent" class="content-block">
+
+							<!-- Floating Action Button -->
+							 <a href="#" class="floating-button color-pink">
+
+								 <i class="f7-icons size-50">chat</i>
+							 </a>
+						</div>
+				  </div>
+			</div>
+
+
+
+
+
+
+
+			<!-- About Page-->
+			<div data-page="about" class="page cached">
+				<div class="page-content">
+					<div class="content-block">
+						<p>
+							In order to go back to main page, you can click <strong>Back</strong> button on the left side of Top menu.<br />
+							Or simply use this link to <a href="#" class="back">go back</a>.
+						</p>
+						<p>
+							In fact you can load any page from this application, with the simple HTML link. <a href="#form">Load login page</a>.
+						</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel commodo massa, eu adipiscing mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus ultricies dictum neque, non varius tortor fermentum at. Curabitur auctor cursus imperdiet. Nam molestie nisi nec est lacinia volutpat in a purus. Maecenas consectetur condimentum viverra. Donec ultricies nec sem vel condimentum. Phasellus eu tincidunt enim, sit amet convallis orci. Vestibulum quis fringilla dolor.</p>
+						<p>Thanks,<br />
+							HTMLCenter team
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<!-- Guest Page-->
+			<script id="guestTemplate" type="text/template7">
+				<div data-page="guest" class="page no-navbar cached">
+				  <div class="page-content">
+					<div class="list-block">
+				        <ul>
+							<li>
+								<a href="#form" class="item-link login-button">
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title">Login</div>
+										</div>
+									</div>
+								</a>
+							</li>
+							 <li>
+								<a href="#register" class="item-link register-button">
+								  <div class="item-content">
+									<div class="item-inner">
+									  <div class="item-title">Register</div>
+									</div>
+								  </div>
+								</a>
+							  </li>
+							</ul>
+				      </div>
+
+				    </div>
+				  </div>
+
+			</script>
+			<!-- Register Page-->
+			<div data-page="register" class="page no-navbar cached">
+				<div class="page-content">
+					<form id="signupForm" method="post" class="form-horizontal" action="">
+						<div class="content-block-title"></div>
+						<div class="list-block">
+							<ul>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="icon icon-form-name"></i></div>
+										<div class="item-inner">
+											<div class="item-title label">Username</div>
+											<div class="item-input">
+												<input type="text" ng-model="username" id="reg_username" name="reg_username" placeholder="User Name">
+												<span id="reg_username_err" style="color:red; display:none;">Required</span>
+												<span id="user_taken" style="color:red; display:none;">Username already taken!</span>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="icon icon-form-email"></i></div>
+										<div class="item-inner">
+											<div class="item-title label">First Name</div>
+											<div class="item-input">
+												<input type="text" id="reg_fname" name="reg_fname" placeholder="First Name">
+												<span id="reg_fname_err" style="color:red; display:none;">Required</span>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="icon icon-form-email"></i></div>
+										<div class="item-inner">
+											<div class="item-title label">Last Name</div>
+											<div class="item-input">
+												<input type="text" id="reg_lastname" name="reg_lastname" placeholder="Last Name">
+												<span id="reg_lastname_err" style="color:red; display:none;">Required</span>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="icon icon-form-email"></i></div>
+										<div class="item-inner">
+											<div class="item-title label">E-mail</div>
+											<div class="item-input">
+												<input type="text" id="reg_email" name="reg_email" placeholder="E-Mail">
+												<span id="reg_email_err" style="color:red; display:none;">Required</span>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="icon icon-form-password"></i></div>
+										<div class="item-inner">
+											<div class="item-title label">Password</div>
+											<div class="item-input">
+												<input type="password" id="reg_password" name="reg_password" placeholder="Password">
+												<span id="reg_password_err" style="color:red; display:none;">Required</span>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+							</ul>
+							<div class="content-block">
+								<div class="row">
+									<div class="col-50">
+										<a id="cancel-register" href="#"  class="button back link button-big button-fill color-red">Cancel</a>
+									</div>
+									<div class="col-50">
+										<input id="submmit-register" onclick="register();" type="submit" value="Submit" class="button button-big button-fill color-green">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+             <div class="login-screen">
+                <div class="view">
+                  <div class="page">
+                    <div class="page-content login-screen-content">
+                      <div class="login-screen-title">
+                      <img src="img/logo-square.png" style="width:100px">
+                      </div>
+                      <form>
+                        <div class="list-block">
+                          <ul>
+                            <li class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Username</div>
+                                <div class="item-input">
+
+                                <input class="user_name_input" type="text" name="username" placeholder="KOID">
+
+                                </div>
+                              </div>
+                            </li>
+                            <li class="item-content">
+                              <div class="item-inner">
+                                <div class="item-title label">Password</div>
+                                <div class="item-input">
+                                  <input class="user_pass_input" type="password" placeholder="Password">
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="list-block">
+
+                          <ul>
+                            <li><a href="#" id="submmit-login" onclick="signin();" class="item-link list-button">Sign In</a></li>
+                          </ul>
+                          <!--<div class="list-block-label">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <p><a href="#" class="close-login-screen">Close Login Screen</a></p>
+                          </div>-->
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			<!-- Form Page-->
+
+
+
+
+			<!-- Profile Page-->
+			<div data-page="profile" class="page cached">
+				<div  id="profileContent" class="content-block centered" style="padding-top:40px;">
+					<!-- SEE taking-photo.html for camera code -->
+					<div id="avatar2" class="profile-image"></div>
+                     <a href="#editprofiles" class="item-link waves-effect waves-light red">
+<i class="f7-icons size-50">compose</i></a>
+                    </div>
+
+					<div class="list-block">
+						<ul>
+							<li>
+								<div class="item-content">
+									<div class="item-media"></div>
+									<div class="item-inner">
+										<div class="item-title label">First Name</div>
+										<div class="appfirstname"></div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item-content">
+									<div class="item-media">
+                                   <!-- <a href="#editprofile" class="btn-floating btn-large waves-effect waves-light red"> <i class="fa fa-pencil"></i></a>--></div>
+									<div class="item-inner">
+										<div class="item-title label">Last Name</div>
+										<div class="applastname"></div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item-content">
+									<div class="item-media">
+                                   <!-- <a href="#editprofile" class="item-link btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a> --></div>
+									<div class="item-inner">
+										<div class="item-title label">KOID</div>
+										<div class="appusername"></div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item-content">
+									<div class="item-media">
+                                    <!--<a id="editProfile" href="#editprofile"
+                                          class="btn-floating btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a>--> </div>
+									<div class="item-inner">
+										<div class="item-title label">Email</div>
+										<div class="appemail"></div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<table id="output2" class="table table-responsive">
+						</table>
+					</div>
+				</div>
+
+			<!-- END profile -->
+
+
+
+
+			<div data-page="editprofiles" class="page cached">
+				<div class="page-content">
+					<div class="centered">
+						<!--<div class="item-title">Profile Edit</div>-->
+						<div class="list-block">
+							<ul>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="f7-icons size-50">lock</i></div>
+										<div class="item-inner">
+											<div class="item-title label">KOID</div>
+											<div class="item-input">
+												<input id="user_name_input" class="userid" type="text" readonly placeholder="KOID">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+										<div class="item-inner">
+											<div class="item-title label">Password</div>
+											<div class="item-input">
+												<input class="mdl-textfield__input" type="password" id="password">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+										<div class="item-inner">
+											<div class="item-title label">First Name</div>
+											<div class="item-input">
+												<input class="mdl-textfield__input" type="text" id="firstname">
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+										<div class="item-inner">
+											<div class="item-title label">Last Name</div>
+											<div class="item-input">
+												<input class="mdl-textfield__input" type="text" id="lastname">
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<div class="list-block">
+
+
+							<div class="list-block-label">
+								<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+								<a href="#" id="btnUpdate" onclick="update_user();"  class="button button-big red size-70">Save</a>
+							</div>
+							<div style='clear:both;'></div>
+							<div class="list-block-label">
+								<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+								<p><a href="#" class="back link">Cancel/a></p>
+							</div>
+						</div>
+
+
+
+
+					</div>
+				</div>
+			</div>
+
+            <!-- SEPARATOR -->
+            </div>
+             <!-- SEPARATOR -->
+
+
+
+
+      <div class="toolbar tabbar">
+
+				<div class="notlogged toolbar-inner">
+					<!-- FOR SIGN UP ONLY -->
+				</div>
+
+
+
+				<!-- FOR POST COMMENT  -->
+				<div class="toolbar-inner">
+						<!--<a href="#homeLink" class="tab-link active">
+							<i class="f7-icons size-50">chat</i>
+						</a>-->
+						<!--<a href="#" data-popup=".popup-message" class="open-popup tab-link active">
+							<i class="f7-icons size-50">chat</i>
+						</a>--->
+
+
+				</div>
+				<!-- FOR POST COMMENT  -->
+
+
+			</div>
+
+
+			<!--<div class="toolbar tabbar">
+				<div class="toolbar-inner">
+					<a href="#homeLink" class="tab-link active">
+						<i class="f7-icons size-20">home</i>
+					</a>
+
+					<a href="#profile" class="tab-link">
+						<i class="f7-icons size-20">person</i>
+					</a>
+
+				</div>
+				</div>-->
+			<!-- <div class="toolbar tabbar">
+				<div class="toolbar-inner">
+					<a href="#homeLink" data-popup=".popup-about" class="open-popup tab-link active">
+						<i class="f7-icons size-20">home</i>
+					</a>
+
+					<a href="#" data-popup=".popup-profile" class="open-popup tab-link">
+						<i class="f7-icons size-20">person</i>
+					</a>
+
+				</div>
+				</div>-->
+			<!-- Bottom Toolbar-->
+		</div>
+
+
+
+
+		<!-- About Popup -->
+
+		<div class="popup popup-message">
+			<p><a href="#" class="close-popup">Close popup</a></p>
+			<div class="content-block">
+				<iframe src="comment.html" style="height:480px; width:100%;" />
+			 </div>
+
+				</div>
+	</div>
+
+
+
+		<!--<div class="popup popup-about">
+			<p><a href="#" class="close-popup">Close popup</a></p>
+			<div class="content-block">
+				<iframe src="posts.html"  style="width:100%; min-height:100%; height:520px; border:none; overflow-y: auto;" ></iframe>
+			</div>
+			</div>-->
+		<!-- Services Popup
+			<div class="popup popup-profile">
+			          <p><a href="#" class="close-popup">Close popup</a></p>
+			          <div class="content-block">
+
+			          </div>
+			      </div> -->
+		<script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="js/framework7/framework7.min.js"></script>
+		<script type="text/javascript" src="vendor/jquery.validate.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="js/my-app.js"></script>
+		<script type="text/javascript" src="vendor/photoswipe/photoswipe.min.js"></script>
+		<script type="text/javascript" src="vendor/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+		<script type="text/javascript">
+			$.validator.setDefaults( {
+			    submitHandler: function () {
+			        myApp.alert( "Submitted!" );
+			    }
+			} );
+
+			$( document ).ready( function () {
+			    $("#signupForm").validate({
+			        rules: {
+			            reg_username: {
+			                required: true
+			            },
+			            reg_fname: {
+			                required: true
+			            },
+			            reg_lastname: {
+			                required: true
+			            },
+			            reg_email: {
+			                required: true,
+			                email: true
+			            },
+			            division: {
+			                required: true
+			            },
+			            aunit: {
+			                required: true
+			            },
+			            reg_area:  {
+			                required: true
+			            }
+			        },
+			        messages: {
+
+			            reg_username: {
+			                required: "Please enter your KO ID."
+			            },
+			            reg_fname: {
+			                required: "Please enter your First Name."
+			            },
+			            reg_lastname: {
+			                required: "Please enter your Last Name."
+			            },
+			            division: {
+			                required: "Please enter your Division"
+			            },
+			            aunit: {
+			                required: "Please enter your Unit"
+			            },
+			            reg_area:  {
+			                required: "Please enter your Area"
+			            },
+
+			            reg_email: "Please enter a valid Email address"
+			            // agree: "Please accept our policy"
+			        },
+
+			        highlight: function ( element, errorClass, validClass ) {
+			            $(element).parents(".item-input, select").addClass("has-error").removeClass("has-success");
+			        },
+			        unhighlight: function ( element, errorClass, validClass ) {
+			            $(element).parents(".item-input, select").addClass("has-success").removeClass("has-error");
+			        }
+			    })
+			});
+		</script>
+
+
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+	</body>
+</html>
