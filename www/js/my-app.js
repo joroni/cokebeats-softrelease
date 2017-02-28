@@ -73,9 +73,9 @@ noNet(base_url + '/json.php',
 function initApp(){
 	myProfile();
 	check_storage();
-	postCached();
-	
-	
+	//postCached();
+	getPosts();
+
 }
 
 
@@ -98,9 +98,9 @@ function check_storage() {
                      //   name: username
                     }
                 });
-				
-		//getPosts();
-		postCached();
+
+		getPosts();
+		//postCached();
     } else {
         console.log('logged out');
         //window.location.replace("index.html");mainView.router.load({
@@ -171,7 +171,7 @@ function signin() {
                 // to welcome page. Redirect to welcome page
 
 
-              
+
                initApp();
                mainView.router.load({
                     template: Template7.templates.welcomeTemplate,
@@ -179,16 +179,19 @@ function signin() {
                       //  name: username
                     }
                 });
-				
+
 				//mainView.router.loadPage('#welcome');
 				$$('.left a').hide();
 				$$('.right a').show();
-				$$('.login-screen').removeClass('modal-in');
-				$$('.login-screen').addClass('modal-out');
+				$('.login-screen').removeClass('modal-in');
+				$('.login-screen').addClass('modal-out');
+
+				$('.login-screen').hide();
+
 				getPosts();
-				
+
                 //	window.location.href = "main.html";
-				
+
 
             }
         });
@@ -199,7 +202,7 @@ function signin() {
 $(function() {
     var user = localStorage.getItem('userlogin');
 
-  
+
     $.getJSON(base_url + '/get_user_details/' + user, function(result) {
 
         $.each(result, function(i, field) {
@@ -225,16 +228,16 @@ $(function() {
             $('#avatar,  #avatar2, .profile-image').css('background-size', 'contain');
             $('#avatar,  #avatar2, .profile-image').css('background-position', 'center center');
 
-        
+
             $('#userfirstname, .profile-firstname').text(field.fname);
             $('#userusername, .profile-id').text(field.username);
             $('#userlastname, .profile-lastname').text(field.lname);
             $('#useremail, .profile-email').text(field.email);
-       
+
             $('#user_name').text(field.username);
             $('#user_username').text(field.username);
             $('#user_password').text(field.password);
-          
+
             $('#user_firstname').text(field.fname);
             $('#user_lastname').text(field.lname);
             $('#user_email').text(field.email);
@@ -247,19 +250,19 @@ $(function() {
             console.log(field.fname);
             console.log(field.lname);
             console.log(field.email);
-         
+
 
             localStorage.setItem('user_id', field.id);
-         
+
 
 			localStorage.setItem('myusername', field.username);
 			localStorage.setItem('myfirstname', field.fname);
 			localStorage.setItem('mylastname', field.lname);
 			localStorage.setItem('mypassword', field.password);
 			localStorage.setItem('myemail', field.email);
-			
-			
-			
+
+
+
 			var appusername = localStorage.getItem('myusername');
 			var appfirstname = localStorage.getItem('myfirstname');
 			var applastname =localStorage.getItem('mylastname');
@@ -277,7 +280,7 @@ $(function() {
 function myProfile() {
    var user = localStorage.getItem('userlogin');
 
-  
+
     $.getJSON(base_url + '/get_user_details/' + user, function(result) {
 
         $.each(result, function(i, field) {
@@ -303,16 +306,16 @@ function myProfile() {
             $('#avatar,  #avatar2, .profile-image').css('background-size', 'contain');
             $('#avatar,  #avatar2, .profile-image').css('background-position', 'center center');
 
-        
+
             $('#userfirstname, .profile-firstname').text(field.fname);
             $('#userusername, .profile-id').text(field.username);
             $('#userlastname, .profile-lastname').text(field.lname);
             $('#useremail, .profile-email').text(field.email);
-       
+
             $('#user_name').text(field.username);
             $('#user_username').text(field.username);
             $('#user_password').text(field.password);
-          
+
             $('#user_firstname').text(field.fname);
             $('#user_lastname').text(field.lname);
             $('#user_email').text(field.email);
@@ -325,19 +328,19 @@ function myProfile() {
             console.log(field.fname);
             console.log(field.lname);
             console.log(field.email);
-         
+
 
             localStorage.setItem('user_id', field.id);
-         
+
 
 			localStorage.setItem('myusername', field.username);
 			localStorage.setItem('myfirstname', field.fname);
 			localStorage.setItem('mylastname', field.lname);
 			localStorage.setItem('mypassword', field.password);
 			localStorage.setItem('myemail', field.email);
-			
-			
-			
+
+
+
 			var appusername = localStorage.getItem('myusername');
 			var appfirstname = localStorage.getItem('myfirstname');
 			var applastname =localStorage.getItem('mylastname');
@@ -348,7 +351,7 @@ function myProfile() {
 			$('.applastname').text(applastname);
 			$('.apppassword').text(apppassword);
 			$('.appemail').text(appemail);
-			
+
 
         });
     });
@@ -385,8 +388,8 @@ function update_user() {
                 //$('#update_0').show();
 
             } else if (data == 1) {
-              
-              
+
+
 
                 $('#user_name').text(username);
                 $('#user_password').text(password);
@@ -413,7 +416,7 @@ function postCached() {
 	var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
 			console.log(jsonObj);
-		
+
 			$.each(jsonObj.posts, function(i, field){
   	        	var title=(field.title).slice(0,5);
                 var frompost_id=field.id;
@@ -422,23 +425,23 @@ function postCached() {
 				var modified=field.modified;
 				var thumbnail=field.thumbnail;
 				$("#output").append('<div class="item col-50">'+
-										'<a class="blog-link" id="'+frompost_id+'"  href="#single">'+
+										'<a class="blog-links" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
 											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
 												'<div class="media-title-inner">'+title+'</div>'+
 											'</div>'+
 										'</a>'+
 									'</div>');
-									
-									
-			
+
+
+
 			});
-			
+
 			 myApp.hideIndicator();
-      	
-		
+
+
 }
 
-/*function getPosts() {
+function getPostssss() {
   		myApp.showIndicator();
   		var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
@@ -447,42 +450,43 @@ function postCached() {
 			var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
 			console.log(jsonObj);
-		/	var postData = localStorage.getItem('tempPostData');
-			/var array = JSON.parse(postData);
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
 			$.each(jsonObj.posts, function(i, field){
   	        	var title=(field.title).slice(0,5);
                 var frompost_id=field.id;
 				var content=field.content;
 				var date=field.date;
 				var thumbnail=field.thumbnail;
-			 	
+
 			$("#output").append('<div class="item col-50">'+
-										'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+										//'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+                    '<a class="blog-links" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
 										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
 											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
 												'<div class="media-title-inner">'+title+'</div>'+
 											'</div>'+
 										'</a>'+
 									'</div>');
-				
-							
-									 
+
+
+
   	        });
-			
+
 			 myApp.hideIndicator();
       	});
-		
-  	
-}*/
 
-	
+
+}
+
+
 			$('a.blog-link').on('click', function(){
 				var blogPostID = $(this).attr('id');
 				console.log(blogPostID);
 					//myApp.alert($(this).attr('id'));
-					
+
 					myApp.showIndicator();
-					
+
 					var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
 					$.getJSON(url,function(result){
 						//console.log(result);
@@ -490,20 +494,20 @@ function postCached() {
 							var postData = localStorage.getItem('tempPostContentData');
 							var jsonObj = $.parseJSON(postData);
 							console.log(jsonObj);
-					
+
 					var table = '';
 			 $.each(result, function() {
-				 
+
 		 table += '<p>' + this['title'] + '</p><p>' + this['content'] + '</p>';
     });
-	
+
 		 table += '';
     	document.getElementById("blogcontent").innerHTML = table;
 
-					
-					
-					
-					
+
+
+
+
 					//	console.log(result);
 						/*$.each(result.posts, function(i, field){
 							var title=field.title;
@@ -511,63 +515,99 @@ function postCached() {
 							var content=field.content;
 							var date=field.date;
 							var thumbnail=field.thumbnail;*/
-							
-							
-							
+
+
+
 							/*$(".view").append('<div class="popup popup-single">'+
 							'<p><a href="#" class="close-popup">Close popup</a></p>'+
 							'<div class="content-block">'+
-							+content+	
+							+content+
 							'</div>'+
 							'</div>');
 							*/
 							/*$(".view").append('<div data-page="single" class="page cached">'+
 								  '<div class="page-content" style="background-color: #fff;">'+
 									'<div id="blogcontent" class="content-block">'+
-											
+
 										+content+
-								
+
 									'</div>'+
 								  '</div>'+
 							'</div>');*/
-							
-							//$("#blogcontent").append('<div id="'+id+'">'+content+'</div>');		
-						
-						//	alert(content);	
-												 
+
+							//$("#blogcontent").append('<div id="'+id+'">'+content+'</div>');
+
+						//	alert(content);
+
 						});
-					
-						
+
+
 						 myApp.hideIndicator();
 					});
-					
-			
-	
 
-				
+
+
+function getPosts() {
+  		myApp.showIndicator();
+  		var url= base_wp_url+"/?json=get_recent_posts";
+  		$.getJSON(url,function(result){
+			console.log(result);
+			localStorage.setItem('tempPostData', JSON.stringify(result));
+			var postData = localStorage.getItem('tempPostData');
+			var jsonObj = $.parseJSON(postData);
+			console.log(jsonObj);
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
+			$.each(jsonObj.posts, function(i, field){
+  	        	var title=(field.title).slice(0,5);
+                var frompost_id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var thumbnail=field.thumbnail;
+
+			$("#output").append('<div class="item col-50">'+
+      '<a class="blog-links" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
+									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
+											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
+												'<div class="media-title-inner">'+title+'</div>'+
+											'</div>'+
+										'</a>'+
+									'</div>');
+
+
+
+  	        });
+
+			 myApp.hideIndicator();
+      	});
+
+
+}
+
 /*
 function getPostContent() {
- 
+
   	myApp.showIndicator();
   		var blogPostID = $(this).attr('id');
 		var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
-		
-			
+
+
   			$.getJSON(url,function(result){
 			//console.log(result);
-			
+
 			localStorage.setItem('tempPostContentData', JSON.stringify(result));
 			var postData = localStorage.getItem('tempPostContentData');
 			var jsonContentObj = $.parseJSON(postData);
 			//var jsonContentObj = postData;
 			console.log(jsonContentObj);
-			//$("#blogcontent").append('<div>'+jsonContentObj[0].content+'</div>');		
+			//$("#blogcontent").append('<div>'+jsonContentObj[0].content+'</div>');
 			var table = '<table><thead><tr><th>Title</th></tr><tr><th>Content</th></tr></thead><tbody>';
 			 $.each(result, function() {
-				 
+
 		 table += '<tr><td>' + this['title'] + '</td></tr><tr><td>' + this['content'] + '</td></tr>';
     });
-	
+
 		 table += '</tbody></table>';
     	document.getElementById("datalist").innerHTML = table;
 
@@ -576,7 +616,7 @@ function getPostContent() {
 
 
 			//$("#blogcontent").html(jsonContentObj.posts.content);
-			
+
   	       /* $.each(jsonContentObj.posts, function(i, field){
   	        	var title=field.title;
                 var id=field.id;
@@ -584,22 +624,22 @@ function getPostContent() {
 				var date=field.date;
 				var thumbnail=field.thumbnail;
 				console.log(title);
-				
-				
-  	      
-				$("#blogcontent").append('<div>'+postData+'</div>');		
-			
-				//<div class='blogposts' id='"+id+'">'+content+"</div>");				
-									 
+
+
+
+				$("#blogcontent").append('<div>'+postData+'</div>');
+
+				//<div class='blogposts' id='"+id+'">'+content+"</div>");
+
   	        });
-			
+
 			 myApp.hideIndicator();
       	});
-		
-  	
+
+
 }
   */
- 
+
 
 function homeLink() {
  mainView.router.load({
@@ -608,7 +648,7 @@ function homeLink() {
      //     name: username
       }
   });
- 
+
  initApp();
  //postCached();
  getPosts();
