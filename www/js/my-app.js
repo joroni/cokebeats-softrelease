@@ -475,43 +475,7 @@ function postCached() {
 
 }
 
-function getPostssss() {
-  		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_posts&count=6&status=published&offset='int offset'";
-  		$.getJSON(url,function(result){
-			console.log(result);
-			localStorage.setItem('tempPostData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
-		//	var postData = localStorage.getItem('tempPostData');
-			//var array = JSON.parse(postData);
-			$.each(jsonObj.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
 
-			$("#output").append('<div class="item col-50">'+
-										//'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-                    '<a class="blog-link" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
-										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
-											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
-												'<div class="media-title-inner">'+title+'</div>'+
-											'</div>'+
-										'</a>'+
-									'</div>');
-
-
-
-  	        });
-
-			 myApp.hideIndicator();
-      	});
-
-
-}
 
 
 			$('a.blog-link').on('click', function(){
@@ -525,50 +489,13 @@ function getPostssss() {
       });
 
 
-/*
-      // number of rows to show per page
-      $rowsperpage = 6;
-
-      // find out total pages
-      $totalpages = ceil($numrows / $rowsperpage);
-
-      // get the current page or set a default
-      if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
-      $currentpage = (int) $_GET['currentpage'];
-      } else {
-      $currentpage = 1;  // default page number
-      }
-
-      // if current page is greater than total pages
-      if ($currentpage > $totalpages) {
-      // set current page to last page
-      $currentpage = $totalpages;
-      }
-      // if current page is less than first page
-      if ($currentpage < 1) {
-      // set current page to first page
-      $currentpage = 1;
-      }
-
-      // the offset of the list, based on current page
-      $offset = ($currentpage - 1) * $rowsperpage;
-
-      // get the info from the MySQL database
-      $sql = "SELECT post_title, post_date FROM wp_posts ORDER BY ID DESC LIMIT $offset, $rowsperpage";
-      $result = mysql_query($sql, $conn) or die(mysql_error());
-
-      while ($row = mysql_fetch_assoc($result)){
-      $output[]=$row;
-      }
-      print(json_encode($output));
 
 
-      ?>
-*/
+
 
 function getPosts() {
   		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_posts&count=6&status=published&offset=2";
+  		var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
 			console.log(result);
 			localStorage.setItem('tempPostData', JSON.stringify(result));
@@ -661,16 +588,10 @@ function getPostContent() {
 
 
 function homeLink() {
- mainView.router.load({
-      template: Template7.templates.welcomeTemplate,
-     context: {
-     //     name: username
-      }
-  });
-
+ mainView.router.loadPage('#welcome');
  initApp();
- //postCached();
- getPosts();
+ postCached();
+ //getPosts();
 }
 function edittheProfile() {
 
@@ -794,9 +715,10 @@ $(function() {
 
 function log_out() {
     localStorage.removeItem('userlogin');
+
     //  window.location.replace("index.html");
-    window.localStorage.clear();
-	myApp.loginScreen();
+      //window.localStorage.clear();
+	   myApp.loginScreen();
 
    // mainView.router.load({
      //   template: Template7.templates.guestTemplate
@@ -807,31 +729,6 @@ function log_out() {
 
 }
 
-function get_Quiz_History() {
-    $('#output')
-        .empty();
-    var user_id = localStorage.getItem('user_id');
-    $('#output')
-        .html('<th colspan="4" style="padding: 0 5px; background: silver;"><h5>Stats</h5></th>');
-    $.getJSON(base_url + '/get_user_quiz_history/' + user_id, function(results) {
-
-        //$.each(result, function ( i, field ) {
-        $.each(results, function(i, fields) {
-
-            $("#output")
-                .append("<tr><td><label>Set</label></td><td> " + fields.datefrom + " </td><td><label>Score</label></td><td>" + fields.score_bottle + "</td></tr>");
-
-            $("#output2")
-                .append("<li> " + fields.datefrom + " </li>");
-
-            var checkLQuiz = $("#output2 li:nth-child(1)")
-                .text();
-            console.log("checkLQuiz", checkLQuiz);
-            localStorage.setItem('checkLQuiz', checkLQuiz);
-
-        });
-    })
-}
 /******************************************/
 
 

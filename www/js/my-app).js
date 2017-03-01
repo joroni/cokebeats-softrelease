@@ -8,10 +8,6 @@ var myApp = new Framework7({
 // Export selectors engine
 var $$ = Dom7;
 
-
-$$('.open-login').on('click', function () {
-  myApp.loginScreen();
-});
 // Add main View
 var mainView = myApp.addView('.view-main', {
     // Enable dynamic Navbar
@@ -24,13 +20,13 @@ var mainView = myApp.addView('.view-main', {
 // Setup your FizzQuizzAWS applicationId and API key
 var applicationId = 'xxx';
 var restApiKey = 'yyy';
-var alertTitle = 'Coke Beats';
+
 
 // Funcion to handle Cancel button on Login page
 $$('#cancel-login').on('click', function() {
     // Clear field values
-    $$('.user_name_input').val('');
-    $$('.user_pass_input').val('');
+    $$('#user_name_input').val('');
+    $$('#user_pass_input').val('');
 });
 
 $$('.view').addClass('theme-red layout-light');
@@ -38,8 +34,7 @@ $$('.view').addClass('theme-red layout-light');
 
 
 
-var base_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel";
-var base_wp_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress";
+var base_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laraveladmin";
 
 
 function noNet(path, success, error) {
@@ -51,8 +46,7 @@ function noNet(path, success, error) {
                     success(JSON.parse(xhr.responseText));
                 }
             } else {
-              /*  window.location.replace("nonet.html");*/
-              myApp.alert("You're Offline", alertTitle);
+                window.location.replace("nonet.html");
             }
         }
     };
@@ -70,15 +64,6 @@ noNet(base_url + '/json.php',
 );
 // END connection to server
 
-function initApp(){
-	myProfile();
-	check_storage();
-	postCached();
-	
-	
-}
-
-
 
 // START checking if user is logged
 function check_storage() {
@@ -88,21 +73,11 @@ function check_storage() {
         //	window.location.replace("main.html");
         $('.login-button, .register-button').hide();
         $('.logout-button').show();
-		$('.left a').show();
-		$('.right').show();
-		$('.notlogged.toolbar').hide();
+
+
         console.log('logged');
-		mainView.router.load({
-                    template: Template7.templates.welcomeTemplate,
-                    context: {
-                     //   name: username
-                    }
-                });
-				
-		//getPosts();
-		postCached();
     } else {
-        console.log('logged out');
+        console.log('err');
         //window.location.replace("index.html");mainView.router.load({
         /*  mainView.router.load({
               template: Template7.templates.guestTemplate,*/
@@ -113,8 +88,7 @@ function check_storage() {
         $('.login-button, .register-button').show();
         $('.logout-button').hide();
         $('.right').hide();
-		$('.notlogged.toolbar').show();
- 		myApp.loginScreen();
+
     }
 
 }
@@ -128,8 +102,10 @@ check_storage();
 // START login
 function signin() {
     myApp.showIndicator();
-    var user_name_input = $('.user_name_input').val();
-    var user_pass_input = $('.user_pass_input').val();
+    var user_name_input = $('#user_name_input')
+        .val();
+    var user_pass_input = $('#user_pass_input')
+        .val();
 
     var username = user_name_input
     var password = user_pass_input;
@@ -144,9 +120,8 @@ function signin() {
         .done(function(data) {
             if (data == 0) {
                 myApp.hideIndicator();
-				$('.notlogged.toolbar').show();
                 //  if (!username || !password){
-                myApp.alert('Username and Password incorrect', alertTitle);
+                myApp.alert('Username and Password incorrect');
                 return;
                 //}
 
@@ -158,65 +133,74 @@ function signin() {
             } else if (data == 1) {
 
                 myApp.hideIndicator();
-				$('.notlogged.toolbar').hide();
+
                 localStorage.setItem("userlogin", user_name_input);
-               // get_Quiz_History();
-               // localStorage.setItem("userQuizRecord", get_Quiz_History);
+                get_Quiz_History();
+                localStorage.setItem("userQuizRecord", get_Quiz_History);
                 localStorage.setItem("userData", data);
 
-               // console.log("get_Quiz_History")
-              //  console.log('Response body: ' + data);
+                console.log("get_Quiz_History")
+                console.log('Response body: ' + data);
 
                 // Will pass context with retrieved user name
                 // to welcome page. Redirect to welcome page
 
 
-              
-               initApp();
-               mainView.router.load({
+                $('#welcomenav').removeClass('cached');
+                $('.navbar.right').show();
+                mainView.router.load({
                     template: Template7.templates.welcomeTemplate,
                     context: {
-                      //  name: username
+                        name: username
                     }
                 });
-				
-				//mainView.router.loadPage('#welcome');
-				$$('.left a').hide();
-				$$('.right a').show();
-				$$('.login-screen').removeClass('modal-in');
-				$$('.login-screen').addClass('modal-out');
-				getPosts();
-				
                 //	window.location.href = "main.html";
-				
 
             }
         });
 }
 // END login
 
-/*
+
 $(function() {
     var user = localStorage.getItem('userlogin');
 
-  
+    /*if (userlogin != 'blank') {
+     window.location.replace("main.html");
+     }
+
+     */
+
     $.getJSON(base_url + '/get_user_details/' + user, function(result) {
 
         $.each(result, function(i, field) {
-            $('.userid').val(field.username);
-            $('#username').val(field.username);
-            $('#password').val(field.password);
-            $('#firstname').val(field.fname);
-            $('#lastname').val(field.lname);
-            $('#email').val(field.email);
-           $('#avatar').val(field.avatar);
+            // $("#output").append("<tr><td>Username:  "+ field.username + " </td></tr><tr><td>Password: "+ field.password + "</td></tr>");
+            //  $('#userid').val(field.id);
+            $('#username')
+                .val(field.username);
+            $('#password')
+                .val(field.password);
+            $('#firstname')
+                .val(field.fname);
+            $('#lastname')
+                .val(field.lname);
+            $('#email')
+                .val(field.email);
+            $('#division')
+                .val(field.division);
+            $('#unit')
+                .val(field.aunit);
+            $('#area')
+                .val(field.area);
+            $('#avatar')
+                .val(field.avatar);
 
             if ($('#avatar, #avatar2,  .profile-image')
                 .val() == "" || $('#avatar, #avatar2, .profile-image')
                 .val() == null) {
-                var profile_photo = base_url + '/app/views/public/upload/files/' + 'photo.png';
+                var profile_photo = base_url + '/upload/files/' + 'daenerys.png';
             } else {
-                var profile_photo = base_url + '/app/views/public/upload/files/' + field.avatar;
+                var profile_photo = base_url + '/upload/files/' + field.avatar;
             }
 
             //var profile_photo =  base_url + '/upload/files/' + field.avatar;
@@ -225,20 +209,43 @@ $(function() {
             $('#avatar,  #avatar2, .profile-image').css('background-size', 'contain');
             $('#avatar,  #avatar2, .profile-image').css('background-position', 'center center');
 
-        
-            $('#userfirstname, .profile-firstname').text(field.fname);
-            $('#userusername, .profile-id').text(field.username);
-            $('#userlastname, .profile-lastname').text(field.lname);
-            $('#useremail, .profile-email').text(field.email);
-       
-            $('#user_name').text(field.username);
-            $('#user_username').text(field.username);
-            $('#user_password').text(field.password);
-          
-            $('#user_firstname').text(field.fname);
-            $('#user_lastname').text(field.lname);
-            $('#user_email').text(field.email);
-            $('#user_privilege').text(field.privilege);
+            //$("#avatar,  .profile-avatar").empty();
+            //for profile
+            $('#userfirstname, .profile-firstname')
+                .text(field.fname);
+            $('#userusername, .profile-id')
+                .text(field.username);
+            $('#userlastname, .profile-lastname')
+                .text(field.lname);
+            $('#useremail, .profile-email')
+                .text(field.email);
+            $('#userdivision, .profile-division')
+                .text(field.division);
+            $('#userunit, .profile-unit')
+                .text(field.aunit);
+            $('#userarea, .profile-area')
+                .text(field.area);
+            //$('#avatar, .profile-avatar').text(field.avatar);
+
+            //$('#user_id').text(field.id);
+            $('#user_name')
+                .text(field.username);
+            $('#user_username')
+                .text(field.username);
+            $('#user_password')
+                .text(field.password);
+            $('#user_division')
+                .text(field.division);
+            $('#user_aunit')
+                .text(field.aunit);
+            $('#user_firstname')
+                .text(field.fname);
+            $('#user_lastname')
+                .text(field.lname);
+            $('#user_email')
+                .text(field.email);
+            $('#user_privilege')
+                .text(field.privilege);
 
             console.log('ID:', field.id);
             console.log('User Name:', field.username);
@@ -247,75 +254,107 @@ $(function() {
             console.log(field.fname);
             console.log(field.lname);
             console.log(field.email);
-         
+          /*  console.log(field.division);
+            console.log(field.aunit);
+            console.log(field.area);
+            console.log(field.avatar);*/
 
             localStorage.setItem('user_id', field.id);
-         
+          /*  localStorage.setItem('user_division', field.division);
+            localStorage.setItem('user_area', field.area);
+            localStorage.setItem('user_aunit', field.aunit);*/
+            // console.log(field.lang);
+            // get_Quiz_History();
 
-			localStorage.setItem('myusername', field.username);
-			localStorage.setItem('myfirstname', field.fname);
-			localStorage.setItem('mylastname', field.lname);
-			localStorage.setItem('mypassword', field.password);
-			localStorage.setItem('myemail', field.email);
-			
-			
-			
-			var appusername = localStorage.getItem('myusername');
-			var appfirstname = localStorage.getItem('myfirstname');
-			var applastname =localStorage.getItem('mylastname');
-			var apppassword =localStorage.getItem('mypassword');
-			var appemail =localStorage.getItem('myemail');
-			$('.appusername').text(appusername);
-			$('.appfirstname').text(appfirstname);
-			$('.applastname').text(applastname);
-			$('.apppassword').text(apppassword);
-			$('.appemail').text(appemail);
+          /*  var myDivision = localStorage.getItem("user_division");
+            var str = myDivision.replace(/\s/g, '');
+            console.log('My Division is:', str);
+            localStorage.setItem('str', str);
+            //console.log("fizzquizz" + str + ".html");
+            var fizzquizz = "fizzquizz" + str + ".html";
+            localStorage.setItem('fizzquizz', fizzquizz);
+            console.log("My FizzQuizz is:", fizzquizz);
+
+            var quizlink = localStorage.getItem('fizzquizz');
+
+            $('#getStarted2')
+                .on('click', function(e) {
+                    e.preventDefault();
+                    // var checkLQuiz = localStorage.getItem('fizzquizz');
+
+                    // window.location.replace(fizzquizz);
+                    //  window.location.replace('fizzquizzData.html');
+                    console.log('Confirm my FizzQuizz link:', fizzquizz);
+
+                });
+*/
         });
     });
-});*/
+});
 
 function myProfile() {
-   var user = localStorage.getItem('userlogin');
+    var user = localStorage.getItem('userlogin');
+    //loaderSpinMini();
 
   
     $.getJSON(base_url + '/get_user_details/' + user, function(result) {
 
         $.each(result, function(i, field) {
-            $('.userid').val(field.username);
-            $('#username').val(field.username);
-            $('#password').val(field.password);
-            $('#firstname').val(field.fname);
-            $('#lastname').val(field.lname);
-            $('#email').val(field.email);
-           $('#avatar').val(field.avatar);
+            // $("#output").append("<tr><td>Username:  "+ field.username + " </td></tr><tr><td>Password: "+ field.password + "</td></tr>");
+            //  $('#userid').val(field.id);
+            $('#username')
+                .val(field.username);
+            $('#password')
+                .val(field.password);
+            $('#firstname')
+                .val(field.fname);
+            $('#lastname')
+                .val(field.lname);
+            $('#email')
+                .val(field.email);
+          /*  $('#division')
+                .val(field.division);
+            $('#unit')
+                .val(field.aunit);
+            $('#area')
+                .val(field.area);*/
+            $('#avatar').val(field.avatar);
 
-            if ($('#avatar, #avatar2,  .profile-image')
-                .val() == "" || $('#avatar, #avatar2, .profile-image')
-                .val() == null) {
-                var profile_photo = base_url + '/app/views/public/upload/files/' + 'photo.png';
+            if ($('#avatar').val() == "" || $('#avatar').val() == null) {
+                var profile_photo = base_url + '/upload/files/' + 'daenerys.png';
             } else {
-                var profile_photo = base_url + '/app/views/public/upload/files/' + field.avatar;
+                var profile_photo = base_url + '/upload/files/' + field.avatar;
             }
 
             //var profile_photo =  base_url + '/upload/files/' + field.avatar;
             // $('#avatar').html('<div class="avatar" style="background-image: url("+ profile_photo +")');
-            $('#avatar,  #avatar2, .profile-image').css('background-image', 'url(' + profile_photo + ')');
-            $('#avatar,  #avatar2, .profile-image').css('background-size', 'contain');
-            $('#avatar,  #avatar2, .profile-image').css('background-position', 'center center');
+            $('#avatar').css('background-image', 'url(' + profile_photo + ')');
+            $("#avatar").empty();
+            //for profile
+            $('#userfirstname, #user_firstname').text(field.fname);
+            $('#userusername, #user_name, #user_username').text(field.username);
+            $('#userlastname, #user_lastname').text(field.lname);
+            $('#useremail, #user_email').text(field.email);
+          /*  $('#userdivision')
+                .text(field.division);
+            $('#userunit')
+                .text(field.aunit);
+            $('#userarea')
+                .text(field.area);*/
+            $('#avatar').text(field.avatar);
 
-        
-            $('#userfirstname, .profile-firstname').text(field.fname);
-            $('#userusername, .profile-id').text(field.username);
-            $('#userlastname, .profile-lastname').text(field.lname);
-            $('#useremail, .profile-email').text(field.email);
-       
-            $('#user_name').text(field.username);
+
+            //$('#user_id').text(field.id);
+          /*  $('#user_name').text(field.username);
             $('#user_username').text(field.username);
             $('#user_password').text(field.password);
-          
+            $('#user_division')
+                .text(field.division);
+            $('#user_aunit')
+                .text(field.aunit);
             $('#user_firstname').text(field.fname);
             $('#user_lastname').text(field.lname);
-            $('#user_email').text(field.email);
+            $('#user_email').text(field.email);*/
             $('#user_privilege').text(field.privilege);
 
             console.log('ID:', field.id);
@@ -325,49 +364,42 @@ function myProfile() {
             console.log(field.fname);
             console.log(field.lname);
             console.log(field.email);
-         
-
-            localStorage.setItem('user_id', field.id);
-         
-
-			localStorage.setItem('myusername', field.username);
-			localStorage.setItem('myfirstname', field.fname);
-			localStorage.setItem('mylastname', field.lname);
-			localStorage.setItem('mypassword', field.password);
-			localStorage.setItem('myemail', field.email);
-			
-			
-			
-			var appusername = localStorage.getItem('myusername');
-			var appfirstname = localStorage.getItem('myfirstname');
-			var applastname =localStorage.getItem('mylastname');
-			var apppassword =localStorage.getItem('mypassword');
-			var appemail =localStorage.getItem('myemail');
-			$('.appusername').text(appusername);
-			$('.appfirstname').text(appfirstname);
-			$('.applastname').text(applastname);
-			$('.apppassword').text(apppassword);
-			$('.appemail').text(appemail);
-			
+          /*  console.log(field.division);
+            console.log(field.aunit);
+            console.log(field.area);*/
+            console.log(field.avatar);
 
         });
     });
 }
 
-myProfile();
 function update_cancel() {
-  // $('#profileContent').show();
-   // $('#editmyProfile').hide();
+    $('#profileContent')
+        .show();
+    $('#editmyProfile')
+        .hide();
 }
 
 function update_user() {
     myApp.showIndicator();
     // var id = $('#user_id').val();
-    var username = $('.userid').val();
-    var password = $('#password').val();
-    var fname = $('#firstname').val();
-    var lname = $('#lastname').val();
-    var user_email = $('#email').val();
+    var username = $('#username')
+        .val();
+    var password = $('#password')
+        .val();
+    var fname = $('#firstname')
+        .val();
+    var lname = $('#lastname')
+        .val();
+    var user_email = $('#email')
+        .val();
+/*    var division = $('#division')
+        .val();
+    var aunit = $('#unit')
+        .val();
+    var area = $('#area')
+        .val();*/
+    // var privilege = $('#user_privilege').val();
 
     $.post(base_url + '/update/user', {
             username: username,
@@ -381,243 +413,54 @@ function update_user() {
         .done(function(data) {
             if (data == 0) {
                 myApp.hideIndicator();
-				myApp.alert('Updates not saved', alertTitle);
-                //$('#update_0').show();
+                $('#update_0')
+                    .show();
 
             } else if (data == 1) {
-              
-              
+                myApp.hideIndicator();
+                $('#update_1')
+                    .show();
 
-                $('#user_name').text(username);
-                $('#user_password').text(password);
-                $('#user_firstname').text(fname);
-                $('#user_lastname').text(lname);
-            	$('#user_email').text(user_email);
+                $('.profile-content')
+                    .show();
+                $('#editmyProfile')
+                    .hide();
+                //$('#user_id').text(id);
+
+                /*$('#user_name').text(username);*/
+                $('#user_password')
+                    .text(password);
+                $('#user_firstname')
+                    .text(fname);
+                $('#user_lastname')
+                    .text(lname);
+              /*  $('#user_division')
+                    .text(division);
+                $('#user_email')
+                    .text(user_email);*/
 
                 //  window.location.reload();
-				mainView.router.load({
-                    template: Template7.templates.welcomeTemplate,
-                    context: {
-                     //   name: username
-                    }
-                });
-				myApp.hideIndicator();
-				myApp.alert('Updates Successful', alertTitle);
-				initApp();
             }
         });
 
 }
 
-function postCached() {
-	var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
-		
-			$.each(jsonObj.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var modified=field.modified;
-				var thumbnail=field.thumbnail;
-				$("#output").append('<div class="item col-50">'+
-										'<a class="blog-link" id="'+frompost_id+'"  href="#single">'+
-											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
-												'<div class="media-title-inner">'+title+'</div>'+
-											'</div>'+
-										'</a>'+
-									'</div>');
-									
-									
-			
-			});
-			
-			 myApp.hideIndicator();
-      	
-		
-}
 
-/*function getPosts() {
-  		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_recent_posts";
-  		$.getJSON(url,function(result){
-			console.log(result);
-			localStorage.setItem('tempPostData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
-		/	var postData = localStorage.getItem('tempPostData');
-			/var array = JSON.parse(postData);
-			$.each(jsonObj.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
-			 	
-			$("#output").append('<div class="item col-50">'+
-										'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
-											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
-												'<div class="media-title-inner">'+title+'</div>'+
-											'</div>'+
-										'</a>'+
-									'</div>');
-				
-							
-									 
-  	        });
-			
-			 myApp.hideIndicator();
-      	});
-		
-  	
-}*/
-
-	
-			$('a.blog-link').on('click', function(){
-				var blogPostID = $(this).attr('id');
-				console.log(blogPostID);
-					//myApp.alert($(this).attr('id'));
-					
-					myApp.showIndicator();
-					
-					var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
-					$.getJSON(url,function(result){
-						//console.log(result);
-							localStorage.setItem('tempPostContentData', JSON.stringify(result));
-							var postData = localStorage.getItem('tempPostContentData');
-							var jsonObj = $.parseJSON(postData);
-							console.log(jsonObj);
-					
-					var table = '<table><thead><tr><th>Title</th></tr><tr><th>Content</th></tr></thead><tbody>';
-			 $.each(result, function() {
-				 
-		 table += '<tr><td>' + this['title'] + '</td></tr><tr><td>' + this['content'] + '</td></tr>';
-    });
-	
-		 table += '</tbody></table>';
-    	document.getElementById("datalist").innerHTML = table;
-
-					
-					
-					
-					
-					//	console.log(result);
-						/*$.each(result.posts, function(i, field){
-							var title=field.title;
-							var id=field.id;
-							var content=field.content;
-							var date=field.date;
-							var thumbnail=field.thumbnail;*/
-							
-							
-							
-							/*$(".view").append('<div class="popup popup-single">'+
-							'<p><a href="#" class="close-popup">Close popup</a></p>'+
-							'<div class="content-block">'+
-							+content+	
-							'</div>'+
-							'</div>');
-							*/
-							/*$(".view").append('<div data-page="single" class="page cached">'+
-								  '<div class="page-content" style="background-color: #fff;">'+
-									'<div id="blogcontent" class="content-block">'+
-											
-										+content+
-								
-									'</div>'+
-								  '</div>'+
-							'</div>');*/
-							
-							//$("#blogcontent").append('<div id="'+id+'">'+content+'</div>');		
-						
-						//	alert(content);	
-												 
-						});
-					
-						
-						 myApp.hideIndicator();
-					});
-					
-			
-	
-
-				
-/*
-function getPostContent() {
- 
-  	myApp.showIndicator();
-  		var blogPostID = $(this).attr('id');
-		var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
-		
-			
-  			$.getJSON(url,function(result){
-			//console.log(result);
-			
-			localStorage.setItem('tempPostContentData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostContentData');
-			var jsonContentObj = $.parseJSON(postData);
-			//var jsonContentObj = postData;
-			console.log(jsonContentObj);
-			//$("#blogcontent").append('<div>'+jsonContentObj[0].content+'</div>');		
-			var table = '<table><thead><tr><th>Title</th></tr><tr><th>Content</th></tr></thead><tbody>';
-			 $.each(result, function() {
-				 
-		 table += '<tr><td>' + this['title'] + '</td></tr><tr><td>' + this['content'] + '</td></tr>';
-    });
-	
-		 table += '</tbody></table>';
-    	document.getElementById("datalist").innerHTML = table;
-
-
-
-
-
-			//$("#blogcontent").html(jsonContentObj.posts.content);
-			
-  	       /* $.each(jsonContentObj.posts, function(i, field){
-  	        	var title=field.title;
-                var id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
-				console.log(title);
-				
-				
-  	      
-				$("#blogcontent").append('<div>'+postData+'</div>');		
-			
-				//<div class='blogposts' id='"+id+'">'+content+"</div>");				
-									 
-  	        });
-			
-			 myApp.hideIndicator();
-      	});
-		
-  	
-}
-  */
- 
 
 function homeLink() {
- mainView.router.load({
+  mainView.router.load({
       template: Template7.templates.welcomeTemplate,
-     context: {
-     //     name: username
-      }
+    /*  context: {
+          name: username
+      }*/
   });
- 
- initApp();
- //postCached();
- getPosts();
+  myProfile();
 }
 function edittheProfile() {
 
     //alert('profile');
-  //  $('#profileContent').hide();
-//    $('#editmyProfile').show();
+    $('#profileContent').hide();
+    $('#editmyProfile').show();
 
 }
 
@@ -639,7 +482,7 @@ function canceluploadImage(){
 }
 
 function imageProfile() {
-    //http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel/uploadpicc
+    //http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laraveladmin/uploadpicc
     $(document).ready(function() {
 
         $('#user_iddddddd').val(localStorage.getItem('user_id'));
@@ -737,14 +580,14 @@ function log_out() {
     localStorage.removeItem('userlogin');
     //  window.location.replace("index.html");
     window.localStorage.clear();
-	myApp.loginScreen();
 
-   // mainView.router.load({
-     //   template: Template7.templates.guestTemplate
+
+    mainView.router.load({
+        template: Template7.templates.guestTemplate
         //  context: {
         //name: username
         //}
-   // })
+    })
 
 }
 
@@ -781,8 +624,8 @@ function get_Quiz_History() {
 // Funcion to handle Submit button on Login page
 $$('#submmit-login').on('click', function () {
 
-    var username = $$('.user_name_input').val();
-    var password = $$('.user_pass_input').val();
+    var username = $$('#user_name_input').val();
+    var password = $$('#user_pass_input').val();
 
     console.log('Submit clicked');
     console.log('username: ' +username);
@@ -825,8 +668,8 @@ $$('#submmit-login').on('click', function () {
 	    myApp.hideIndicator();
 			myApp.alert('Login was unsuccessful, please verify username and password and try again');
 
-			$$('.user_name_input').val('');
-			$$('.user_pass_input').val('');
+			$$('#user_name_input').val('');
+			$$('#user_pass_input').val('');
 	    }
 	});
 }); */
@@ -946,7 +789,6 @@ function register() {
                     localStorage.setItem("area", area);
                     localStorage.setItem("lang", lang);*/
                     myApp.hideIndicator();
-					initApp();
 
 
                 } else {
