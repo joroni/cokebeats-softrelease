@@ -1,4 +1,4 @@
-// Initialize your app
+get_recent_posts[post_per_page]=2// Initialize your app
 var myApp = new Framework7({
     animateNavBackIcon: true,
     template7Pages: true,
@@ -525,50 +525,13 @@ function getPostssss() {
       });
 
 
-/*
-      // number of rows to show per page
-      $rowsperpage = 6;
-
-      // find out total pages
-      $totalpages = ceil($numrows / $rowsperpage);
-
-      // get the current page or set a default
-      if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
-      $currentpage = (int) $_GET['currentpage'];
-      } else {
-      $currentpage = 1;  // default page number
-      }
-
-      // if current page is greater than total pages
-      if ($currentpage > $totalpages) {
-      // set current page to last page
-      $currentpage = $totalpages;
-      }
-      // if current page is less than first page
-      if ($currentpage < 1) {
-      // set current page to first page
-      $currentpage = 1;
-      }
-
-      // the offset of the list, based on current page
-      $offset = ($currentpage - 1) * $rowsperpage;
-
-      // get the info from the MySQL database
-      $sql = "SELECT post_title, post_date FROM wp_posts ORDER BY ID DESC LIMIT $offset, $rowsperpage";
-      $result = mysql_query($sql, $conn) or die(mysql_error());
-
-      while ($row = mysql_fetch_assoc($result)){
-      $output[]=$row;
-      }
-      print(json_encode($output));
 
 
-      ?>
-*/
+
 
 function getPosts() {
   		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_posts&count=6&status=published&offset=2";
+  		var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
 			console.log(result);
 			localStorage.setItem('tempPostData', JSON.stringify(result));

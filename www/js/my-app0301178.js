@@ -475,43 +475,6 @@ function postCached() {
 
 }
 
-function getPostssss() {
-  		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_posts&count=6&status=published&offset='int offset'";
-  		$.getJSON(url,function(result){
-			console.log(result);
-			localStorage.setItem('tempPostData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
-		//	var postData = localStorage.getItem('tempPostData');
-			//var array = JSON.parse(postData);
-			$.each(jsonObj.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
-
-			$("#output").append('<div class="item col-50">'+
-										//'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-                    '<a class="blog-link" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
-										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
-											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
-												'<div class="media-title-inner">'+title+'</div>'+
-											'</div>'+
-										'</a>'+
-									'</div>');
-
-
-
-  	        });
-
-			 myApp.hideIndicator();
-      	});
-
-
-}
 
 
 			$('a.blog-link').on('click', function(){
@@ -525,50 +488,21 @@ function getPostssss() {
       });
 
 
-/*
-      // number of rows to show per page
-      $rowsperpage = 6;
 
-      // find out total pages
-      $totalpages = ceil($numrows / $rowsperpage);
 
-      // get the current page or set a default
-      if (isset($_GET['currentpage']) && is_numeric($_GET['currentpage'])) {
-      $currentpage = (int) $_GET['currentpage'];
-      } else {
-      $currentpage = 1;  // default page number
+      function show_box(){
+
+        var ids = $('#more_btn').val();
+        var news = ids++;
+        $('#more_btn').val(''+news+'');
+        $('#show'+ids+'').show();
+
       }
-
-      // if current page is greater than total pages
-      if ($currentpage > $totalpages) {
-      // set current page to last page
-      $currentpage = $totalpages;
-      }
-      // if current page is less than first page
-      if ($currentpage < 1) {
-      // set current page to first page
-      $currentpage = 1;
-      }
-
-      // the offset of the list, based on current page
-      $offset = ($currentpage - 1) * $rowsperpage;
-
-      // get the info from the MySQL database
-      $sql = "SELECT post_title, post_date FROM wp_posts ORDER BY ID DESC LIMIT $offset, $rowsperpage";
-      $result = mysql_query($sql, $conn) or die(mysql_error());
-
-      while ($row = mysql_fetch_assoc($result)){
-      $output[]=$row;
-      }
-      print(json_encode($output));
-
-
-      ?>
-*/
 
 function getPosts() {
   		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_posts&count=6&status=published&offset=2";
+      var url= base_wp_url+"/?json=get_recent_posts&[post_per_page]=6";
+  		//var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
 			console.log(result);
 			localStorage.setItem('tempPostData', JSON.stringify(result));
@@ -577,12 +511,19 @@ function getPosts() {
 			console.log(jsonObj);
 		//	var postData = localStorage.getItem('tempPostData');
 			//var array = JSON.parse(postData);
+      var loops = 0;
 			$.each(jsonObj.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
+        loops++;
+
+        var title=(field.title).slice(0,5);
+        var frompost_id=field.id;
+        var content=field.content;
+        var date=field.date;
+        var thumbnail=field.thumbnail;
+
+        if(loops < 7){
+
+
 
 			$("#output").append('<div class="item col-50">'+
       '<a class="blog-links" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
@@ -594,22 +535,36 @@ function getPosts() {
 										'</a>'+
 									'</div>');
 
+                }else{
 
+                  $("#output").append('<div style="display:none;" id="show'+loops+'" class="item col-50">'+
+                  '<a class="blog-links" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
+            									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+            										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
+            											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
+            												'<div class="media-title-inner">'+title+'</div>'+
+            											'</div>'+
+            										'</a>'+
+            									'</div>');
+
+                }
 
   	        });
-
-			 myApp.hideIndicator();
+            $("#output").append('<h3 style="width: 100%; text-align:center;"><input type="hidden" id="more_btn" value="7"><a  onclick="show_box();" class="more_button" >More</a></h3>');
+			         myApp.hideIndicator();
       	});
 
 
 }
 
+
+//$(".view").append('<a href="#">More</a>');
 /*
 function getPostContent() {
 
   	myApp.showIndicator();
   		var blogPostID = $(this).attr('id');
-		var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
+		var url= base_wp_url+"/?json=1&post_id="+blogPostID;
 
 
   			$.getJSON(url,function(result){
