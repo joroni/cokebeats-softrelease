@@ -226,7 +226,7 @@
 
             <!-- Welcome Page-->
 			<script id="welcomeTemplate" type="text/template7">
-				<div data-page="welcome" class="page cached">
+				<div data-page="welcome" class="page">
 				  <div class="page-content home" style="background-color: #fff;">
 				    <div class="content-block" style="margin-top:5px !important;">
 							<div class="row" id="output">
@@ -574,7 +574,7 @@
 			</div>
 
 
-			<div data-page="commentbox" class="page toolbar-fixed">
+			<div data-page="commentbox" class="page cached">
 				 <div class="navbar">
 						<div class="navbar-inner">
 							 <div class="left"> </div>
@@ -584,12 +584,19 @@
 				 </div>
 				 <div class="toolbar messagebar">
 						<div class="toolbar-inner">
+						<!--	'comment_post_ID' => 'required',
+'comment_author' => 'required',
+'comment_author_email' => 'required',
+'comment_date' => 'required',
+'comment_author_nice_name' => 'required',
+'comment_content' => 'required'-->
+
 							 <textarea placeholder="Message"></textarea><a href="#" class="link">Send</a>
 						</div>
 				 </div>
 				 <div class="page-content messages-content">
 						<div id="comments" class="messages">
-							
+
 
 						</div>
 				 </div>

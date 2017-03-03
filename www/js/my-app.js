@@ -29,13 +29,17 @@ myApp.onPageInit('welcome', function (page) {
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').hide();
       $('.comments.toolbar-inner').hide();
+          $('.toolbar.messagebar').hide();
+          $('#output').empty();
+        //   postCached();
 })
 
 
 myApp.onPageInit('single', function (page) {
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').show();
-      $('.comments.toolbar-inner').show();
+      $('.comments.toolbar-inner').hide();
+          $('.toolbar.messagebar').hide();
 })
 
 
@@ -48,9 +52,18 @@ myApp.onPageInit('commentbox', function (page) {
 myApp.onPageInit('profile', function (page) {
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').show();
+      $('.comments.toolbar-inner').hide();
+          $('.toolbar.messagebar').hide();
+       $('.notlogged.toolbar').show();
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
 
+myApp.onPageInit('login-screen', function (page) {
+  // "page" variable contains all required information about loaded and initialized page
+     $('.notlogged.toolbar').show();
+      $('.toolbar.messagebar').hide();
+    //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
+})
 
 
 
@@ -130,12 +143,15 @@ function check_storage() {
 		$('.right').show();
 		$('.notlogged.toolbar').hide();
         console.log('logged');
-		mainView.router.load({
-                    template: Template7.templates.welcomeTemplate,
-                    context: {
-                     //   name: username
-                    }
-                });
+        mainView.router.load({
+             template: Template7.templates.welcomeTemplate,
+             context: {
+               //  name: username
+             }
+         });
+
+
+  //  mainView.router.loadPage('#welcome');
 
 		getPosts();
 		//postCached();
@@ -452,10 +468,10 @@ function update_user() {
 
 }
 
-function postCached() {
+function postCachedxx() {
 	var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
+		//	console.log(jsonObj);
 
 			$.each(jsonObj.posts, function(i, field){
   	        	var title=(field.title).slice(0,5);
@@ -533,10 +549,11 @@ function getGetComments() {
 
 
 function getPosts() {
+  //$('#output').empty();
   		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_recent_posts&count=6";
+  		var url= base_wp_url+"/?json=get_recent_posts";
   		$.getJSON(url,function(result){
-			console.log(result);
+	//		console.log(result);
 			localStorage.setItem('tempPostData', JSON.stringify(result));
 			var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
@@ -570,6 +587,7 @@ function getPosts() {
   	        });
 
 			 myApp.hideIndicator();
+       return false;
       	});
 
 
@@ -635,10 +653,22 @@ function getPostContent() {
 
 
 function homeLink() {
- mainView.router.loadPage('#welcome');
- initApp();
- postCached();
- //getPosts();
+
+ mainView.router.load({
+      template: Template7.templates.welcomeTemplate,
+      context: {
+        //  name: username
+      }
+  });
+
+  mainView.router.loadPage('#welcome');
+  $('#output').empty();
+
+  initApp();
+
+//             postCached();
+
+ getPosts();
 }
 function edittheProfile() {
 
