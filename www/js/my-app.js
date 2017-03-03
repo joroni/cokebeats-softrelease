@@ -54,7 +54,7 @@ myApp.onPageInit('profile', function (page) {
     $('.navbar a.link.back').show();
       $('.comments.toolbar-inner').hide();
           $('.toolbar.messagebar').hide();
-       $('.notlogged.toolbar').show();
+       $('.notlogged.toolbar').hide();
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
 
