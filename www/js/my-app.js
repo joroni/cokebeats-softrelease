@@ -42,7 +42,13 @@ myApp.onPageInit('single', function (page) {
 myApp.onPageInit('commentbox', function (page) {
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').show();
-      $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
+    //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
+})
+
+myApp.onPageInit('profile', function (page) {
+  // "page" variable contains all required information about loaded and initialized page
+    $('.navbar a.link.back').show();
+    //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
 
 
@@ -478,48 +484,42 @@ function postCached() {
 
 
 
-			$('a.blog-link').on('click', function(){
-        //myApp.showIndicator();
-
-          $('.view').append('<div class="col-25 col-dark">'+
-                'White<br>'+
-                '<span style="width:42px; height:42px" class="preloader preloader-white"></span>'+
-              '</div>'+
-            '</div>')
-      });
 
 
 
 
-
-
-function getPosts() {
+function getGetComments() {
   		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_recent_posts";
+      $("#comments").empty();
+      var PostSelectedID = localStorage.getItem('tempoPostSelectedID');
+
+      var url= base_wp_url+"/?json=get_post&post_id="+PostSelectedID;
   		$.getJSON(url,function(result){
 			console.log(result);
-			localStorage.setItem('tempPostData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
+			localStorage.setItem('tempPostCommentData', JSON.stringify(result));
+			var postCommentData = localStorage.getItem('tempPostCommentData');
+			var jsonCommentObj = $.parseJSON(postCommentData);
+			console.log(jsonCommentObj);
 		//	var postData = localStorage.getItem('tempPostData');
 			//var array = JSON.parse(postData);
-			$.each(jsonObj.posts, function(i, field){
-  	        	var title=(field.title).slice(0,5);
-                var frompost_id=field.id;
+			$.each(jsonCommentObj.post.comments, function(i, field){
+  	   // var title=(field.title).slice(0,5);
+        var date=field.date;
 				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
+				var name=field.name;
+      //  var avatar=field.avatar;
 
-			$("#output").append('<div class="item col-50">'+
-      '<a class="blog-links" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
-									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
-											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
-												'<div class="media-title-inner">'+title+'</div>'+
-											'</div>'+
-										'</a>'+
-									'</div>');
+
+        console.log(date);
+        console.log(name);
+        console.log(content);
+
+			$("#comments").append('<div class="messages-date">'+date+'</div>'+
+        '<div class="message message-received">'+
+           '<div class="message-name">'+name+'</div>'+
+           '<div class="message-text">'+content+'</div>'+
+           '<div style="background-image:url(img/photo.png)" class="message-avatar"></div>'+
+        '</div>');
 
 
 
@@ -530,6 +530,53 @@ function getPosts() {
 
 
 }
+
+
+function getPosts() {
+  		myApp.showIndicator();
+  		var url= base_wp_url+"/?json=get_recent_posts&count=6";
+  		$.getJSON(url,function(result){
+			console.log(result);
+			localStorage.setItem('tempPostData', JSON.stringify(result));
+			var postData = localStorage.getItem('tempPostData');
+			var jsonObj = $.parseJSON(postData);
+			console.log(jsonObj);
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
+			$.each(jsonObj.posts, function(i, field){
+  	    var title=(field.title).slice(0,5);
+        var frompost_id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var thumbnail=field.thumbnail;
+
+			$("#output").append('<div class="item col-50">'+
+      '<a class="blog-link" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
+									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
+											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
+												'<div class="media-title-inner">'+title+'</div>'+
+											'</div>'+
+										'</a>'+
+									'</div>');
+                  $('a.blog-link').on('click', function(){
+                    //myApp.showIndicator();
+                      var frompostSelected = $(this).attr('id');
+                      localStorage.setItem('tempoPostSelectedID', frompostSelected);
+                  });
+
+
+
+  	        });
+
+			 myApp.hideIndicator();
+      	});
+
+
+}
+
+
+
 
 /*
 function getPostContent() {

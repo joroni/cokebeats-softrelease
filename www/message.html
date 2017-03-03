@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <title>Messages</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/css/framework7.ios.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/css/framework7.ios.colors.min.css">
+   </head>
+   <body>
+      <div class="views">
+         <div class="view view-main">
+            <div class="pages">
+               <div data-page="home" class="page navbar-fixed toolbar-fixed">
+                  <div class="navbar">
+                     <div class="navbar-inner">
+                        <div class="left"> </div>
+                        <div class="center">Messages</div>
+                        <div class="right"> </div>
+                     </div>
+                  </div>
+                  <div class="toolbar messagebar">
+                     <div class="toolbar-inner">
+                        <textarea placeholder="Message"></textarea><a href="#" class="link">Send</a>
+                     </div>
+                  </div>
+                  <div class="page-content messages-content">
+                     <div class="messages">
+                        <div class="messages-date">Friday, Apr 26 <span>10:30</span></div>
+                        <div class="message message-sent">
+                           <div class="message-text">Hello</div>
+                        </div>
+                        <div class="message message-sent">
+                           <div class="message-text">Happy Birthday</div>
+                        </div>
+                        <div class="message message-received">
+                           <div class="message-name">Smith</div>
+                           <div class="message-text">Thank you</div>
+                           <div style="background-image:url(/framework7/images/person.png)" class="message-avatar"></div>
+                        </div>
+                        <div class="messages-date">Saturday, Apr 27 <span>9:30</span></div>
+                        <div class="message message-sent">
+                           <div class="message-text">Good Morning...</div>
+                        </div>
+                        <div class="message message-sent">
+                           <div class="message-text"><img src="/framework7/images/gm.jpg"></div>
+                           <div class="message-label">Delivered</div>
+                        </div>
+                        <div class="message message-received">
+                           <div class="message-name">Smith</div>
+                           <div class="message-text">Very Good Morning...</div>
+                           <div style="background-image:url(/framework7/images/person.png)" class="message-avatar"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/framework7/1.4.2/js/framework7.min.js"></script>
+      <script>
+         var myApp = new Framework7();
+
+            var $$ = Dom7;
+
+            // It indicates conversation flag
+            var conversationStarted = false;
+
+            // Here initiliaze the messages
+            var myMessages = myApp.messages('.messages', {
+              autoLayout:true
+            });
+
+            // Initiliaze the messagebar
+            var myMessagebar = myApp.messagebar('.messagebar');
+
+            // Displays the text after clicking the button
+            $$('.messagebar .link').on('click', function () {
+              // specifies the message text
+              var messageText = myMessagebar.value().trim();
+              // If there is no message, then exit from there
+              if (messageText.length === 0) return;
+
+              // Specifies the empty messagebar
+              myMessagebar.clear()
+
+              // Defines the random message type
+              var messageType = (['sent', 'received'])[Math.round(Math.random())];
+
+              // Provides the avatar and name for the received message
+              var avatar, name;
+              if(messageType === 'received') {
+                name = 'Smith';
+              }
+              // It adds the message
+              myMessages.addMessage({
+                // It provides the message text
+                text: messageText,
+                // It displays the random message type
+                type: messageType,
+                // Specifies the avatar and name of the sender
+                avatar: avatar,
+                name: name,
+                // Displays the day, date and time of the message
+                day: !conversationStarted ? 'Today' : false,
+                time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+              })
+
+              // Here you can update the conversation flag
+              conversationStarted = true;
+          });
+
+      </script>
+   </body>
+</html>
