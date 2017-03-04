@@ -94,6 +94,17 @@
 			<div class="pages navbar-through toolbar-through">
 				<!-- Index Page-->
 				<div data-page="index" class="page cached">
+					<div class="navbar-inner">
+						<!-- We have home navbar without left link-->
+						<div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+						<div class="center sliding">
+							<span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
+						</div>
+						<div class="right">
+							<!-- Right link contains only icon - additional "icon-only" class-->
+							<a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+						</div>
+					</div>
 					<!-- Scrollable page content-->
 					<div class="page-content">
 						<div class="list-block">
@@ -141,39 +152,23 @@
 				<!-- Welcome Page-->
 				<script id="welcomeTemplate" type="text/template7">
 					<div data-page="welcome" class="page">
-
-							<!-- Navbar -->
-						<div class="navbar">
-								<div class="navbar-inner">
-								 <!-- We have home navbar without left link-->
-								 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
-								 <div class="center sliding">
-									 <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
-								 </div>
-								 <div class="right">
-									 <!-- Right link contains only icon - additional "icon-only" class-->
-									 <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-								 </div>
-							 </div>
-				 	 </div>
-					 	<!-- Navbar -->
-
-
+						<div class="navbar-inner">
+						 <!-- We have home navbar without left link-->
+						 <div class="left sliding"></div>
+						 <div class="center sliding">
+							 <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
+						 </div>
+						 <div class="right">
+							 <!-- Right link contains only icon - additional "icon-only" class-->
+							 <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+						 </div>
+					 </div>
 						<div class="welcome toolbar tabbar">
 								<div class="toolbar-inner"><a href="#tab1" class="tab-link active">	<i class="f7-icons">home</i></a><a href="#tab2" onclick="getOldPosts();" class="tab-link">	<i class="f7-icons">data</i></a></div>
 						</div>
 
 					  <div class="page-content home" style="background-color: #fff;">
 							<div class="content-blockno" style="margin-top:5px !important;">
-
-								<input id="track_username" value="" type="hidden"/>
-	<input id="track_date" value="" type="hidden"/>
-	<input id="track_click" value="" type="hidden"/>
-		<input id="score_bottle" value="" type="hidden"/>
-		<input id="divisions" value="1" type="hidden"/>
-		<input id="area" value="1" type="hidden"/>
-		<input id="aunit" value="1" type="hidden"/>
-
 
 									<div class="tabs">
 									<div id="tab1" class="tab active">
@@ -224,24 +219,6 @@
 
 				<!-- Register Page-->
 				<div data-page="register" class="page page no-swipeback cached">
-
-
-												<!-- Navbar -->
-											<div class="navbar">
-													<div class="navbar-inner">
-													 <!-- We have home navbar without left link-->
-													 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
-													 <div class="center sliding">
-														 <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
-													 </div>
-													 <div class="right">
-														 <!-- Right link contains only icon - additional "icon-only" class-->
-														 <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-													 </div>
-												 </div>
-									 	 </div>
-										 	<!-- Navbar -->
-
 					<div class="page-content">
 						<form id="signupForm" method="post" class="form-horizontal" action="">
 							<div class="content-block-title"></div>
@@ -369,23 +346,6 @@
 				<!-- Form Page-->
 				<!-- Profile Page-->
 				<div data-page="profile" class="page page no-swipeback cached">
-
-												<!-- Navbar -->
-											<div class="navbar">
-													<div class="navbar-inner">
-													 <!-- We have home navbar without left link-->
-													 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
-													 <div class="center sliding">
-														 <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
-													 </div>
-													 <div class="right">
-														 <!-- Right link contains only icon - additional "icon-only" class-->
-														 <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-													 </div>
-												 </div>
-									 	 </div>
-										 	<!-- Navbar -->
-
 					<div  id="profileContent" class="content-block centered" style="padding-top:40px;">
 						<!-- SEE taking-photo.html for camera code -->
 						<div id="avatar2" class="profile-image"></div>
@@ -516,23 +476,6 @@
 				</div>
 				<!-- Comments -->
 				<div data-page="commentbox" class="page page no-swipeback cached">
-
-												<!-- Navbar -->
-											<div class="navbar">
-													<div class="navbar-inner">
-													 <!-- We have home navbar without left link-->
-													 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
-													 <div class="center sliding">
-														 <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
-													 </div>
-													 <div class="right">
-														 <!-- Right link contains only icon - additional "icon-only" class-->
-														 <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-													 </div>
-												 </div>
-									 	 </div>
-										 	<!-- Navbar -->
-
 					<!-- <div class="navbar">
 						<div class="navbar-inner">
 							 <div class="left"> </div>
@@ -548,8 +491,8 @@
 								'comment_date' => 'required',
 								'comment_author_nice_name' => 'required',
 								'comment_content' => 'required'-->
-							<textarea placeholder="Message" id='send_me'></textarea>
-							<a href="#" class="link" onclick='sendss()'>Send</a>
+							<textarea placeholder="Message"></textarea>
+							<a href="#" class="link">Send</a>
 						</div>
 					</div>
 					<div class="page-content messages-content">

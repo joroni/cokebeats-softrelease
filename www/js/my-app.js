@@ -11,7 +11,39 @@ var $$ = Dom7;
 /**************** comments ****************/
 
 
+/* RAYMUND CUSTOM SCRIPT. Intended for tracking user count */
 
+function formatAMPM(date) { // This is to display 12 hour format like you asked
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
+
+
+
+
+var myDate = new Date();
+var myMonth = myDate.getMonth()+1;
+var displayDate = myDate.getFullYear() + '-' + myMonth + '-' +myDate.getDate() ;
+//var displayDate = myMonth + '-' +myDate.getDate()+ '-' +myDate.getFullYear();
+//var displayDate = myDate.getFullYear() + '-' +myMonth + '-' +myDate.getDate();
+var displayTime = formatAMPM(myDate);
+console.log(displayDate);
+console.log(displayTime);
+
+
+var base_url = 'http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laraveladmin';
+var today = new Date();
+var temp_date = new Date();
+//today = today.format("yyyy-mm-dd");
+var date_joined_cb = displayDate;
+var time_joined_cb = displayTime;
 
 
 /**************** comments ****************/
@@ -20,32 +52,48 @@ var $$ = Dom7;
 // Add main View
 var mainView = myApp.addView('.view-main', {
     // Enable dynamic Navbar
-    dynamicNavbar: false,
+  //  dynamicNavbar: false,
     // Enable Dom Cache so we can use all inline pages
     domCache: true
 });
 // In page callbacks:
+
+myApp.onPageInit('index', function (page) {
+  // "page" variable contains all required information about loaded and initialized page
+    $('.navbar a.link.back, .left a').hide();
+    $('.comments.toolbar-inner').hide();
+    $('.toolbar.messagebar').hide();
+    $('toolbar.welcome').show();
+  //  $('#output').empty();
+        //   postCached();
+})
+
+
 myApp.onPageInit('welcome', function (page) {
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').hide();
-      $('.comments.toolbar-inner').hide();
-          $('.toolbar.messagebar').hide();
-          $('#output').empty();
+    $('.comments.toolbar-inner').hide();
+    $('.toolbar.messagebar').hide();
+    $('toolbar.welcome').show();
+
+  //  $('#output').empty();
         //   postCached();
 })
 
 
 myApp.onPageInit('single', function (page) {
+
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').show();
       $('.comments.toolbar-inner').hide();
-          $('.toolbar.messagebar').hide();
+      $('.toolbar.messagebar').hide();
 })
 
 
 myApp.onPageInit('commentbox', function (page) {
   // "page" variable contains all required information about loaded and initialized page
     $('.navbar a.link.back').show();
+    $('.toolbar.messagebar').show();
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
 
@@ -64,6 +112,8 @@ myApp.onPageInit('login-screen', function (page) {
       $('.toolbar.messagebar').hide();
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
+
+
 
 
 
@@ -130,6 +180,16 @@ function initApp(){
 }
 
 
+/*
+$.getJSON('https://freegeoip.net/json/',
+   function(data){
+     console.log(data);
+     localStorage.setItem('myipaddress', location.ip);
+    //  alert( "Your ip: " + data.ip);
+ });
+
+
+*/
 
 // START checking if user is logged
 function check_storage() {
@@ -243,7 +303,7 @@ function signin() {
 				$('.login-screen').addClass('modal-out');
 
 				$('.login-screen').hide();
-
+myProfile();
 				getPosts();
 
                 //	window.location.href = "main.html";
@@ -340,12 +400,12 @@ function myProfile() {
     $.getJSON(base_url + '/get_user_details/' + user, function(result) {
 
         $.each(result, function(i, field) {
-            $('.userid').val(field.username);
-            $('#username').val(field.username);
+            $('.userid').val(field.user_login);
+            $('#username').val(field.user_login);
             $('#password').val(field.password);
             $('#firstname').val(field.fname);
             $('#lastname').val(field.lname);
-            $('#email').val(field.email);
+            $('#email').val(field.user_email);
            $('#avatar').val(field.avatar);
 
             if ($('#avatar, #avatar2,  .profile-image')
@@ -364,36 +424,34 @@ function myProfile() {
 
 
             $('#userfirstname, .profile-firstname').text(field.fname);
-            $('#userusername, .profile-id').text(field.username);
+            $('#userusername, .profile-id').text(field.user_login);
             $('#userlastname, .profile-lastname').text(field.lname);
-            $('#useremail, .profile-email').text(field.email);
+            $('#useremail, .profile-email').text(field.user_email);
 
             $('#user_name').text(field.username);
-            $('#user_username').text(field.username);
+            $('#user_username').text(field.user_login);
             $('#user_password').text(field.password);
 
             $('#user_firstname').text(field.fname);
             $('#user_lastname').text(field.lname);
-            $('#user_email').text(field.email);
+            $('#user_email').text(field.user_email);
             $('#user_privilege').text(field.privilege);
 
-            console.log('ID:', field.id);
-            console.log('User Name:', field.username);
+            console.log('ID:', field.ID);
+            console.log('User Name:', field.user_login);
 
             console.log('Password:', field.password);
             console.log(field.fname);
             console.log(field.lname);
-            console.log(field.email);
+            console.log(field.user_email);
 
 
-            localStorage.setItem('user_id', field.id);
-
-
-			localStorage.setItem('myusername', field.username);
+      localStorage.setItem('user_id', field.ID);
+      localStorage.setItem('myusername', field.user_login);
 			localStorage.setItem('myfirstname', field.fname);
 			localStorage.setItem('mylastname', field.lname);
 			localStorage.setItem('mypassword', field.password);
-			localStorage.setItem('myemail', field.email);
+			localStorage.setItem('myemail', field.user_email);
 
 
 
@@ -523,16 +581,19 @@ function getGetComments() {
         var date=field.date;
 				var content=field.content;
 				var name=field.name;
+        var first_name=localStorage.getItem('myfirstname');
+        var last_name=localStorage.getItem('mylastname');
+        var nice_name= first_name +' '+last_name;
       //  var avatar=field.avatar;
 
 
         console.log(date);
-        console.log(name);
+        console.log(nice_name);
         console.log(content);
 
 			$("#comments").append('<div class="messages-date">'+date+'</div>'+
         '<div class="message message-received">'+
-           '<div class="message-name">'+name+'</div>'+
+           '<div class="message-name">'+nice_name+'</div>'+
            '<div class="message-text">'+content+'</div>'+
            '<div style="background-image:url(img/photo.png)" class="message-avatar"></div>'+
         '</div>');
@@ -548,16 +609,19 @@ function getGetComments() {
 }
 
 
-function getPosts() {
+function getPostsWP() {
   //$('#output').empty();
   		myApp.showIndicator();
-  		var url= base_wp_url+"/?json=get_recent_posts";
-  		$.getJSON(url,function(result){
+  	//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
+    var url= base_wp_url+"/wp-json/wp/v2/posts?per_page=6";
+      $.getJSON(url,function(result){
 	//		console.log(result);
 			localStorage.setItem('tempPostData', JSON.stringify(result));
 			var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
 			console.log(jsonObj);
+
+
 		//	var postData = localStorage.getItem('tempPostData');
 			//var array = JSON.parse(postData);
 			$.each(jsonObj.posts, function(i, field){
@@ -567,7 +631,7 @@ function getPosts() {
 				var date=field.date;
 				var thumbnail=field.thumbnail;
 
-			$("#output").append('<div class="item col-50">'+
+			$("#output").append('<li name="name" class="item col-45">'+
       '<a class="blog-link" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
 									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
 										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
@@ -575,7 +639,7 @@ function getPosts() {
 												'<div class="media-title-inner">'+title+'</div>'+
 											'</div>'+
 										'</a>'+
-									'</div>');
+									'</li>');
                   $('a.blog-link').on('click', function(){
                     //myApp.showIndicator();
                       var frompostSelected = $(this).attr('id');
@@ -586,15 +650,185 @@ function getPosts() {
 
   	        });
 
+
 			 myApp.hideIndicator();
        return false;
       	});
+
+
+
+
+
+}
+
+
+function getPosts() {
+  //$('#output').empty();
+  		myApp.showIndicator();
+        var url= base_wp_url+"/?json=get_posts&count=6";
+  	//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
+      //var url= base_wp_url+"/wp-json/wp/v2/posts?per_page=6";
+      $.getJSON(url,function(result){
+	//		console.log(result);
+			localStorage.setItem('tempPostData', JSON.stringify(result));
+			var postData = localStorage.getItem('tempPostData');
+			var jsonObj = $.parseJSON(postData);
+			console.log(jsonObj);
+
+
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
+			$.each(jsonObj.posts, function(i, field){
+  	    var title=(field.title).slice(0,5);
+        var frompost_id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var thumbnail=field.thumbnail;
+
+			$("#output").append('<li name="name" class="item col-45">'+
+      '<a class="blog-link" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
+									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
+										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
+											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
+												'<div class="media-title-inner">'+title+'</div>'+
+											'</div>'+
+										'</a>'+
+									'</li>');
+                  $('a.blog-link').on('click', function(){
+                    myApp.showIndicator();
+                    setTimeout(function(){
+                      myApp.hideIndicator();
+
+                    },2000);
+                      //
+                    //
+                      var frompostSelected = $(this).attr('id');
+
+                      localStorage.setItem('tempoPostSelectedID', frompostSelected);
+
+                  });
+
+
+
+  	        });
+
+
+			 myApp.hideIndicator();
+       return false;
+      	});
+
+
+
+
+
 
 
 }
 
 
 
+
+function getOldPosts() {
+  //$('#output').empty();
+  		myApp.showIndicator();
+        var url= base_wp_url+"/?json=get_posts&offset=6";
+  	//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
+      //var url= base_wp_url+"/wp-json/wp/v2/posts?per_page=6";
+      $.getJSON(url,function(result){
+	//		console.log(result);
+			localStorage.setItem('tempPostData', JSON.stringify(result));
+			var postData = localStorage.getItem('tempPostData');
+			var jsonObj = $.parseJSON(postData);
+			console.log(jsonObj);
+
+
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
+			$.each(jsonObj.posts, function(i, field){
+  	    var title=(field.title).slice(0,5);
+        var frompost_id=field.id;
+				var content=field.content;
+				var date=field.date;
+				var thumbnail=field.thumbnail;
+        var excerpt=field.excerpt.slice(0,50);
+        var excerpt_plain = excerpt.replace('<p>', '');
+        var comment_count = field.comment_count;
+      /*<a href="#" class="item-link item-content">
+          <div class="item-media"><img src="..." width="80"></div>
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">Yellow Submarine</div>
+              <div class="item-after">$15</div>
+            </div>
+            <div class="item-subtitle">Beatles</div>
+            <div class="item-text">Lorem ipsum dolor sit amet...</div>
+          </div>
+        </a>*/
+			$("#oldposts").append('<li>'+
+                              '<a class="item-link post-link item-content" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
+              									'<img src="'+thumbnail+'" width="80" style="margin-right:10px;"></div>'+
+                                  '<div class="item-inner">'+
+                                      '<div class="item-title-row">'+
+                                        '<div class="item-title">'+title+'</div>'+
+                                        '<div class="item-after">'+comment_count+'<i class="f7-icons size-20">chat</i></div>'+
+                                      '</div>'+
+                                      '<div class="item-subtitle">'+date+'</div>'+
+                                      '<div class="item-text">'+excerpt_plain+'...</div>'+
+                                  '</div>'+
+                                '</a>'+
+									             '</li>');
+                  $('a.post-link').on('click', function(){
+
+                    myApp.showIndicator();
+                    setTimeout(function(){
+                      myApp.hideIndicator();
+
+                    },2000);
+                    //myApp.showIndicator();
+                      var frompostSelected = $(this).attr('id');
+                      localStorage.setItem('tempoPostSelectedID', frompostSelected);
+                  });
+
+
+
+  	        });
+
+
+			 myApp.hideIndicator();
+       return false;
+      	});
+
+
+
+
+
+}
+/*
+
+var monkeyList = new List('.posts', {
+  valueNames: ['name'],
+  page: 3,
+  pagination: true
+});
+*/
+/*
+
+$(document).ready(function()    {
+	$('#output').append({itemsPerPage: 2});
+	$('#output').append({itemsPerPage: 3});
+  $('#output').append({itemsPerPage: 4});
+
+	$.getJSON('data.json', function(data) {
+		var items = [];
+		$.each(data.items, function(i, item) {
+			items.push('<li>' + item + '</li>');
+		});
+		$('#output').append(items.join(''));
+		$('#output').append({itemsPerPage: 4});
+	});
+});
+
+*/
 
 /*
 function getPostContent() {
@@ -654,21 +888,21 @@ function getPostContent() {
 
 function homeLink() {
 
- mainView.router.load({
+/* mainView.router.load({
       template: Template7.templates.welcomeTemplate,
       context: {
         //  name: username
       }
-  });
+  });*/
 
-  mainView.router.loadPage('#welcome');
-  $('#output').empty();
+ mainView.router.loadPage('#welcome');
+//  $('#output').empty();
 
-  initApp();
+  //initApp();
 
 //             postCached();
 
- getPosts();
+// getPosts();
 }
 function edittheProfile() {
 
@@ -973,7 +1207,7 @@ function register() {
                     localStorage.setItem("email", email);
                     localStorage.setItem("fname", fname);
                     localStorage.setItem("lname", lname);
-                    localStorage.setItem("userlogin", username);
+                    localStorage.setItem("userlogin", user_login);
                   /*  localStorage.setItem("division", division);
                     localStorage.setItem("aunit", aunit);
                     localStorage.setItem("area", area);
@@ -1105,3 +1339,39 @@ var openPhotoSwipe = function() {
   /**
    * END PHOTOSWIPE
    ***********************************/
+
+
+
+
+function sendss(){
+  var user_id = localStorage.getItem('user_id');
+  var comment_post_ID = localStorage.getItem('tempoPostSelectedID');
+  var comment_content = $('#send_me').val();
+  var comment_author  = localStorage.getItem("myusername");
+  var comment_author_email =localStorage.getItem("myemail");
+  var comment_date = displayDate;
+//  var comment_author_IP = localStorage.getItem("myipaddress");
+  var comment_author_fname =   localStorage.getItem("myfirstname");
+  var comment_author_lname =   localStorage.getItem("mylastname");
+  var comment_author_nice_name =  comment_author_fname +' '+comment_author_lname;
+
+
+
+
+$.post( base_url+"/send_comment", {
+  user_id: user_id,
+  comment_post_ID: comment_post_ID,
+  comment_content: comment_content,
+  comment_author: comment_author,
+  comment_author_email: comment_author_email,
+  comment_date: comment_date,
+  //comment_author_IP: comment_author_IP,
+  comment_author_nice_name: comment_author_nice_name
+
+ })
+ .done(function( data ) {
+    myApp.alert( "Comment Submitted!", alertTitle);
+    getGetComments();
+  });
+
+}
