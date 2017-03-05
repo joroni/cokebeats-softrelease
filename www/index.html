@@ -27,6 +27,9 @@
 
 
 
+	</head>
+
+
   <body>
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
@@ -439,23 +442,52 @@
 
 
 
-
-
 					<!-- Comments -->
+
+
+										<div data-page="commentbox" class="page no-swipeback cached">
+											 <div class="navbar">
+													<div class="navbar-inner">
+														 <div class="left"> </div>
+														 <div class="center">Comments</div>
+														 <div class="right"> </div>
+													</div>
+											 </div>
+											<!-- <div class="toolbar messagebar">
+													<div class="toolbar-inner">
+														 <textarea placeholder="Message" id="send_me"></textarea><href="#" class="link" onclick="sendss()">Post</a>
+													</div>
+											 </div>-->
+
+											 <div class="page-content messages-content">
+												 	<div class="messages">
+					 							<div id="comments" class="messages">
+													<div class="messages-date">Friday, Apr 26 <span>10:30</span></div>
+													<div class="message message-received">
+														 <div class="message-name">Smith</div>
+														 <div class="message-text">I have a page and want to count up a Badge Icon in Toolbar after Form request. How can i do that? Page reload is ok after Form request but the Badge Icon only counts after restart of the webapp.</div>
+														 <div style="background-image:url(img/photo.png)" class="message-avatar"></div>
+													</div>
+					 							</div>
+					 						</div>
+										</div>
+									</div>
+
+<!--
 					<div data-page="commentbox" class="page no-swipeback cached">
 						<div class="toolbar messagebar tabbar">
-							<!--<div class="toolbar-inner">
+							<div class="toolbar-inner">
 
 								<textarea placeholder="Message" id='send_me'></textarea>
 								<a href="#" class="link" onclick='sendss()'>Send</a>
-							</div>-->
+							</div>
 						</div>
 						<div class="page-content messages-content">
 							<div id="comments" class="messages">
 							</div>
 						</div>
 					</div>
-
+-->
 
 
 					<!-- Welcome Page-->
@@ -488,7 +520,7 @@
 												<!-- Profile Page-->
 
 
-													<div data-page="profile" id="profile" class="content-block centered" style="padding-top:40px;">
+													<div data-page="profile" id="profile" class="content-block centered" style="padding-top:20px;">
 														<!-- SEE taking-photo.html for camera code -->
 														<div id="avatar2" class="profile-image"></div>
 														<a href="#editprofiles" class="edit-link item-link red"> <i class="f7-icons size-50">compose</i></a>
@@ -538,12 +570,15 @@
 																	</div>
 																</div>
 															</li>
+
 														</ul>
 
 														<!--<table id="output2" class="table table-responsive">-->
-												</div>
-												<div class="content-block">
-													<a href="#" onclick="log_out()" class="item link centered">Log out</a>
+														<div class="list-block inset">
+															<ul>
+															<li><a href="#" onclick="log_out();" class="list-button item-link no-fill gray">Log out</a></li>
+															</ul>
+														</div>
 												</div>
 
 
@@ -595,10 +630,64 @@
 		<script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>
 		<!-- Path to Framework7 Library JS-->
 		<script type="text/javascript" src="js/framework7/framework7.min.js"></script>
+
 		<script type="text/javascript" src="vendor/jquery.validate.js"></script>
-			<script type="text/javascript" src="js/comments.js"></script>
+	<script>
+			var myApp = new Framework7();
+
+				 var $$ = Dom7;
+
+				 // It indicates conversation flag
+				 var conversationStarted = false;
+
+				 // Here initiliaze the messages
+				 var myMessages = myApp.messages('.messages', {
+					 autoLayout:true
+				 });
+
+				 // Initiliaze the messagebar
+				 var myMessagebar = myApp.messagebar('.messagebar');
+
+				 // Displays the text after clicking the button
+				 $$('.messagebar .link').on('click', function () {
+					 // specifies the message text
+					 var messageText = myMessagebar.value().trim();
+					 // If there is no message, then exit from there
+					 if (messageText.length === 0) return;
+
+					 // Specifies the empty messagebar
+					 myMessagebar.clear()
+
+					 // Defines the random message type
+					 var messageType = (['sent', 'received'])[Math.round(Math.random())];
+
+					 // Provides the avatar and name for the received message
+					 var avatar, name;
+					 if(messageType === 'received') {
+						 name = 'Smith';
+					 }
+					 // It adds the message
+					 myMessages.addMessage({
+						 // It provides the message text
+						 text: messageText,
+						 // It displays the random message type
+						 type: messageType,
+						 // Specifies the avatar and name of the sender
+						 avatar: avatar,
+						 name: name,
+						 // Displays the day, date and time of the message
+						 day: !conversationStarted ? 'Today' : false,
+						 time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+					 })
+
+					 // Here you can update the conversation flag
+					 conversationStarted = true;
+			 });
+
+		</script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="js/my-app.js"></script>
+
 		<script type="text/javascript">
 			$.validator.setDefaults( {
 					submitHandler: function () {

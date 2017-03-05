@@ -1,6 +1,7 @@
 /* Your app custom files in this file */
 /*@import "loading.css"; */
 
+
 @font-face {
     font-family: "Roboto-Condensed";
     src: url('../fonts/Roboto-Condensed.ttf');
@@ -43,6 +44,19 @@
   width: 100%;
 
 }
+
+
+
+#sendMe, textarea {
+  width: 100% !important;
+  border: 1px solid #ddd !important;;
+  border-radius: 10px !important;
+}
+
+.tabbar a.link {
+  width :auto !important;
+}
+
 
 .pagination li {
   display:inline-block;
@@ -164,6 +178,7 @@ div[class*="col-"] {
 
 .no-fill, .no-fill a {
   background: none !important;
+  background-color: transparent;
   border:  none !important
 }
 .size-70 {
@@ -180,6 +195,11 @@ div[class*="col-"] {
 	width: 100% !important;
 	height:auto !important;
 }
+
+
+
+
+
 
 .home {
 	background:url(img/coke-bottle.png) no-repeat top center;

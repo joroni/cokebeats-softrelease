@@ -140,6 +140,7 @@ $('html').on('click', function() {
     console.log('Clicks: ', homeScreen);
 
 });
+
 var homeScreen = localStorage.getItem('num_access');
 
 
@@ -149,19 +150,24 @@ var homeScreen = localStorage.getItem('num_access');
 
 
 /**************** comments ****************/
-var welcomeBottom = '<div class="toolbar-inner">' +
-    '<a href="#tab1" class="tab-link active">' +
-    '<i class="f7-icons">home</i></a>' +
-    '<a href="#tab2" onclick="getOldPosts();" class="tab-link">' +
-    '<i class="f7-icons">data</i></a>' +
-    '<a href="#tab3" class="tab-link">' +
-    '<i class="f7-icons">person</i></a>' +
-    '<a href="#tab4" class="tab-link">' +
-    '<i class="f7-icons">gear</i></a>' +
-    '</div>';
+var welcomeBottom = '<div class="toolbar-inner">'+
+                      '<a href="#tab1" class="tab-link active">'+
+                      '<i class="f7-icons">home</i></a>'+
+                      '<a href="#tab2" onclick="getOldPosts();" class="tab-link">'+
+                      '<i class="f7-icons">data</i></a>'+
+                      '<a href="#tab3" class="tab-link">'+
+                      '<i class="f7-icons">person</i></a>'+
+                    '</div>';
 
 var loginBottom = '<div class="toolbar-inner"></div>';
 
+
+var commentBottom = '<div class="toolbar messagebar">'+
+                      '<div class="toolbar-inner">'+
+                      '<textarea placeholder="Message" id="send_me"></textarea>'+
+                      '<a href="#" class="link" onclick="sendss();">Post</a>'+
+                      '</div>'+
+                    '</div>';
 
 $$('.page-content.home').on('click', function(e) {
     $$('.tabbar').html(welcomeBottom);
@@ -179,7 +185,7 @@ myApp.onPageInit('index', function(page) {
 
     //  $('#output').empty();
     //   postCached();
-})
+});
 
 
 myApp.onPageInit('welcome', function(page) {
@@ -189,6 +195,8 @@ myApp.onPageInit('welcome', function(page) {
     $$('.tabbar').html(welcomeBottom);
     console.log(welcomeBottom);
     $$('.navbar a.link.back').addClass('hidden-toolbar');
+
+    $$('.toolbar.messagebar').addClass('hidden-toolbar');
     //  $$('.views .welcome.toolbar').removeClass('hidden-toolbar');
 
     //  $$('.toolbar.messagebar').addClass('hidden-toolbar');
@@ -196,7 +204,7 @@ myApp.onPageInit('welcome', function(page) {
 
     //  $('#output').empty();
     //   postCached();
-})
+});
 
 
 myApp.onPageInit('single', function(page) {
@@ -206,19 +214,21 @@ myApp.onPageInit('single', function(page) {
     // "page" variable contains all required information about loaded and initialized page
     $$('.navbar a.link.back').removeClass('hidden-toolbar');
     //  $$('.comments.toolbar-inner').hide();
-    //  $$('.toolbar.messagebar').addClass('hidden-toolbar');
+    $$('.toolbar.messagebar').addClass('hidden-toolbar');
     //  $$('.views .toolbar').addClass('hidden-toolbar');
-})
+});
 
 
 myApp.onPageInit('commentbox', function(page) {
     // "page" variable contains all required information about loaded and initialized page
     $$('.views a.link.back').removeClass('hidden-toolbar');
     //$('.navbar a.link.back').show();
-    $$('.toolbar.messagebar').removeClass('hidden-toolbar');
-  
+    $$('.tabbar').html(commentBottom);
+
+  //  $$('.toolbar.messagebar').removeClass('hidden-toolbar');
+
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
-})
+});
 
 myApp.onPageInit('profile', function(page) {
     // "page" variable contains all required information about loaded and initialized page
@@ -226,7 +236,7 @@ myApp.onPageInit('profile', function(page) {
     //  $$('.views .welcome').addClass('hidden-toolbar');
     $$('.navbar a.link.back').removeClass('hidden-toolbar');
 
-})
+});
 
 myApp.onPageInit('login-screen', function(page) {
     $$('.tabbar').html(loginBottom);
@@ -234,7 +244,7 @@ myApp.onPageInit('login-screen', function(page) {
     //$('.notlogged.toolbar').removeClass('hidden-toolbar');
     //$('.toolbar.messagebar').addClass('hidden-toolbar');
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
-})
+});
 
 
 
@@ -258,7 +268,17 @@ $$('.view').addClass('theme-red layout-light');
 
 $$('.open-login, .login-screen').on('click', function() {
     myApp.loginScreen();
+
 });
+
+
+
+$$('.logout-button').on('click', function() {
+    myApp.loginScreen();
+    $$('.tabbar').html(loginBottom);
+});
+
+
 
 /*
 $$('.blog-link').on('click', function(){
