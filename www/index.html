@@ -39,8 +39,7 @@
 		<!--<div class="content-block-title">Left Panel</div>-->
 		<!--<a href="#" class="close-panel">Close</a>-->
 		<div class="profile-card">
-			<!--<img id="avatar" src="img/5388738458_ea9fd2a7d7_q.jpg" class="avatar profile-image">
-				<div id="avatar" onClick="onCapturePhoto();" class="avatar profile-image"></div>-->
+
 			<div id="avatar" class="avatar profile-image"></div>
 			<div><span class="profile-name appfirstname"></span> <span class="profile-name applastname"></span></div>
 			<div class="appusername">@davegraham</div>
@@ -115,7 +114,7 @@
 					 </div>
 					 <div class="right">
 						 <!-- Right link contains only icon - additional "icon-only" class-->
-						 <a href="#" class="link icon-only open-panel"> <i class="f7-icons size-50">bars</i></a>
+						 <!--<a href="#" class="link icon-only open-panel"> <i class="f7-icons size-50">bars</i></a>-->
 					 </div>
 				 </div>
 
@@ -225,23 +224,79 @@
 
             </div>
           </div>
-          <!-- About Page-->
-          <div data-page="about" class="page cached">
-            <div class="page-content">
-              <div class="content-block">
-                <p>
-                In order to go back to main page, you can click <strong>Back</strong> button on the left side of Top menu.<br />
-                Or simply use this link to <a href="#" class="back">go back</a>.</p>
-                <p>
-                In fact you can load any page from this application, with the simple HTML link. <a href="#form">Load login page</a>.</p>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel commodo massa, eu adipiscing mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus ultricies dictum neque, non varius tortor fermentum at. Curabitur auctor cursus imperdiet. Nam molestie nisi nec est lacinia volutpat in a purus. Maecenas consectetur condimentum viverra. Donec ultricies nec sem vel condimentum. Phasellus eu tincidunt enim, sit amet convallis orci. Vestibulum quis fringilla dolor.</p>
-
-                <p>Thanks,<br />
-                HTMLCenter team</p>
-              </div>
-            </div>
-          </div>
+          <!-- Edit Profile Page-->
+					<div data-page="editprofiles" class="page page no-swipeback cached">
+					  <div class="page-content">
+					    <div class="centered">
+					      <div class="item-title"></div>
+					      <div class="list-block">
+					        <ul>
+					          <li>
+					            <div class="item-content">
+					              <div class="item-media"><i class="f7-icons size-50 gray">lock</i></div>
+					              <div class="item-inner">
+					                <div class="item-title label">KOID</div>
+					                <div class="item-input">
+					                  <input id="user_name_input" class="userid gray" type="text" readonly class="gray" placeholder="KOID">
+					                </div>
+					              </div>
+					            </div>
+					          </li>
+					          <li>
+					            <div class="item-content">
+					              <div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+					              <div class="item-inner">
+					                <div class="item-title label">Password</div>
+					                <div class="item-input">
+					                  <input class="mdl-textfield__input password" type="password" id="password">
+					                </div>
+					              </div>
+					            </div>
+					          </li>
+					          <li>
+					            <div class="item-content">
+					              <div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+					              <div class="item-inner">
+					                <div class="item-title label">First Name</div>
+					                <div class="item-input">
+					                  <input class="mdl-textfield__input firstname" type="text" id="firstname">
+					                </div>
+					              </div>
+					            </div>
+					          </li>
+					          <li>
+					            <div class="item-content">
+					              <div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+					              <div class="item-inner">
+					                <div class="item-title label">Last Name</div>
+					                <div class="item-input">
+					                  <input class="mdl-textfield__input lastname" type="text" id="lastname">
+					                </div>
+					              </div>
+					            </div>
+					          </li>
+					        </ul>
+					      </div>
+					      <div style='clear:both;'></div>
+					      <div class="list-block">
+					        <ul>
+					          <li class="no-fill"><a href="#" id="btnUpdate" onclick="update_user();"  class="item-link list-button">Save</a></li>
+					        </ul>
+					        <!--<div class="list-block-label">
+					          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					          <p><a href="#" class="close-login-screen">Close Login Screen</a></p>
+					          </div>-->
+					      </div>
+					      <div class="content-block">
+					        <div class="row">
+					          <div class="col-100">
+					            <a href="#" class="button back link button gray"><i class="f7-icons">close_round</i></a>
+					          </div>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+					</div>
 
 
 
@@ -384,166 +439,16 @@
 
 
 
-          <!-- Profile Page-->
-					<div data-page="profile" class="page page no-swipeback cached">
-
-													<!-- Navbar -->
-							<div class="navbar">
-														<div class="navbar-inner">
-														 <!-- We have home navbar without left link-->
-														 <div class="left sliding"><a href="#" class="back link"> <i class="icon icon-back"></i></a></div>
-														 <div class="center sliding">
-															 <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
-														 </div>
-														 <div class="right">
-															 <!-- Right link contains only icon - additional "icon-only" class-->
-															 <a href="#" class="link icon-only open-panel"><i class="f7-icons size-50">bars</i></a>
-														 </div>
-													 </div>
-						</div>
-											 	<!-- Navbar -->
-
-						<div  id="profileContent" class="content-block centered" style="padding-top:40px;">
-							<!-- SEE taking-photo.html for camera code -->
-							<div id="avatar2" class="profile-image"></div>
-							<a href="#editprofiles" class="item-link waves-effect waves-light red"> <i class="f7-icons size-50">compose</i></a>
-						</div>
-						<div class="list-block">
-							<ul>
-								<li>
-									<div class="item-content">
-										<div class="item-media"></div>
-										<div class="item-inner">
-											<div class="item-title label">First Name</div>
-											<div class="appfirstname"></div>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="item-content">
-										<div class="item-media">
-											<!-- <a href="#editprofile" class="btn-floating btn-large waves-effect waves-light red"> <i class="fa fa-pencil"></i></a>-->
-										</div>
-										<div class="item-inner">
-											<div class="item-title label">Last Name</div>
-											<div class="applastname"></div>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="item-content">
-										<div class="item-media">
-											<!-- <a href="#editprofile" class="item-link btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a> -->
-										</div>
-										<div class="item-inner">
-											<div class="item-title label">KOID</div>
-											<div class="appusername"></div>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="item-content">
-										<div class="item-media">
-											<!--<a id="editProfile" href="#editprofile"
-												class="btn-floating btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a>-->
-										</div>
-										<div class="item-inner">
-											<div class="item-title label">Email</div>
-											<div class="appemail"></div>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<!--<table id="output2" class="table table-responsive">-->
-							</table>
-						</div>
-					</div>
-
-
-
-          <!-- Leader Board Page-->
-					<div data-page="editprofiles" class="page page no-swipeback cached">
-						<div class="page-content">
-							<div class="centered">
-								<div class="item-title"></div>
-								<div class="list-block">
-									<ul>
-										<li>
-											<div class="item-content">
-												<div class="item-media"><i class="f7-icons size-50 gray">lock</i></div>
-												<div class="item-inner">
-													<div class="item-title label">KOID</div>
-													<div class="item-input">
-														<input id="user_name_input" class="userid gray" type="text" readonly class="gray" placeholder="KOID">
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-content">
-												<div class="item-media"><i class="f7-icons size-50">unlock</i></div>
-												<div class="item-inner">
-													<div class="item-title label">Password</div>
-													<div class="item-input">
-														<input class="mdl-textfield__input password" type="password" id="password">
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-content">
-												<div class="item-media"><i class="f7-icons size-50">unlock</i></div>
-												<div class="item-inner">
-													<div class="item-title label">First Name</div>
-													<div class="item-input">
-														<input class="mdl-textfield__input firstname" type="text" id="firstname">
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="item-content">
-												<div class="item-media"><i class="f7-icons size-50">unlock</i></div>
-												<div class="item-inner">
-													<div class="item-title label">Last Name</div>
-													<div class="item-input">
-														<input class="mdl-textfield__input lastname" type="text" id="lastname">
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div style='clear:both;'></div>
-								<div class="list-block">
-									<ul>
-										<li class="no-fill"><a href="#" id="btnUpdate" onclick="update_user();"  class="item-link list-button">Save</a></li>
-									</ul>
-									<!--<div class="list-block-label">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-										<p><a href="#" class="close-login-screen">Close Login Screen</a></p>
-										</div>-->
-								</div>
-								<div class="content-block">
-									<div class="row">
-										<div class="col-100">
-											<a href="#" class="button back link button gray"><i class="f7-icons">close_round</i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 
 
 					<!-- Comments -->
 					<div data-page="commentbox" class="page no-swipeback cached">
-							<div class="toolbar messagebar">
-							<div class="toolbar-inner">
+						<div class="toolbar messagebar tabbar">
+							<!--<div class="toolbar-inner">
 
 								<textarea placeholder="Message" id='send_me'></textarea>
 								<a href="#" class="link" onclick='sendss()'>Send</a>
-							</div>
+							</div>-->
 						</div>
 						<div class="page-content messages-content">
 							<div id="comments" class="messages">
@@ -554,55 +459,117 @@
 
 
 					<!-- Welcome Page-->
-					<script id="welcomeTemplate" type="text/template7">
-					<div data-page="welcome" class="page cached">
-
-
-
-
-						<div class="page-content home" style="background-color: #fff;">
+			<script id="welcomeTemplate" type="text/template7">
+				<div data-page="welcome" class="page cached">
+					<div class="page-content home" style="background-color: #fff;">
 							<div class="content-blockno" style="margin-top:5px !important;">
-
-
-
-
-									<div class="tabs">
+								<div class="tabs">
 									<div id="tab1" class="tab tab1 active">
 										<ul id="output" class="output">
 
 
 										</ul>
-
 									</div>
-
 									<div id="tab2" class="tab tab2">
-
-
 										<div class="content-block-title">Archives</div>
-										<div class="list-block media-list">
-												<ul id="oldposts" class="oldposts">
+											<div class="list-block media-list">
+													<ul id="oldposts" class="oldposts">
 
-												</ul>
+													</ul>
 										</div>
-
 									</div>
+									<div id="tab3" class="tab tab3">
+										<!--<div class="content-block-title">Profile</div>-->
 
+
+
+
+
+												<!-- Profile Page-->
+
+
+													<div data-page="profile" id="profile" class="content-block centered" style="padding-top:40px;">
+														<!-- SEE taking-photo.html for camera code -->
+														<div id="avatar2" class="profile-image"></div>
+														<a href="#editprofiles" class="edit-link item-link red"> <i class="f7-icons size-50">compose</i></a>
+													</div>
+													<div class="list-block">
+														<ul>
+															<li>
+																<div class="item-content">
+																	<div class="item-media"></div>
+																	<div class="item-inner">
+																		<div class="item-title label">First Name</div>
+																		<div class="appfirstname"></div>
+																	</div>
+																</div>
+															</li>
+															<li>
+																<div class="item-content">
+																	<div class="item-media">
+																		<!-- <a href="#editprofile" class="btn-floating btn-large waves-effect waves-light red"> <i class="fa fa-pencil"></i></a>-->
+																	</div>
+																	<div class="item-inner">
+																		<div class="item-title label">Last Name</div>
+																		<div class="applastname"></div>
+																	</div>
+																</div>
+															</li>
+															<li>
+																<div class="item-content">
+																	<div class="item-media">
+																		<!-- <a href="#editprofile" class="item-link btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a> -->
+																	</div>
+																	<div class="item-inner">
+																		<div class="item-title label">KOID</div>
+																		<div class="appusername"></div>
+																	</div>
+																</div>
+															</li>
+															<li>
+																<div class="item-content">
+																	<div class="item-media">
+																		<!--<a id="editProfile" href="#editprofile"
+																			class="btn-floating btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a>-->
+																	</div>
+																	<div class="item-inner">
+																		<div class="item-title label">Email</div>
+																		<div class="appemail"></div>
+																	</div>
+																</div>
+															</li>
+														</ul>
+
+														<!--<table id="output2" class="table table-responsive">-->
+												</div>
+												<div class="content-block">
+													<a href="#" onclick="log_out()" class="item link centered">Log out</a>
+												</div>
+
+
+
+								<div id="tab4" class="tab tab4">
+								<div class="content-block-title">Archives</div>
+								<div class="list-block media-list">
+										<ul id="oldposts" class="oldposts">
+
+									</ul>
 								</div>
-
-
-					    </div>
-					  </div>
+							</div>
 					</div>
-					</script>
+		    </div>
+		  </div>
+		</div>
+	</script>
 
 <!---********************** DIVIDER OF PAGES ****************************-->
 
         </div>
 <!---********************** DIVIDER OF PAGES ****************************-->
         <!-- Bottom Toolbar-->
-				<div id="bottombar" class="toolbar tabbar">
+				<div id="bottombar" class="tabbar toolbar toolbar=fixed">
 
-			</div>
+				</div>
 
 
       <!--  <div data-page="welcome" class="welcome toolbar tabbar">

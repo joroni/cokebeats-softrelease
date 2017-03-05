@@ -78,14 +78,23 @@ font-size: 15px !important;
 }
 a.floating-button.comment{
   position: fixed;
-  bottom:30px;
+  bottom:75px;
   z-index: 20000;
   padding: 10px;
   border-radius: 50px;
   right: 30px;
-  background: #fff;
-  border:2px solid red;
+  background: #A400;
+  border:2px solid #fff;
 /*  box-shadow: 0 2px 5px #333;*/
+}
+
+
+
+.edit-link  {
+  position: absolute !important;
+  right: 20px !important;
+  top: 15% !important;
+
 }
 
 .popup-overlay {
