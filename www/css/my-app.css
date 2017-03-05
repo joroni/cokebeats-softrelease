@@ -65,6 +65,17 @@ ul#output li {
   margin-left: 3%;
 }
 
+.size-8 {
+font-size: 8px !important;
+}
+
+.size-10 {
+font-size: 10px !important;
+}
+
+.size-15 {
+font-size: 15px !important;
+}
 a.floating-button.comment{
   position: fixed;
   bottom:30px;
@@ -89,6 +100,20 @@ div[class*="col-"] {
   padding: 5px;
 }
 */
+
+
+
+
+.hidden-toolbar {
+  display: none !important;
+}
+
+
+.show-toolbar {
+  display: block !important;
+
+}
+
 
 
 .post-content  {
@@ -136,10 +161,13 @@ div[class*="col-"] {
   font-size: 30px;
 }
 .row {
-  margin-bottom: 5px;
+  margin-bottom: 25px;
+  margin-left: -15px;
+  margin-right:-15px;
 }
 
-#blogcontent video, #blogcontent img, #gallery img, #gallery video {
+#blogcontent video, #blogcontent img, #gallery img, #gallery video,
+ .my-gallery img, .my-gallery video {
 	width: 100% !important;
 	height:auto !important;
 }

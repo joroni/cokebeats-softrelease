@@ -1,12 +1,40 @@
 // Initialize your app
 var myApp = new Framework7({
-    animateNavBackIcon: true,
+    animateNavBackIcon: false,
     template7Pages: true,
     precompileTemplates: true
 });
 
 // Export selectors engine
 var $$ = Dom7;
+
+// Add main View
+var mainView = myApp.addView('.view-main', {
+    // Enable dynamic Navbar
+    dynamicNavbar: false,
+    // Enable Dom Cache so we can use all inline pages
+    domCache: true
+});
+
+/* @TODO FizzQuizzAWS credentials */
+// Setup your FizzQuizzAWS applicationId and API key
+var applicationId = 'xxx';
+var restApiKey = 'yyy';
+
+
+// Funcion to handle Cancel button on Login page
+$$('#cancel-login').on('click', function() {
+    // Clear field values
+    $$('#user_name_input').val('');
+    $$('#user_pass_input').val('');
+});
+
+$$('.view').addClass('theme-red layout-light');
+
+
+var nonce_key = "s20;$N9&4p)eLv$rGl`]L|@#x[9vkcg*Ai#nDYRHtd}x`eANiszk~DitUr:UzaM}";
+var base_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel";
+var base_wp_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress";
 
 /**************** comments ****************/
 
@@ -38,7 +66,6 @@ console.log(displayDate);
 console.log(displayTime);
 
 
-var base_url = 'http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laraveladmin';
 var today = new Date();
 var temp_date = new Date();
 //today = today.format("yyyy-mm-dd");
@@ -46,24 +73,105 @@ var date_joined_cb = displayDate;
 var time_joined_cb = displayTime;
 
 
-/**************** comments ****************/
 
 
-// Add main View
-var mainView = myApp.addView('.view-main', {
-    // Enable dynamic Navbar
-  //  dynamicNavbar: false,
-    // Enable Dom Cache so we can use all inline pages
-    domCache: true
+console.log('Date Joined: ', date_joined_cb);
+//localStorage.setItem('Coke-Beats-info', CB_username + ':' + date_joined_cb);
+localStorage.setItem('temp_access_date', displayDate);
+var user_id = localStorage.getItem('myusername');
+var date_joined_cb = displayDate;
+var num_access  = 1;
+var time_joined_cb = displayTime;
+var appfirstname = localStorage.getItem('myfirstname');
+var tempval = num_access;
+var divisions = tempval;
+var area = tempval;
+var aunit = tempval;
+var score_bottle = time_joined_cb;
+
+
+function post_score_new() {
+
+  $('#track_username').val(user_id);
+  $('#track_date').val(date_joined_cb);
+  $('#track_click').val(num_access);
+  $("#score_bottle").val(time_joined_cb);
+  $("#divisions").val(tempval);
+  $("#area").val(tempval);
+  $("#aunit").val(tempval);
+
+
+//  console.log("Attempts", attempts);
+
+
+  $.get(base_url + "/app_tracker/update/" + user_id + "/" + date_joined_cb + "/" + area + "/" + divisions + "/" + aunit + "/" + score_bottle, function ( data ) {
+
+
+
+
+
+  });
+
+
+
+
+}
+
+
+$('html').on('click', function () {
+  console.log('Counting your clicks');
+  post_score_new();
+  num_access ++;
+
+
+
+  var user_id = $("#track_username").val();
+  var datefrom = $("#track_date").val();
+  var attempts = $("#track_click").val();
+
+  var score_bottle = $("#score_bottle").val();
+
+
+  var divisions = $("#divisions").val();
+  var area = $("#area").val();
+  var aunit = $("#aunit").val();
+
+
+  localStorage.setItem('num_access', num_access);
+
+  console.log('Clicks: ', homeScreen);
+
 });
-// In page callbacks:
+var homeScreen =  localStorage.getItem('num_access');
+
+
+
+// RAYMUND CUSTOM
+
+
+
+/**************** comments ****************/
+var welcomeBottom = '<div class="toolbar-inner"><a href="#tab1" class="tab-link active">'+
+                  '<i class="f7-icons">home</i></a><a href="#tab2" onclick="getOldPosts();" class="tab-link">'+
+                  '<i class="f7-icons">data</i></a></div>';
+
+var loginBottom = '<div class="toolbar-inner"></div>';
+
+
+$$('.page-content.home').on('click', function(e){
+  $$('.tabbar').html('welcomeBottom');
+});
 
 myApp.onPageInit('index', function (page) {
   // "page" variable contains all required information about loaded and initialized page
-    $('.navbar a.link.back, .left a').hide();
-    $('.comments.toolbar-inner').hide();
-    $('.toolbar.messagebar').hide();
-    $('toolbar.welcome').show();
+    $$('#bottombar.toolbar-inner').append(welcomeBottom);
+    //$$('.comments.toolbar-inner').hide();
+    $$('.toolbar.messagebar').hide();
+  //  $$('.navbar a.link.back').addClass('hidden-toolbar');
+  //  $$('.views .index.toolbar').addClass('hidden-toolbar');
+  //  $$('.comments.toolbar-inner').hide();
+    //  $$('.index .index.toolbar').removeClass('hidden-toolbar');
+
   //  $('#output').empty();
         //   postCached();
 })
@@ -71,10 +179,15 @@ myApp.onPageInit('index', function (page) {
 
 myApp.onPageInit('welcome', function (page) {
   // "page" variable contains all required information about loaded and initialized page
-    $('.navbar a.link.back').hide();
-    $('.comments.toolbar-inner').hide();
-    $('.toolbar.messagebar').hide();
-    $('toolbar.welcome').show();
+  //  $$('.navbar a.link.back').hide();
+  $$('.tabbar').removeClass('hidden-toolbar');
+  $$('.tabbar').html(welcomeBottom);
+    console.log(welcomeBottom);
+    $$('.navbar a.link.back').addClass('hidden-toolbar');
+  //  $$('.views .welcome.toolbar').removeClass('hidden-toolbar');
+
+  //  $$('.toolbar.messagebar').addClass('hidden-toolbar');
+  //  $('toolbar.welcome').show();
 
   //  $('#output').empty();
         //   postCached();
@@ -82,34 +195,38 @@ myApp.onPageInit('welcome', function (page) {
 
 
 myApp.onPageInit('single', function (page) {
-
+  $$('.tabbar').html('');
+   $$('.tabbar').addClass('hidden-toolbar');
   // "page" variable contains all required information about loaded and initialized page
-    $('.navbar a.link.back').show();
-      $('.comments.toolbar-inner').hide();
-      $('.toolbar.messagebar').hide();
+      $$('.navbar a.link.back').removeClass('hidden-toolbar');
+    //  $$('.comments.toolbar-inner').hide();
+    //  $$('.toolbar.messagebar').addClass('hidden-toolbar');
+    //  $$('.views .toolbar').addClass('hidden-toolbar');
 })
 
 
 myApp.onPageInit('commentbox', function (page) {
   // "page" variable contains all required information about loaded and initialized page
-    $('.navbar a.link.back').show();
-    $('.toolbar.messagebar').show();
+    $$('.views a.link.back').removeClass('hidden-toolbar');
+    //$('.navbar a.link.back').show();
+    $$('.toolbar.messagebar').removeClass('hidden-toolbar');
+    $$('.toolbar.messagebar').removeClass('hidden-toolbar');
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
 
 myApp.onPageInit('profile', function (page) {
   // "page" variable contains all required information about loaded and initialized page
-    $('.navbar a.link.back').show();
-      $('.comments.toolbar-inner').hide();
-          $('.toolbar.messagebar').hide();
-       $('.notlogged.toolbar').hide();
-    //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
+  $$('.tabbar').html('');
+  //  $$('.views .welcome').addClass('hidden-toolbar');
+    $$('.navbar a.link.back').removeClass('hidden-toolbar');
+
 })
 
 myApp.onPageInit('login-screen', function (page) {
+    $$('.tabbar').html(loginBottom);
   // "page" variable contains all required information about loaded and initialized page
-     $('.notlogged.toolbar').show();
-      $('.toolbar.messagebar').hide();
+     //$('.notlogged.toolbar').removeClass('hidden-toolbar');
+      //$('.toolbar.messagebar').addClass('hidden-toolbar');
     //  $('#commentBoxFrame').attr('src', base_url+'/single/post/1733/comments');
 })
 
@@ -139,9 +256,11 @@ $$('.open-login, .login-screen').on('click', function () {
   myApp.loginScreen();
 });
 
-var base_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel";
-var base_wp_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress";
-
+/*
+$$('.blog-link').on('click', function(){
+      $$('.navbar a.link.back').removeClass('hidden-toolbar');
+});
+*/
 
 function noNet(path, success, error) {
     var xhr = new XMLHttpRequest();
@@ -199,9 +318,9 @@ function check_storage() {
         //	window.location.replace("main.html");
         $('.login-button, .register-button').hide();
         $('.logout-button').show();
-		$('.left a').show();
-		$('.right').show();
-		$('.notlogged.toolbar').hide();
+    		$('.left a').show();
+    		$('.right').show();
+		$('.notlogged.toolbar').removeClass('hidden-toolbar');
         console.log('logged');
         mainView.router.load({
              template: Template7.templates.welcomeTemplate,
@@ -227,7 +346,7 @@ function check_storage() {
           $('.login-button, .register-button').show();
           $('.logout-button').hide();
           $('.right').hide();
-		      $('.notlogged.toolbar').show();
+		      $('.notlogged.toolbar').removeClass('hidden-toolbar');
  		   myApp.loginScreen();
     }
 
@@ -258,7 +377,8 @@ function signin() {
         .done(function(data) {
             if (data == 0) {
                 myApp.hideIndicator();
-				$('.notlogged.toolbar').show();
+
+         $$('.notlogged.toolbar').removeClass('hidden-toolbar');
                 //  if (!username || !password){
                 myApp.alert('Username and Password incorrect', alertTitle);
                 return;
@@ -272,7 +392,7 @@ function signin() {
             } else if (data == 1) {
 
                 myApp.hideIndicator();
-				        $('.notlogged.toolbar').hide();
+				        $$('.notlogged.toolbar').addClass('hidden-toolbar');
 
 
                 localStorage.setItem("userlogin", user_name_input);
@@ -297,13 +417,13 @@ function signin() {
                 });
 
 				//mainView.router.loadPage('#welcome');
-				$$('.left a').hide();
+				//$$('.left a').hide();
 				$$('.right a').show();
 				$('.login-screen').removeClass('modal-in');
 				$('.login-screen').addClass('modal-out');
 
 				$('.login-screen').hide();
-myProfile();
+        myProfile();
 				getPosts();
 
                 //	window.location.href = "main.html";
@@ -481,16 +601,17 @@ function update_user() {
     myApp.showIndicator();
     // var id = $('#user_id').val();
     var username = $('.userid').val();
-    var password = $('#password').val();
-    var fname = $('#firstname').val();
-    var lname = $('#lastname').val();
-    var user_email = $('#email').val();
+    var password = $('.password').val();
+    var fname = $('.firstname').val();
+    var lname = $('.lastname').val();
+    var user_email = $('.email').val();
 
     $.post(base_url + '/update/user', {
-            username: username,
+            user_login: username,
             password: password,
             fname: fname,
             lname: lname,
+          //  nice_name: fname +''+lname,
             user_email: user_email
         })
 
@@ -526,7 +647,7 @@ function update_user() {
 
 }
 
-function postCachedxx() {
+function postCached() {
 	var postData = localStorage.getItem('tempPostData');
 			var jsonObj = $.parseJSON(postData);
 		//	console.log(jsonObj);
@@ -538,7 +659,7 @@ function postCachedxx() {
 				var date=field.date;
 				var modified=field.modified;
 				var thumbnail=field.thumbnail;
-				$("#output").append('<div class="item col-50">'+
+				$(".output").append('<div class="item col-50">'+
 										'<a class="blog-links" id="'+frompost_id+'"  href="'+base_wp_url+'"/single/post/"'+frompost_id+'">'+
 											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
 												'<div class="media-title-inner">'+title+'</div>'+
@@ -685,10 +806,8 @@ function getPosts() {
 				var date=field.date;
 				var thumbnail=field.thumbnail;
 
-			$("#output").append('<li name="name" class="item col-45">'+
+			$(".output").append('<li name="name" class="item col-45">'+
       '<a class="blog-link" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
-									//	'<a class="blog-link" id="'+frompost_id+'" href="#single">'+
-										//'<a class="blog-link open-popup" data-popup=".popup-single" id="'+frompost_id+'" href="#">'+
 											'<div class="thumb media-object-thumb" style="background: url('+thumbnail+') #ddd;">'+
 												'<div class="media-title-inner">'+title+'</div>'+
 											'</div>'+
@@ -699,7 +818,7 @@ function getPosts() {
                     setTimeout(function(){
                       myApp.hideIndicator();
 
-                    },2000);
+                    },5000);
                       //
                     //
                       var frompostSelected = $(this).attr('id');
@@ -708,22 +827,19 @@ function getPosts() {
 
                   });
 
-
-
   	        });
 
 
 			 myApp.hideIndicator();
-       return false;
-      	});
+       //return false;
+       $$(function() {
+         localStorage["output-cached"] = JSON.stringify($("#output").html());
+       });
 
-
-
-
-
-
-
+    });
 }
+
+
 
 
 
@@ -753,24 +869,14 @@ function getOldPosts() {
         var excerpt=field.excerpt.slice(0,50);
         var excerpt_plain = excerpt.replace('<p>', '');
         var comment_count = field.comment_count;
-      /*<a href="#" class="item-link item-content">
-          <div class="item-media"><img src="..." width="80"></div>
-          <div class="item-inner">
-            <div class="item-title-row">
-              <div class="item-title">Yellow Submarine</div>
-              <div class="item-after">$15</div>
-            </div>
-            <div class="item-subtitle">Beatles</div>
-            <div class="item-text">Lorem ipsum dolor sit amet...</div>
-          </div>
-        </a>*/
-			$("#oldposts").append('<li>'+
+
+			$(".oldposts").append('<li>'+
                               '<a class="item-link post-link item-content" id="'+frompost_id+'"  href="'+base_url+'/single/post/'+frompost_id+'">'+
               									'<img src="'+thumbnail+'" width="80" style="margin-right:10px;"></div>'+
                                   '<div class="item-inner">'+
                                       '<div class="item-title-row">'+
                                         '<div class="item-title">'+title+'</div>'+
-                                        '<div class="item-after">'+comment_count+'<i class="f7-icons size-20">chat</i></div>'+
+                                        '<div class="item-after size-10">'+comment_count+'<i class="f7-icons size-15">chat_fill</i></div>'+
                                       '</div>'+
                                       '<div class="item-subtitle">'+date+'</div>'+
                                       '<div class="item-text">'+excerpt_plain+'...</div>'+
@@ -803,106 +909,33 @@ function getOldPosts() {
 
 
 }
-/*
-
-var monkeyList = new List('.posts', {
-  valueNames: ['name'],
-  page: 3,
-  pagination: true
-});
-*/
-/*
-
-$(document).ready(function()    {
-	$('#output').append({itemsPerPage: 2});
-	$('#output').append({itemsPerPage: 3});
-  $('#output').append({itemsPerPage: 4});
-
-	$.getJSON('data.json', function(data) {
-		var items = [];
-		$.each(data.items, function(i, item) {
-			items.push('<li>' + item + '</li>');
-		});
-		$('#output').append(items.join(''));
-		$('#output').append({itemsPerPage: 4});
-	});
-});
-
-*/
-
-/*
-function getPostContent() {
-
-  	myApp.showIndicator();
-  		var blogPostID = $(this).attr('id');
-		var url= base_wp_url+"/?json=get_post&post_id="+blogPostID;
-
-
-  			$.getJSON(url,function(result){
-			//console.log(result);
-
-			localStorage.setItem('tempPostContentData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostContentData');
-			var jsonContentObj = $.parseJSON(postData);
-			//var jsonContentObj = postData;
-			console.log(jsonContentObj);
-			//$("#blogcontent").append('<div>'+jsonContentObj[0].content+'</div>');
-			var table = '<table><thead><tr><th>Title</th></tr><tr><th>Content</th></tr></thead><tbody>';
-			 $.each(result, function() {
-
-		 table += '<tr><td>' + this['title'] + '</td></tr><tr><td>' + this['content'] + '</td></tr>';
-    });
-
-		 table += '</tbody></table>';
-    	document.getElementById("datalist").innerHTML = table;
-
-
-
-
-
-			//$("#blogcontent").html(jsonContentObj.posts.content);
-
-  	       /* $.each(jsonContentObj.posts, function(i, field){
-  	        	var title=field.title;
-                var id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
-				console.log(title);
-
-
-
-				$("#blogcontent").append('<div>'+postData+'</div>');
-
-				//<div class='blogposts' id='"+id+'">'+content+"</div>");
-
-  	        });
-
-			 myApp.hideIndicator();
-      	});
-
-
-}
-  */
 
 
 function homeLink() {
 
-/* mainView.router.load({
+mainView.router.load({
       template: Template7.templates.welcomeTemplate,
       context: {
         //  name: username
       }
-  });*/
+  });
 
- mainView.router.loadPage('#welcome');
+// mainView.router.loadPage('#welcome');
 //  $('#output').empty();
 
   //initApp();
 
-//             postCached();
+          //  postCached();
+//getOldPosts();
+$(function() {
+   if (localStorage["output-cached"] != null) {
+      var contentsOfOld = JSON.parse(localStorage["output-cached"]);
+      $(".output").html(contentsOfOld);
+     }
+});
 
-// getPosts();
+
+ //getPosts();
 }
 function edittheProfile() {
 
