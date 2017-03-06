@@ -5,24 +5,16 @@ var myApp = new Framework7();
 var $$ = Dom7;
 
 // Add views
+var view0 = myApp.addView('#view-0');
 var view1 = myApp.addView('#view-1', {
-    // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
+  dynamicNavbar: true
 });
 var view2 = myApp.addView('#view-2', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-var view3 = myApp.addView('#view-3', {
-    // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
-});
-
-var view3B = myApp.addView('#view-3B');
+var view3 = myApp.addView('#view-3');
 var view4 = myApp.addView('#view-4');
-
-
-/**************************************************/
 
 
 
@@ -47,8 +39,6 @@ $$('.view').addClass('theme-red layout-light');
 var nonce_key = "s20;$N9&4p)eLv$rGl`]L|@#x[9vkcg*Ai#nDYRHtd}x`eANiszk~DitUr:UzaM}";
 var base_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/laravel";
 var base_wp_url = "http://ec2-54-214-99-121.us-west-2.compute.amazonaws.com/wordpress";
-
-
 
 /**************** comments ****************/
 
@@ -165,12 +155,12 @@ var homeScreen =  localStorage.getItem('num_access');
 
 
 /**************** comments ****************/
-/*var welcomeBottom = '<div class="toolbar-inner"><a href="#tab1" class="tab-link active">'+
+var welcomeBottom = '<div class="toolbar-inner"><a href="#tab1" class="tab-link active">'+
                   '<i class="f7-icons">home</i></a><a href="#tab2" onclick="getOldPosts();" class="tab-link">'+
                   '<i class="f7-icons">data</i></a></div>';
 
 var loginBottom = '<div class="toolbar-inner"></div>';
-*/
+
 /*
 $$('.page-content.home').on('click', function(e){
   $$('.tabbar').html('welcomeBottom');
@@ -423,12 +413,12 @@ function signin() {
 
 
                initApp();
-            /*   mainView.router.load({
+               mainView.router.load({
                     template: Template7.templates.welcomeTemplate,
                     context: {
                       //  name: username
                     }
-                });*/
+                });
 
 				//mainView.router.loadPage('#welcome');
 				//$$('.left a').hide();
@@ -647,13 +637,12 @@ function update_user() {
             	$('#user_email').text(user_email);
 
                 //  window.location.reload();
-				/*mainView.router.load({
+				mainView.router.load({
                     template: Template7.templates.welcomeTemplate,
                     context: {
                      //   name: username
                     }
-                });*/
-
+                });
 				myApp.hideIndicator();
 				myApp.alert('Updates Successful', alertTitle);
 				initApp();
@@ -803,7 +792,7 @@ function getPostsWP() {
 
 
 function getPosts() {
-  $('#output').empty();
+  //$('#output').empty();
   		myApp.showIndicator();
         var url= base_wp_url+"/?json=get_posts&count=6";
   	//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
@@ -926,12 +915,7 @@ $$('.create-popup').on('click', function () {
 });
 
 
-//function getOldPosts() {
-$$('.view-2').on('click', function(){
-
-      $$('.oldposts').empty();
-
-
+function getOldPosts() {
   //$('#output').empty();
   		myApp.showIndicator();
         var url= base_wp_url+"/?json=get_posts&offset=6";
@@ -995,7 +979,7 @@ $$('.view-2').on('click', function(){
 
 
 
-});
+}
 
 
 function homeLink() {

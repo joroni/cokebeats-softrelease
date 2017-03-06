@@ -1,7 +1,6 @@
 /* Your app custom files in this file */
 /*@import "loading.css"; */
 
-
 @font-face {
     font-family: "Roboto-Condensed";
     src: url('../fonts/Roboto-Condensed.ttf');
@@ -45,19 +44,6 @@
 
 }
 
-
-
-#sendMe, textarea {
-  width: 100% !important;
-  border: 1px solid #ddd !important;;
-  border-radius: 10px !important;
-}
-
-.tabbar a.link {
-  width :auto !important;
-}
-
-
 .pagination li {
   display:inline-block;
   padding:5px;
@@ -92,23 +78,14 @@ font-size: 15px !important;
 }
 a.floating-button.comment{
   position: fixed;
-  bottom:75px;
+  bottom:30px;
   z-index: 20000;
   padding: 10px;
   border-radius: 50px;
   right: 30px;
-  background: #A400;
-  border:2px solid #fff;
+  background: #fff;
+  border:2px solid red;
 /*  box-shadow: 0 2px 5px #333;*/
-}
-
-
-
-.edit-link  {
-  position: absolute !important;
-  right: 20px !important;
-  top: 15% !important;
-
 }
 
 .popup-overlay {
@@ -178,7 +155,6 @@ div[class*="col-"] {
 
 .no-fill, .no-fill a {
   background: none !important;
-  background-color: transparent;
   border:  none !important
 }
 .size-70 {
@@ -195,11 +171,6 @@ div[class*="col-"] {
 	width: 100% !important;
 	height:auto !important;
 }
-
-
-
-
-
 
 .home {
 	background:url(img/coke-bottle.png) no-repeat top center;
