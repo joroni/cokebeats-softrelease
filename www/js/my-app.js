@@ -745,27 +745,29 @@ function getGetComments() {
 }
 
 
-function getPostsWP() {
-  //$('#output').empty();
-  		myApp.showIndicator();
-  	//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
-    var url= base_wp_url+"/wp-json/wp/v2/posts?per_page=6";
-      $.getJSON(url,function(result){
-	//		console.log(result);
-			localStorage.setItem('tempPostData', JSON.stringify(result));
-			var postData = localStorage.getItem('tempPostData');
-			var jsonObj = $.parseJSON(postData);
-			console.log(jsonObj);
+function getPosts() {
+  $('#output').empty();
+  myApp.showIndicator();
+    var url= base_wp_url+"/?json=get_posts&count=6";
+//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
+  //var url= base_wp_url+"/wp-json/wp/v2/posts?per_page=6";
+  $.getJSON(url,function(result){
+//		console.log(result);
+  localStorage.setItem('tempPostData', JSON.stringify(result));
+  var postData = localStorage.getItem('tempPostData');
+  var jsonObj = $.parseJSON(postData);
+  console.log(jsonObj);
 
 
-		//	var postData = localStorage.getItem('tempPostData');
-			//var array = JSON.parse(postData);
-			$.each(jsonObj.posts, function(i, field){
-  	    var title=(field.title).slice(0,5);
-        var frompost_id=field.id;
-				var content=field.content;
-				var date=field.date;
-				var thumbnail=field.thumbnail;
+//	var postData = localStorage.getItem('tempPostData');
+  //var array = JSON.parse(postData);
+  $.each(jsonObj.posts, function(i, field){
+    var title=(field.title).slice(0,5);
+    var frompost_id=field.id;
+    var content=field.content;
+    var date=field.date;
+    var thumbnail=field.thumbnail;
+    var content=field.content;
 
 
 			$("#output").append('<li name="name" class="item col-45">'+
@@ -778,9 +780,15 @@ function getPostsWP() {
 										'</a>'+
 									'</li>');
                   $('a.blog-link').on('click', function(){
-                    //myApp.showIndicator();
+                    myApp.showIndicator();
                       var frompostSelected = $(this).attr('id');
                       localStorage.setItem('tempoPostSelectedID', frompostSelected);
+
+                      setTimeout(function(){
+
+                     myApp.hideIndicator();
+
+                      },5000);
                   });
 
 
@@ -802,8 +810,8 @@ function getPostsWP() {
 
 
 
-function getPosts() {
-  $('#output').empty();
+function getPostsS() {
+  //$('#output').empty();
   		myApp.showIndicator();
         var url= base_wp_url+"/?json=get_posts&count=6";
   	//	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
