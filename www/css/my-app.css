@@ -78,7 +78,7 @@ font-size: 15px !important;
 }
 a.floating-button.comment{
   position: fixed;
-  bottom:30px;
+  bottom:65px;
   z-index: 20000;
   padding: 10px;
   border-radius: 50px;
