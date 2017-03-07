@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <title>Comments</title>
+        <link rel="stylesheet" href="css/my-app.css">
+      <link rel="stylesheet" href="css/framework7.ios.min.css">
+      <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+   </head>
+   <body>
+      <div class="views">
+         <div class="view view-main">
+            <div class="pages">
+               <div data-page="commentbox" class="page navbar-fixed toolbar-fixed">
+                  <div class="navbar">
+                     <div class="navbar-inner">
+                        <div class="left"> </div>
+                        <div class="center">Comments</div>
+                        <div class="right"> </div>
+                     </div>
+                  </div>
+                  <div class="toolbar messagebar">
+                     <div class="toolbar-inner">
+                        <textarea placeholder="Message"></textarea><a href="#" class="link">Send</a>
+                     </div>
+                  </div>
+                  <div class="page-content messages-content">
+                     <div class="messages">
+                        <div class="messages-date">Friday, Apr 26 <span>10:30</span></div>
+                        <div class="message message-received">
+                           <div class="message-name">Smith</div>
+                           <div class="message-text">I have a page and want to count up a Badge Icon in Toolbar after Form request. How can i do that? Page reload is ok after Form request but the Badge Icon only counts after restart of the webapp.</div>
+                           <div style="background-image:url(img/photo.png)" class="message-avatar"></div>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript" src="js/framework7/framework7.min.js"></script>
+      <script>
+         var myApp = new Framework7();
+
+            var $$ = Dom7;
+
+            // It indicates conversation flag
+            var conversationStarted = false;
+
+            // Here initiliaze the messages
+            var myMessages = myApp.messages('.messages', {
+              autoLayout:true
+            });
+
+            // Initiliaze the messagebar
+            var myMessagebar = myApp.messagebar('.messagebar');
+
+            // Displays the text after clicking the button
+            $$('.messagebar .link').on('click', function () {
+              // specifies the message text
+              var messageText = myMessagebar.value().trim();
+              // If there is no message, then exit from there
+              if (messageText.length === 0) return;
+
+              // Specifies the empty messagebar
+              myMessagebar.clear()
+
+              // Defines the random message type
+              var messageType = (['sent', 'received'])[Math.round(Math.random())];
+
+              // Provides the avatar and name for the received message
+              var avatar, name;
+              if(messageType === 'received') {
+                name = 'Smith';
+              }
+              // It adds the message
+              myMessages.addMessage({
+                // It provides the message text
+                text: messageText,
+                // It displays the random message type
+                type: messageType,
+                // Specifies the avatar and name of the sender
+                avatar: avatar,
+                name: name,
+                // Displays the day, date and time of the message
+                day: !conversationStarted ? 'Today' : false,
+                time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+              })
+
+              // Here you can update the conversation flag
+              conversationStarted = true;
+
+
+
+
+
+
+              function getPostComments() {
+                   myApp.showIndicator();
+                    var PostSelectedID = localStorage.getItem('tempoPostSelectedID');
+                   var url= base_wp_url+"/?json=get_post&post_id="+PostSelectedID;
+                   $.getJSON(url,function(result){
+                   console.log(result);
+                   localStorage.setItem('tempPostCommentData', JSON.stringify(result));
+                   var postCommentData = localStorage.getItem('tempPostCommentData');
+                   var jsonCommentObj = $.parseJSON(postCommentData);
+                   console.log(jsonCommentObj);
+                 //	var postData = localStorage.getItem('tempPostData');
+                   //var array = JSON.parse(postData);
+                   $.each(jsonCommentObj.posts, function(i, field){
+                    // var title=(field.title).slice(0,5);
+                      var date=field.date;
+                     var content=field.content;
+                     var name=field.name;
+                      var avatar=field.avatar;
+                      console.log(date);
+                      console.log(name);
+                      console.log(content);
+
+                   $(".messages").append('<div class="messages-date">'+date+' <span>10:30</span></div>'+
+                      '<div class="message message-received">'+
+                         '<div class="message-name">'+name+'</div>'+
+                         '<div class="message-text">'+congent+
+                         '<div style="background-image:url('+avatar+')" class="message-avatar"></div>'+
+                      '</div>');
+
+
+
+                         });
+
+                    myApp.hideIndicator();
+                     });
+
+
+              }
+
+          });
+
+      </script>
+   </body>
+</html>
