@@ -761,9 +761,9 @@ function getGetComments() {
 
 
 function getPosts() {
-  $('#output').empty();
+  $$('#output').empty();
   myApp.showIndicator();
-    var url= base_wp_url+"/?json=get_posts&count=6";
+  var url= base_wp_url+"/?json=get_posts&count=6";
 //	var url= base_wp_url+"/?json=get_recent_posts?per_page=6";
   //var url= base_wp_url+"/wp-json/wp/v2/posts?per_page=6";
   $.getJSON(url,function(result){
@@ -1173,9 +1173,10 @@ function log_out() {
 
     //  window.location.replace("index.html");
     window.localStorage.clear();
-    $$('#loginScreen').addClass('modal-in');
 	   myApp.loginScreen();
-
+     $$('#loginScreen').addClass('modal-in');
+     $$('.notlogged.toolbar-inner').show();
+       $$('.common.toolbar-inner').hide();
    // mainView.router.load({
      //   template: Template7.templates.guestTemplate
         //  context: {
