@@ -18,7 +18,7 @@
   <preference name="Fullscreen" value="false"/>
   <preference name="KeepRunning" value="true"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="1000"/>
+  <preference name="SplashScreenDelay" value="7000"/>
 
   <preference name="AllowInlineMediaPlayback" value="false"/>
   <preference name="AutoHideSplashScreen" value="true"/>
@@ -43,8 +43,9 @@
   <preference name="monaca:AndroidIsPackageNameSeparate" value="false"/>
 
   <preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1,2"/>
-<icon src="icon.png"/>
+
   <platform name="ios">
+    <icon src="icon.png"/>
     <icon src="www/res/ios/icon/icon.png" width="57" height="57"/>
     <icon src="www/res/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="www/res/ios/icon/icon-72.png" width="72" height="72"/>
@@ -79,6 +80,7 @@
     </config-file>
   </platform>
   <platform name="android">
+    <icon src="icon.png"/>
     <icon src="www/res/android/icon/ldpi.png" density="ldpi"/>
     <icon src="www/res/android/icon/mdpi.png" density="mdpi"/>
     <icon src="www/res/android/icon/hdpi.png" density="hdpi"/>
