@@ -367,7 +367,7 @@ a:active, a:hover, a.active {
 
 
         .truncate {
-          width: 250px;
+          width: 200px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
