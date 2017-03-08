@@ -804,6 +804,15 @@ function getGetComments() {
 
 
 function getPosts() {
+
+  var max = 2;
+  $('output#ul').each(function(){
+    $(this).find('li').each(function(index){
+      if(index >= max) $(this).hide()
+    })
+  })
+
+
   $$('#output').empty();
   myApp.showIndicator();
   var url= base_wp_url+"/?json=get_posts&count=6";
@@ -837,6 +846,8 @@ function getPosts() {
 											'</div>'+
 										'</a>'+
 									'</li>');
+
+                $("#output li:nth-of-type(1n+7)").css('display' ,'none');
                   $('a.blog-link').on('click', function(){
                     myApp.showIndicator();
                       var frompostSelected = $(this).attr('id');

@@ -365,6 +365,13 @@ a:active, a:hover, a.active {
 
         }
 
+
+        .truncate {
+          width: 250px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
   .message .message-name {
     display: block !important;
   }
