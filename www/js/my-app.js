@@ -709,19 +709,16 @@ function postCached() {
 
 
 
-
-
-
+/*
 
 function getGetComments() {
   		myApp.showIndicator();
       $("#comments").empty();
       var PostSelectedID = localStorage.getItem('tempoPostSelectedID');
-
-      var url= base_wp_url+"/?json=get_post&post_id="+PostSelectedID;
+      var url= base_url+"/single/get/"+PostSelectedID+"/comments";
   		$.getJSON(url,function(result){
 			console.log(result);
-			localStorage.setItem('tempPostCommentData', JSON.stringify(result));
+			/*localStorage.setItem('tempPostCommentData', JSON.stringify(result));
 			var postCommentData = localStorage.getItem('tempPostCommentData');
 			var jsonCommentObj = $.parseJSON(postCommentData);
 			console.log(jsonCommentObj);
@@ -745,6 +742,52 @@ function getGetComments() {
 			$("#comments").append('<div class="messages-date">'+date+'</div>'+
         '<div class="message message-received">'+
            '<div class="message-name">'+nice_name+'</div>'+
+           '<div class="message-text">'+content+'</div>'+
+           '<div style="background-image:url(img/photo.png)" class="message-avatar"></div>'+
+        '</div>');
+
+
+
+  	        });
+
+			 myApp.hideIndicator();
+      	});
+
+
+}
+*/
+
+function getGetComments() {
+  		myApp.showIndicator();
+      $("#comments").empty();
+      var PostSelectedID = localStorage.getItem('tempoPostSelectedID');
+      var url= base_wp_url+"/?json=get_post&post_id="+PostSelectedID;
+  		$.getJSON(url,function(result){
+			console.log(result);
+			localStorage.setItem('tempPostCommentData', JSON.stringify(result));
+			var postCommentData = localStorage.getItem('tempPostCommentData');
+			var jsonCommentObj = $.parseJSON(postCommentData);
+			console.log(jsonCommentObj);
+		//	var postData = localStorage.getItem('tempPostData');
+			//var array = JSON.parse(postData);
+			$.each(jsonCommentObj.post.comments, function(i, field){
+  	   // var title=(field.title).slice(0,5);
+        var date=field.date;
+				var content=field.content;
+				var name=field.name;
+        var first_name=localStorage.getItem('myfirstname');
+        var last_name=localStorage.getItem('mylastname');
+        var nice_name= first_name +' '+last_name;
+      //  var avatar=field.avatar;
+
+
+        console.log(date);
+        console.log(name);
+        console.log(content);
+
+			$("#comments").append('<div class="messages-date">'+date+'</div>'+
+        '<div class="message message-received">'+
+           '<div class="message-name">'+name+'</div>'+
            '<div class="message-text">'+content+'</div>'+
            '<div style="background-image:url(img/photo.png)" class="message-avatar"></div>'+
         '</div>');
