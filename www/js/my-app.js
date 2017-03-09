@@ -774,10 +774,10 @@ function getGetComments() {
   	   // var title=(field.title).slice(0,5);
         var date=field.date;
 				var content=field.content;
-				var name=field.name;
-        var first_name=localStorage.getItem('myfirstname');
-        var last_name=localStorage.getItem('mylastname');
-        var nice_name= first_name +' '+last_name;
+				var name= field.author.name;
+        //var first_name=field.first_name;
+        //var last_name=field.last_name;
+      //  var nice_name= first_name +' '+last_name;
       //  var avatar=field.avatar;
 
 
