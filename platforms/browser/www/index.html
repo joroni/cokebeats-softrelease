@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <title>Coke Beats</title>
+      <!-- Path to your custom app styles-->
+      <link rel="stylesheet" href="css/my-app.css">
+      <link rel="stylesheet" href="css/media.css">
+      <!-- Path to Framework7 Library CSS-->
+      <link rel="stylesheet" href="css/framework7/framework7.min.css">
+      <link rel="stylesheet" href="fonts/font_awesome/css/font-awesome.min.css">
+      <link rel="stylesheet" href="css/framework7/framework7.ios.colors.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+      <script type="text/javascript" src="vendor/jquery-3.1.0.min.js"></script>
+      <script src="js/list.min.js"></script>
+      <script type="text/javascript" src="vendor/jquery.validate.js"></script>
+      <script type="text/javascript" src="vendor/jquery.form.js"></script>
+      <link rel="stylesheet" href="css/framework7-icons.css">
+      <script type="text/javascript" charset="utf-8" src="components/loader.js"></script>
+      <link rel="stylesheet" href="photoswipe/photoswipe.css">
+      <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
+         In the folder of skin CSS file there are also:
+         - .png and .svg icons sprite,
+         - preloader.gif (for browsers that do not support CSS animations) -->
+      <link rel="stylesheet" href="photoswipe/default-skin/default-skin.css">
+      <script src="photoswipe/photoswipe.min.js"></script>
+      <script src="photoswipe/photoswipe-ui-default.min.js"></script>
+   <body>
+      <!-- Status bar overlay for fullscreen mode-->
+      <div class="statusbar-overlay"></div>
+      <!-- Panels overlay-->
+      <div class="panel-overlay"></div>
+      <!-- Left panel with reveal effect-->
+      <div class="panel panel-left panel-reveal">
+         <div class="content-block">
+            <p>Left panel content goes here</p>
+         </div>
+      </div>
+      <!-- Right panel with cover effect-->
+      <div class="panel panel-right panel-cover">
+         <div class="content-block">
+            <p>Right panel content goes here</p>
+         </div>
+      </div>
+      <!-- Views, and they are tabs-->
+      <!-- We need to set "toolbar-through" class on it to keep space for our tab bar-->
+      <div class="views tabs toolbar-through">
+         <!-- Your first view, it is also a .tab and should have "active" class to make it visible by default-->
+         <div id="view-1" class="view view-main tab active">
+            <!-- We can make with view with navigation, let's add Top Navbar-->
+            <div class="navbar">
+               <div class="navbar-inner">
+                  <div class="center sliding">
+                     <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
+                  </div>
+               </div>
+            </div>
+            <!-- Pages-->
+            <div class="pages navbar-through">
+               <!-- Page, data-page contains page name-->
+               <div data-page="index-1" class="page">
+                  <!-- Scrollable page content-->
+                  <div class="page-content home">
+                     <div class="content-blockno">
+                      <ul id="output" class="output"></ul>
+
+							       <!--<div id="my-gallery" class="photo-gallery">
+                           <a href="https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg" data-size="1600x1600" data-med="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_b.jpg" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--main">
+                              <img src="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg" alt="" />
+                              <figure>This is dummy caption.</figure>
+                           </a>
+                           <a href="https://farm6.staticflickr.com/5591/15008867125_b61960af01_h.jpg" data-size="1600x1068" data-med="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_b.jpg" data-med-size="1024x683" data-author="Samuel Rohl">
+                              <img src="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg" alt="" />
+                              <figure>This is dummy caption. It has been placed here solely to demonstrate the look and feel of finished, typeset text.</figure>
+                           </a>
+                           <a href="https://farm4.staticflickr.com/3902/14985871946_24f47d4b53_h.jpg" data-size="1600x1067" data-med="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg" data-med-size="1024x683" data-author="Ales Krivec">
+                              <img src="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg" alt="" />
+                              <figure>This is dummy caption. It is not meant to be read.</figure>
+                           </a>
+                           <a href="https://farm6.staticflickr.com/5584/14985868676_b51baa4071_h.jpg" data-size="1600x1067" data-med="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_b.jpg" data-med-size="1024x683" data-author="Michael Hull">
+                              <img src="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg" alt="" />
+                              <figure>Dummy caption. It's Greek to you. Unless, of course, you're Greek, in which case, it really makes no sense.</figure>
+                           </a>
+                           <a href="https://farm4.staticflickr.com/3920/15008465772_d50c8f0531_h.jpg" data-size="1600x1067" data-med="https://farm4.staticflickr.com/3920/15008465772_383e697089_b.jpg" data-med-size="1024x683" data-author="Thomas Lefebvre">
+                              <img src="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg" alt="" />
+                              <figure>It's a dummy caption. He who searches for meaning here will be sorely disappointed.</figure>
+                           </a>
+                        </div>
+                     </div>
+                  </div>-->
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <!-- Second view (for second wrap)-->
+      <div id="view-2" class="view tab">
+         <!-- We can make with view with navigation, let's add Top Navbar-->
+         <div class="navbar">
+            <div class="navbar-inner">
+               <div class="center sliding">
+                  <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
+               </div>
+            </div>
+         </div>
+         <div class="pages navbar-through">
+            <div data-page="index-2" class="page">
+               <div class="page-content">
+                  <!--<div class="content-block">
+                     <p>This is a second view. Lets, for example, have here some internal pages with navbar navigation</p>
+                     </div>
+                     <div class="list-block">
+                     <ul>
+                     	<li><a href="about.html" class="item-link">
+                     			<div class="item-content">
+                     				<div class="item-inner">
+                     					<div class="item-title">About Us</div>
+                     				</div>
+                     			</div></a></li>
+                     	<li><a href="services.html" class="item-link">
+                     			<div class="item-content">
+                     				<div class="item-inner">
+                     					<div class="item-title">Services</div>
+                     				</div>
+                     			</div></a></li>
+                     </ul>
+                     </div>-->
+                  <div class="content-block-title">Archives</div>
+                  <div class="list-block media-list">
+                     <ul id="oldposts" class="oldposts">
+                     </ul>
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+      <div id="view-3" class="view tab">
+         <div class="navbar">
+            <div class="navbar-inner">
+               <div class="center sliding">
+                  <span id='top_title'><img src="img/logo.png" style="width:auto !important; height: 50px;"></span>
+               </div>
+            </div>
+         </div>
+         <div class="pages navbar-through">
+            <div data-page="index-3" class="page">
+               <div class="page-content">
+                  <!--  <div class="content-block-title">Profile</div>-->
+                  <div id="profileContent" class="content-block centered" style="padding-top:0px;">
+                     <div id="avatar2" class="profile-image"></div>
+                     <a href="#view-3B" class="tab-link"> <i class="f7-icons size-50">compose</i></a>
+                  </div>
+                  <div class="list-block">
+                     <ul>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">First Name</div>
+                                 <div class="appfirstname truncate"></div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media">
+                                 <!-- <a href="#editprofile" class="btn-floating btn-large waves-effect waves-light red"> <i class="fa fa-pencil"></i></a>-->
+                              </div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Last Name</div>
+                                 <div class="applastname truncate"></div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media">
+                                 <!-- <a href="#editprofile" class="item-link btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a> -->
+                              </div>
+                              <div class="item-inner">
+                                 <div class="item-title label">KOID</div>
+                                 <div class="appusername truncate"></div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media">
+                                 <!--<a id="editProfile" href="#editprofile"
+                                    class="btn-floating btn-large waves-effect waves-light red"> <i class="f7-icons size-50">lock</i></a>-->
+                              </div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Email</div>
+                                 <div class="appemail truncate"></div>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="content-block">
+                     <div class="row">
+                        <div class="col-100">
+                           <a href="#loginScreen" class="open-login-screen button link gray" onclick="log_out();"><i class="f7-icons">logout</i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="view-3B" class="view tab">
+         <div class="pages navbar-through">
+            <div data-page="index-3B" class="page">
+               <div class="navbar">
+                  <div class="navbar-inner">
+                     <div class="center">PROFILE UPDATE</div>
+                  </div>
+               </div>
+               <div class="page-content">
+                  <div class="centered">
+                     <!--  <div class="item-title"></div>-->
+                     <div class="list-block">
+                        <ul>
+                           <li>
+                              <div class="item-content">
+                                 <div class="item-media"><i class="f7-icons size-50 gray">lock</i></div>
+                                 <div class="item-inner">
+                                    <div class="item-title label">KOID</div>
+                                    <div class="item-input">
+                                       <input id="user_name_input" class="userid gray" type="text" readonly class="gray" placeholder="KOID">
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                           <li>
+                              <div class="item-content">
+                                 <div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+                                 <div class="item-inner">
+                                    <div class="item-title label">Password</div>
+                                    <div class="item-input">
+                                       <input class="mdl-textfield__input password" type="password" id="password">
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                           <li>
+                              <div class="item-content">
+                                 <div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+                                 <div class="item-inner">
+                                    <div class="item-title label">First Name</div>
+                                    <div class="item-input">
+                                       <input class="mdl-textfield__input firstname" type="text" id="firstname">
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                           <li>
+                              <div class="item-content">
+                                 <div class="item-media"><i class="f7-icons size-50">unlock</i></div>
+                                 <div class="item-inner">
+                                    <div class="item-title label">Last Name</div>
+                                    <div class="item-input">
+                                       <input class="mdl-textfield__input lastname" type="text" id="lastname">
+                                    </div>
+                                 </div>
+                              </div>
+                           </li>
+                        </ul>
+                     </div>
+                     <div style='clear:both;'></div>
+                     <div class="content-block">
+                        <div class="row">
+                           <div class="col-100">
+                              <a href="#" id="btnUpdate" onclick="update_user();"  class="button button-big item-link">Save</a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="content-block">
+                        <div class="row">
+                           <div class="col-100">
+                              <a href="#view-3" class="tab-link button link gray"><i class="f7-icons">close_round</i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Comments -->
+      <div class="popup popup-commentbox">
+         <div class="pages navbar-through">
+            <div data-page="index-3B" class="page">
+               <div class="navbar">
+                  <div class="navbar-inner">
+                     <div class="left"><a href="#" class="close-popup">Close</a></div>
+                     <div class="center">Comments</div>
+										 <div class="right"><href="#"><i style="color:transparent;">None</i></a></div>
+                  </div>
+               </div>
+               <div class="toolbar messagebar">
+                  <div class="toolbar-inner">
+                     <textarea placeholder="Message" id="send_me"></textarea>
+                     <a href="#" class="link" onclick="sendss()">Post</a>
+                  </div>
+               </div>
+               <div class="page-content messages-content">
+                  <div id="comments" class="messages">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="view-4" class="view tab">
+         <div class="pages navbar-fixed">
+            <div data-page="index-4" class="page">
+               <div class="navbar">
+                  <div class="navbar-inner">
+                     <div class="center">Settings</div>
+                  </div>
+               </div>
+               <div class="page-content">
+                  <div class="list-block">
+                     <ul>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-name"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Name</div>
+                                 <div class="item-input">
+                                    <input type="text" placeholder="Your name">
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-email"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">E-mail</div>
+                                 <div class="item-input">
+                                    <input type="email" placeholder="E-mail">
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-url"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">URL</div>
+                                 <div class="item-input">
+                                    <input type="url" placeholder="URL">
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-password"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Password</div>
+                                 <div class="item-input">
+                                    <input type="password" placeholder="Password">
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Phone</div>
+                                 <div class="item-input">
+                                    <input type="tel" placeholder="Phone">
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-gender"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Gender</div>
+                                 <div class="item-input">
+                                    <select>
+                                       <option>Male</option>
+                                       <option>Female</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Birth date</div>
+                                 <div class="item-input">
+                                    <input type="date" placeholder="Birth day" value="2014-04-30">
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-toggle"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Switch</div>
+                                 <div class="item-input">
+                                    <label class="label-switch">
+                                       <input type="checkbox">
+                                       <div class="checkbox"></div>
+                                    </label>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="item-content">
+                              <div class="item-media"><i class="icon icon-form-settings"></i></div>
+                              <div class="item-inner">
+                                 <div class="item-title label">Slider</div>
+                                 <div class="item-input">
+                                    <div class="range-slider">
+                                       <input type="range" min="0" max="100" value="50" step="0.1">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="content-block">
+                     <p>Mauris commodo lacus at nisl lacinia, nec facilisis erat rhoncus. Sed eget pharetra nunc. Aenean vitae vehicula massa, sed sagittis ante. Quisque luctus nec velit dictum convallis. Nulla facilisi. Ut sed erat nisi. Donec non dolor massa. Mauris malesuada dolor velit, in suscipit leo consectetur vitae. Duis tempus ligula non eros pretium condimentum. Cras sed dolor odio.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="loginScreen" class="login-screen">
+         <div class="view">
+            <div class="page page no-swipeback">
+               <div class="page-content login-screen-content">
+                  <div style="height: 70px"></div>
+                  <div class="login-screen-title">
+                     <img src="img/logo-square.png" style="width:100px">
+                  </div>
+                  <form>
+                     <div class="list-block">
+                        <ul>
+                           <li class="item-content">
+                              <div class="item-inner">
+                                 <div class="item-title label">Username</div>
+                                 <div class="item-input">
+                                    <input class="user_name_input" type="text" name="username" placeholder="KOID">
+                                 </div>
+                              </div>
+                           </li>
+                           <li class="item-content">
+                              <div class="item-inner">
+                                 <div class="item-title label">Password</div>
+                                 <div class="item-input">
+                                    <input class="user_pass_input" type="password" placeholder="Password">
+                                 </div>
+                              </div>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="list-block">
+                        <ul>
+                           <li><a href="#" id="submmit-login" onclick="signin();" class="item-link list-button">Sign In</a></li>
+                        </ul>
+                        <!--<div class="list-block-label">
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                           <p><a href="#" class="close-login-screen">Close Login Screen</a></p>
+                           </div>-->
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Bottom Tabbar-->
+      <div class="toolbar tabbar tabbar-labels">
+         <div class="notlogged toolbar-inner" style="display:inline-flex;"></div>
+         <div class="common toolbar-inner" style="display:inline-flex;">
+            <a href="#view-1" class="tab-link active"><i class="f7-icons">home</i><span class="tabbar-label">Home</span></a>
+            <a href="#view-2" class="tab-link view-2"><i class="f7-icons">data</i><span class="tabbar-label">Inbox</span></a>
+            <a href="#view-3" class="tab-link"> <i class="f7-icons">person</i><span class="tabbar-label">Me</span></a>
+            <!--<a href="#view-3" class="tab-link"> <i class="icon tabbar-demo-icon-3"><span class="badge bg-red">4</span></i><span class="tabbar-label">Upload</span></a>-->
+            <!--<a href="#view-4" class="tab-link"> <i class="icon tabbar-demo-icon-4"></i><span class="tabbar-label">Photos</span></a></div>-->
+         </div>
+      </div>
+      <!-- Path to Framework7 Library JS-->
+      <script type="text/javascript" src="dist/js/framework7.min.js"></script>
+      <!-- Path to your app js-->
+      <script type="text/javascript" src="js/my-app.js"></script>
+
+   </body>
+</html>

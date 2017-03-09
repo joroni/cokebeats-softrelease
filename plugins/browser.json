@@ -7,21 +7,22 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ko.cokebeats"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ko.cokebeats"
-        },
-        "cordova-plugin-screen-orientation": {
-            "PACKAGE_NAME": "com.ko.cokebeats"
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.cocacola.cokebeats"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ko.cokebeats"
+            "PACKAGE_NAME": "com.cocacola.cokebeats"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ko.cokebeats"
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.cocacola.cokebeats"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.cocacola.cokebeats"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.cocacola.cokebeats"
+        }
+    }
 }

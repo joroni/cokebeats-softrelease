@@ -6,6 +6,7 @@
   <content src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="*"/>
+  
   <allow-intent href="itms:*"/>
   <allow-intent href="itms-apps:*"/>
 
